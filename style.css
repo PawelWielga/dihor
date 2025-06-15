@@ -1,13 +1,14 @@
-            --bg-primary: #0d1117;
-            --bg-secondary: #161b22;
-            --bg-tertiary: #21262d;
-            --accent-blue: #007acc;
-            --accent-cyan: #00bfff;
-            --text-primary: #ffffff;
-            --text-secondary: #e0e0e0;
-            --text-muted: #8b949e;
-            --glow: 0 0 20px rgba(0, 191, 255, 0.3);
-        }
+:root {
+    --bg-primary: #0d1117;
+    --bg-secondary: #161b22;
+    --bg-tertiary: #21262d;
+    --accent-blue: #007acc;
+    --accent-cyan: #00bfff;
+    --text-primary: #ffffff;
+    --text-secondary: #e0e0e0;
+    --text-muted: #8b949e;
+    --glow: 0 0 20px rgba(0, 191, 255, 0.3);
+}
 
         * {
             margin: 0;
