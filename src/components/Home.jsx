@@ -11,8 +11,9 @@ function Home() {
   const location = useLocation()
   useScrollAnimation()
   useEffect(() => {
-    if (location.hash === '#projects') {
-      const el = document.getElementById('projects')
+    if (location.hash) {
+      const targetId = location.hash.substring(1)
+      const el = document.getElementById(targetId)
       el?.scrollIntoView({ behavior: 'smooth' })
     }
   }, [location])
