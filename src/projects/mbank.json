@@ -1,6 +1,6 @@
 {
   "id": "mbank",
-  "category": "home",
+  "category": "commercial",
   "type": "Banking Application",
   "title": "Internal Banking Systems - mBank",
   "description": "Developed internal banking applications to streamline operational workflows. Migrated business logic from T-SQL stored procedures to C# services with comprehensive testing.",
