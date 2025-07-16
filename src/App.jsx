@@ -6,8 +6,11 @@ import Blog from './components/Blog.jsx'
 import Footer from './components/Footer.jsx'
 import './App.css'
 import { sections } from './config.js'
+import useScrollAnimation from './hooks/useScrollAnimation.js'
 
 function App() {
+  useScrollAnimation()
+
   return (
     <>
       <Navbar />
