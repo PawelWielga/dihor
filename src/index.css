@@ -9,7 +9,6 @@
     --text-muted: #8b949e;
     --glow: 0 0 20px rgba(0, 191, 255, 0.3);
     --glass-bg: rgba(255, 255, 255, 0.1);
-    --glass-border: 1px solid rgba(255, 255, 255, 0.2);
     --glass-blur: blur(15px);
 }
 
@@ -19,7 +18,6 @@ html { scroll-behavior: smooth; }
             background: var(--glass-bg);
             backdrop-filter: var(--glass-blur);
             -webkit-backdrop-filter: var(--glass-blur);
-            border: var(--glass-border);
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         }
         * {
