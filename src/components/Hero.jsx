@@ -10,7 +10,7 @@ function Hero() {
         <div className="hero-content">
           <div className="hero-image">
             <div className="profile-img">
-              <img src="/img/me.jpg" alt="Paweł Wielga" />
+              <img src={`${import.meta.env.BASE_URL}img/me.jpg`} alt="Paweł Wielga" />
             </div>
           </div>
           <div className="hero-text">
