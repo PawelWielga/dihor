@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 function Projects() {
   return (
     <section id="projects" className="section">
@@ -25,9 +27,9 @@ function Projects() {
               <a href="#">
                 <i className="fas fa-cube" /> 3D Printing
               </a>
-              <a href="#">
-                <i className="fas fa-desktop" /> Desktop App
-              </a>
+              <Link to="/project/z-suite" className="details-link">
+                <i className="fas fa-desktop" /> Details
+              </Link>
             </div>
           </div>
 
@@ -52,9 +54,9 @@ function Projects() {
               <a href="#">
                 <i className="fas fa-cloud" /> Cloud
               </a>
-              <a href="#">
-                <i className="fas fa-globe" /> Web App
-              </a>
+              <Link to="/project/incloud" className="details-link">
+                <i className="fas fa-globe" /> Details
+              </Link>
             </div>
           </div>
         </div>
