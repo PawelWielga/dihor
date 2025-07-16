@@ -1,6 +1,6 @@
 {
   "id": "material-calibration",
-  "category": "home",
+  "category": "commercial",
   "type": "Desktop Utilities",
   "title": "Material Calibration Tools",
   "description": "Desktop utilities for 3D printing material calibration with extensive parameter editing, toolpath previews, file comparison, and parameter history logging for enhanced material testing workflows.",
