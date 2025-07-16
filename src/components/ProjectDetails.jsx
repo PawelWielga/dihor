@@ -1,5 +1,6 @@
 import { useParams, Link } from 'react-router-dom'
 import { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 
 const projects = {
   'z-suite': {
@@ -26,6 +27,7 @@ const projects = {
 
 function ProjectDetails() {
   const { id } = useParams()
+  const { t } = useTranslation()
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [])
@@ -35,9 +37,9 @@ function ProjectDetails() {
     return (
       <section className="section">
         <div className="container">
-          <h2>Project not found</h2>
+          <h2>{t('projectDetails.notFound')}</h2>
           <Link to="/" className="read-more">
-            Back to home
+            {t('projectDetails.backToHome')}
           </Link>
         </div>
       </section>
@@ -59,7 +61,7 @@ function ProjectDetails() {
           className="read-more"
           style={{ display: 'inline-block', marginTop: '20px' }}
         >
-          Back to projects
+          {t('projectDetails.backToProjects')}
         </Link>
       </div>
     </section>
