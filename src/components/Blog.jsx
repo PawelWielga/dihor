@@ -4,7 +4,7 @@ function Blog() {
       <div className="container">
         <h2 className="section-title scroll-animate">Latest Blog Posts</h2>
         <div className="blog-grid">
-          <article className="blog-card glass scroll-animate">
+          <article className="blog-card scroll-animate">
             <div className="blog-image">
               <i className="fas fa-cube" />
             </div>
@@ -22,7 +22,7 @@ function Blog() {
             </div>
           </article>
 
-          <article className="blog-card glass scroll-animate">
+          <article className="blog-card scroll-animate">
             <div className="blog-image">
               <i className="fas fa-university" />
             </div>
@@ -40,7 +40,7 @@ function Blog() {
             </div>
           </article>
 
-          <article className="blog-card glass scroll-animate">
+          <article className="blog-card scroll-animate">
             <div className="blog-image">
               <i className="fas fa-mobile-alt" />
             </div>
@@ -58,7 +58,7 @@ function Blog() {
             </div>
           </article>
 
-          <article className="blog-card glass scroll-animate">
+          <article className="blog-card scroll-animate">
             <div className="blog-image">
               <i className="fas fa-cogs" />
             </div>
@@ -76,7 +76,7 @@ function Blog() {
             </div>
           </article>
 
-          <article className="blog-card glass scroll-animate">
+          <article className="blog-card scroll-animate">
             <div className="blog-image">
               <i className="fas fa-cloud" />
             </div>
@@ -94,7 +94,7 @@ function Blog() {
             </div>
           </article>
 
-          <article className="blog-card glass scroll-animate">
+          <article className="blog-card scroll-animate">
             <div className="blog-image">
               <i className="fas fa-paint-brush" />
             </div>

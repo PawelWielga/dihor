@@ -4,7 +4,7 @@ function Projects() {
       <div className="container">
         <h2 className="section-title scroll-animate">My Projects</h2>
         <div className="projects-grid">
-          <div className="project-card glass scroll-animate">
+          <div className="project-card scroll-animate">
             <div className="project-type">Desktop Application</div>
             <h3>Z-SUITE - 3D Printing Software</h3>
             <p>
@@ -31,7 +31,7 @@ function Projects() {
             </div>
           </div>
 
-          <div className="project-card glass scroll-animate">
+          <div className="project-card scroll-animate">
             <div className="project-type">Web Application</div>
             <h3>Zortrax inCloud - Remote Printer Management</h3>
             <p>

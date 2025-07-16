@@ -11,8 +11,8 @@
     --glass-bg: rgba(255, 255, 255, 0.1);
     --glass-border: 1px solid rgba(255, 255, 255, 0.2);
     --glass-blur: blur(15px);
-    --bg-gradient: linear-gradient(135deg, #1e215d 0%, #0d1117 100%);
 }
+
 html { scroll-behavior: smooth; }
 
         .glass {
@@ -22,7 +22,6 @@ html { scroll-behavior: smooth; }
             border: var(--glass-border);
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         }
-
         * {
             margin: 0;
             padding: 0;
@@ -31,7 +30,7 @@ html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Inter', sans-serif;
-            background: var(--bg-gradient);
+            background: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
@@ -211,20 +210,15 @@ html { scroll-behavior: smooth; }
         .section {
             padding: 100px 0;
             position: relative;
-            background: var(--glass-bg);
-            backdrop-filter: var(--glass-blur);
-            -webkit-backdrop-filter: var(--glass-blur);
-            border: var(--glass-border);
-            border-radius: 20px;
-            margin: 60px 0;
+            background: var(--bg-primary);
         }
 
         .section:nth-child(even) {
-            background: var(--glass-bg);
+            background: var(--bg-secondary);
         }
 
         #about {
-            background: var(--glass-bg);
+            background: var(--bg-secondary);
         }
 
         .section-title {
@@ -261,15 +255,12 @@ html { scroll-behavior: smooth; }
             height: 300px;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
-            backdrop-filter: var(--glass-blur);
-            -webkit-backdrop-filter: var(--glass-blur);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 8rem;
             color: var(--text-primary);
             margin: 0 auto;
-            border: var(--glass-border);
         }
 
         .about-text h3 {
@@ -292,14 +283,12 @@ html { scroll-behavior: smooth; }
         }
 
         .tech-tag {
-            background: var(--glass-bg);
-            backdrop-filter: var(--glass-blur);
-            -webkit-backdrop-filter: var(--glass-blur);
+            background: var(--bg-tertiary);
             padding: 8px 16px;
             border-radius: 25px;
             font-size: 0.9rem;
             color: var(--accent-cyan);
-            border: var(--glass-border);
+            border: 1px solid var(--accent-blue);
         }
 
         /* Projects Section */
@@ -311,13 +300,11 @@ html { scroll-behavior: smooth; }
         }
 
         .project-card {
-            background: var(--glass-bg);
-            backdrop-filter: var(--glass-blur);
-            -webkit-backdrop-filter: var(--glass-blur);
+            background: var(--bg-tertiary);
             border-radius: 15px;
             padding: 30px;
             transition: all 0.3s ease;
-            border: var(--glass-border);
+            border: 1px solid transparent;
         }
 
         .project-card:hover {
@@ -354,14 +341,11 @@ html { scroll-behavior: smooth; }
         }
 
         .project-tech span {
-            background: var(--glass-bg);
-            backdrop-filter: var(--glass-blur);
-            -webkit-backdrop-filter: var(--glass-blur);
+            background: var(--bg-primary);
             padding: 4px 10px;
             border-radius: 12px;
             font-size: 0.8rem;
             color: var(--text-muted);
-            border: var(--glass-border);
         }
 
         .project-links {
@@ -390,13 +374,10 @@ html { scroll-behavior: smooth; }
         }
 
         .blog-card {
-            background: var(--glass-bg);
-            backdrop-filter: var(--glass-blur);
-            -webkit-backdrop-filter: var(--glass-blur);
+            background: var(--bg-tertiary);
             border-radius: 15px;
             overflow: hidden;
             transition: all 0.3s ease;
-            border: var(--glass-border);
         }
 
         .blog-card:hover {
@@ -449,13 +430,10 @@ html { scroll-behavior: smooth; }
 
         /* Footer */
         footer {
-            background: var(--glass-bg);
-            backdrop-filter: var(--glass-blur);
-            -webkit-backdrop-filter: var(--glass-blur);
+            background: var(--bg-primary);
             padding: 60px 0 30px;
             text-align: center;
-            border-top: var(--glass-border);
-            border-radius: 20px 20px 0 0;
+            border-top: 1px solid var(--bg-tertiary);
         }
 
         .footer-content h3 {
@@ -491,7 +469,7 @@ html { scroll-behavior: smooth; }
         }
 
         .footer-bottom {
-            border-top: var(--glass-border);
+            border-top: 1px solid var(--bg-tertiary);
             padding-top: 20px;
             color: var(--text-muted);
         }
@@ -546,9 +524,6 @@ html { scroll-behavior: smooth; }
                 width: 200px;
                 height: 200px;
                 font-size: 5rem;
-                border: var(--glass-border);
-                backdrop-filter: var(--glass-blur);
-                -webkit-backdrop-filter: var(--glass-blur);
             }
 
             .projects-grid {
