@@ -1,12 +1,17 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 function Projects() {
+  const navigate = useNavigate()
+
   return (
     <section id="projects" className="section">
       <div className="container">
         <h2 className="section-title scroll-animate">My Projects</h2>
         <div className="projects-grid">
-          <div className="project-card scroll-animate">
+          <div
+            className="project-card scroll-animate"
+            onClick={() => navigate('/project/z-suite')}
+          >
             <div className="project-type">Desktop Application</div>
             <h3>Z-SUITE - 3D Printing Software</h3>
             <p>
@@ -24,16 +29,23 @@ function Projects() {
               <span>JavaScript</span>
             </div>
             <div className="project-links">
-              <a href="#">
+              <a href="#" onClick={e => e.stopPropagation()}>
                 <i className="fas fa-cube" /> 3D Printing
               </a>
-              <Link to="/project/z-suite" className="details-link">
+              <Link
+                to="/project/z-suite"
+                className="details-link"
+                onClick={e => e.stopPropagation()}
+              >
                 <i className="fas fa-desktop" /> Details
               </Link>
             </div>
           </div>
 
-          <div className="project-card scroll-animate">
+          <div
+            className="project-card scroll-animate"
+            onClick={() => navigate('/project/incloud')}
+          >
             <div className="project-type">Web Application</div>
             <h3>Zortrax inCloud - Remote Printer Management</h3>
             <p>
@@ -51,10 +63,14 @@ function Projects() {
               <span>MongoDB</span>
             </div>
             <div className="project-links">
-              <a href="#">
+              <a href="#" onClick={e => e.stopPropagation()}>
                 <i className="fas fa-cloud" /> Cloud
               </a>
-              <Link to="/project/incloud" className="details-link">
+              <Link
+                to="/project/incloud"
+                className="details-link"
+                onClick={e => e.stopPropagation()}
+              >
                 <i className="fas fa-globe" /> Details
               </Link>
             </div>
