@@ -1,0 +1,25 @@
+{
+  "nav": {
+    "home": "Strona główna",
+    "about": "O mnie",
+    "projects": "Projekty",
+    "blog": "Blog",
+    "contact": "Kontakt"
+  },
+  "hero": {
+    "tagline": "Tworzę potężne rozwiązania .NET",
+    "subtitle": "Inżynier oprogramowania z ponad 8-letnim doświadczeniem w technologii .NET. Specjalizuję się w aplikacjach desktopowych, webowych i mobilnych dla przemysłu, bankowości oraz rozwiązań konsumenckich.",
+    "viewWork": "Zobacz moje projekty",
+    "getInTouch": "Skontaktuj się"
+  },
+  "footer": {
+    "cta": "Zbudujmy razem coś niesamowitego",
+    "summary": "Doświadczony w aplikacjach przemysłowych, bankowych i konsumenckich. Gotowy dostarczyć techniczną doskonałość i innowacyjne rozwiązania w Twoim następnym projekcie .NET.",
+    "getInTouch": "Skontaktuj się"
+  },
+  "projectDetails": {
+    "backToHome": "Powrót na stronę główną",
+    "backToProjects": "Powrót do projektów",
+    "notFound": "Projekt nie znaleziony"
+  }
+}

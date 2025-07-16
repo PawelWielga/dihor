@@ -1,13 +1,14 @@
+import { useTranslation } from 'react-i18next'
+
 function Footer() {
+  const { t } = useTranslation()
   return (
     <footer id="contact">
       <div className="container">
         <div className="footer-content">
-          <h3>Let's Build Something Amazing Together</h3>
+          <h3>{t('footer.cta')}</h3>
           <p>
-            Experienced in industrial, banking, and consumer applications. Ready to
-            bring technical excellence and innovative solutions to your next .NET
-            project.
+            {t('footer.summary')}
           </p>
           <div className="social-links">
             <a href="#" title="GitHub">
@@ -29,7 +30,7 @@ function Footer() {
           <div className="cta-buttons">
             <a href="mailto::-----------@gmail.com" className="btn btn-primary">
               <i className="fas fa-paper-plane" />
-              Get In Touch
+              {t('footer.getInTouch')}
             </a>
           </div>
         </div>

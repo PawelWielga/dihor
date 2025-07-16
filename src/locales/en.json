@@ -1,0 +1,25 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "blog": "Blog",
+    "contact": "Contact"
+  },
+  "hero": {
+    "tagline": "Building powerful .NET solutions",
+    "subtitle": "Software Engineer with over 8 years of experience in .NET technologies. Specialized in desktop, web, and mobile applications for industrial environments, banking, and consumer solutions.",
+    "viewWork": "View My Work",
+    "getInTouch": "Get In Touch"
+  },
+  "footer": {
+    "cta": "Let's Build Something Amazing Together",
+    "summary": "Experienced in industrial, banking, and consumer applications. Ready to bring technical excellence and innovative solutions to your next .NET project.",
+    "getInTouch": "Get In Touch"
+  },
+  "projectDetails": {
+    "backToHome": "Back to home",
+    "backToProjects": "Back to projects",
+    "notFound": "Project not found"
+  }
+}
