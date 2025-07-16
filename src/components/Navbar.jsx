@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { sections } from '../config.js'
 
 function Navbar() {
   const [open, setOpen] = useState(false)
@@ -37,9 +38,11 @@ function Navbar() {
             <li>
               <a href="#projects" onClick={closeMenu}>Projects</a>
             </li>
-            <li>
-              <a href="#blog" onClick={closeMenu}>Blog</a>
-            </li>
+            {sections.blog && (
+              <li>
+                <a href="#blog" onClick={closeMenu}>Blog</a>
+              </li>
+            )}
             <li>
               <a href="#contact" onClick={closeMenu}>Contact</a>
             </li>
