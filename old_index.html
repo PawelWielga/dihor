@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paweł Wielga | .NET Developer & Software Engineer</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container">
+            <div class="nav-container">
+                <div class="logo">PW</div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Paweł Wielga</h1>
+                <p class="tagline">Building powerful .NET solutions</p>
+                <p class="subtitle">Software Engineer with over 8 years of experience in .NET technologies. Specialized in desktop, web, and mobile applications for industrial environments, banking, and consumer solutions.</p>
+                <div class="cta-buttons">
+                    <a href="#projects" class="btn btn-primary">
+                        <i class="fas fa-laptop-code"></i>
+                        View My Work
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <i class="fas fa-envelope"></i>
+                        Get In Touch
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title scroll-animate">About Me</h2>
+            <div class="about-content scroll-animate">
+                <div class="about-image">
+                    <div class="profile-img">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                </div>
+                <div class="about-text">
+                    <h3>Experienced .NET Software Engineer</h3>
+                    <p>With over 8 years of experience in .NET development, I specialize in designing and developing desktop, web, and mobile applications. My expertise spans complex systems in industrial environments (3D printing), banking solutions, and consumer-facing applications.</p>
+                    <p>I excel in code analysis and performance-driven refactoring, building solutions based on MVVM patterns. My technical arsenal includes CI/CD pipelines, Docker containers, asynchronous communication (RabbitMQ, SignalR), and interface-driven architectures with dependency injection.</p>
+                    <p>Currently working at 7N (mBank) developing internal banking applications, with previous experience at Zortrax S.A. where I built innovative 3D printing software solutions including Z-SUITE and Zortrax inCloud platforms.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">C# .NET</span>
+                        <span class="tech-tag">WPF</span>
+                        <span class="tech-tag">Blazor</span>
+                        <span class="tech-tag">Entity Framework</span>
+                        <span class="tech-tag">ASP.NET Core</span>
+                        <span class="tech-tag">Angular</span>
+                        <span class="tech-tag">TypeScript</span>
+                        <span class="tech-tag">RabbitMQ</span>
+                        <span class="tech-tag">SignalR</span>
+                        <span class="tech-tag">Docker</span>
+                        <span class="tech-tag">MongoDB</span>
+                        <span class="tech-tag">MySQL</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 class="section-title scroll-animate">My Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card scroll-animate">
+                    <div class="project-type">Desktop Application</div>
+                    <h3>Z-SUITE - 3D Printing Software</h3>
+                    <p>Desktop application with embedded browser for 3D model loading, manipulation, print setting selection, support generation, slicing, and toolpath computation. Built core 3D transformations and optimization algorithms.</p>
+                    <div class="project-tech">
+                        <span>C# .NET</span>
+                        <span>WPF</span>
+                        <span>CefSharp</span>
+                        <span>AngularJS</span>
+                        <span>Three.js</span>
+                        <span>JavaScript</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#"><i class="fas fa-cube"></i> 3D Printing</a>
+                        <a href="#"><i class="fas fa-desktop"></i> Desktop App</a>
+                    </div>
+                </div>
+
+                <div class="project-card scroll-animate">
+                    <div class="project-type">Web Application</div>
+                    <h3>Zortrax inCloud - Remote Printer Management</h3>
+                    <p>Web application for remote 3D printer management with real-time status monitoring, job control, and data collection. Implemented virtual shelves feature for printer organization.</p>
+                    <div class="project-tech">
+                        <span>.NET Core</span>
+                        <span>Entity Framework</span>
+                        <span>TypeScript</span>
+                        <span>Angular</span>
+                        <span>RabbitMQ</span>
+                        <span>SignalR</span>
+                        <span>MongoDB</span>
+                        <span>Docker</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#"><i class="fas fa-cloud"></i> Cloud Platform</a>
+                        <a href="#"><i class="fas fa-chart-line"></i> Real-time Monitoring</a>
+                    </div>
+                </div>
+
+                <div class="project-card scroll-animate">
+                    <div class="project-type">Banking Application</div>
+                    <h3>Internal Banking Systems - mBank</h3>
+                    <p>Developed internal banking applications to streamline operational workflows. Migrated business logic from T-SQL stored procedures to C# services with comprehensive testing.</p>
+                    <div class="project-tech">
+                        <span>C# .NET</span>
+                        <span>T-SQL</span>
+                        <span>WPF</span>
+                        <span>MudBlazor</span>
+                        <span>TeamCity</span>
+                        <span>Octopus Deploy</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#"><i class="fas fa-university"></i> Banking</a>
+                        <a href="#"><i class="fas fa-cogs"></i> Enterprise</a>
+                    </div>
+                </div>
+
+                <div class="project-card scroll-animate">
+                    <div class="project-type">Mobile Application</div>
+                    <h3>Nie Ma Nudy - Family Attractions App</h3>
+                    <p>Mobile app aggregating family-friendly attractions across Poland. Features location-based search, detailed venue information, and personalized favorites list with comprehensive admin panel.</p>
+                    <div class="project-tech">
+                        <span>.NET Core</span>
+                        <span>Blazor</span>
+                        <span>.NET MAUI</span>
+                        <span>Angular</span>
+                        <span>Web API</span>
+                        <span>MySQL</span>
+                        <span>Entity Framework</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#"><i class="fas fa-mobile-alt"></i> Mobile App</a>
+                        <a href="#"><i class="fas fa-map-marker-alt"></i> Location Based</a>
+                    </div>
+                </div>
+
+                <div class="project-card scroll-animate">
+                    <div class="project-type">Mobile Application</div>
+                    <h3>ShowSize - Garment Measurement Tool</h3>
+                    <p>Android app for interactive garment measurement annotation. Users can select clothing types and add measurements directly on silhouettes with customizable labels and image export functionality.</p>
+                    <div class="project-tech">
+                        <span>C# .NET</span>
+                        <span>Xamarin.Forms</span>
+                        <span>SkiaSharp</span>
+                        <span>MVVM</span>
+                        <span>Android</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#"><i class="fas fa-tshirt"></i> Garment Tool</a>
+                        <a href="#"><i class="fas fa-ruler"></i> Measurements</a>
+                    </div>
+                </div>
+
+                <div class="project-card scroll-animate">
+                    <div class="project-type">Desktop Utilities</div>
+                    <h3>Material Calibration Tools</h3>
+                    <p>Desktop utilities for 3D printing material calibration with extensive parameter editing, toolpath previews, file comparison, and parameter history logging for enhanced material testing workflows.</p>
+                    <div class="project-tech">
+                        <span>C#</span>
+                        <span>Windows Forms</span>
+                        <span>WPF</span>
+                        <span>File Processing</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#"><i class="fas fa-tools"></i> Calibration</a>
+                        <a href="#"><i class="fas fa-microscope"></i> Analysis</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="section">
+        <div class="container">
+            <h2 class="section-title scroll-animate">Latest Blog Posts</h2>
+            <div class="blog-grid">
+                <article class="blog-card scroll-animate">
+                    <div class="blog-image">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">June 10, 2025</div>
+                        <h3>3D Printing Software: Lessons from Z-SUITE Development</h3>
+                        <p>Deep dive into building desktop applications for 3D printing, covering 3D transformations, collision detection, and optimal model orientation algorithms.</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <article class="blog-card scroll-animate">
+                    <div class="blog-image">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">June 5, 2025</div>
+                        <h3>Migrating from T-SQL to C# Services in Banking</h3>
+                        <p>Practical insights from migrating complex business logic from stored procedures to maintainable C# services in enterprise banking environments.</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <article class="blog-card scroll-animate">
+                    <div class="blog-image">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">May 28, 2025</div>
+                        <h3>Building Cross-Platform Apps with .NET MAUI</h3>
+                        <p>My experience building "Nie Ma Nudy" - from concept to production, covering .NET MAUI, Blazor integration, and location-based features.</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <article class="blog-card scroll-animate">
+                    <div class="blog-image">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">May 20, 2025</div>
+                        <h3>MVVM and DDD Patterns in Industrial Applications</h3>
+                        <p>How architectural patterns like MVVM and Domain-Driven Design helped build robust, maintainable solutions in complex industrial environments.</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <article class="blog-card scroll-animate">
+                    <div class="blog-image">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">May 15, 2025</div>
+                        <h3>Real-time Communication with SignalR and RabbitMQ</h3>
+                        <p>Building responsive applications with asynchronous communication patterns, covering implementation strategies and performance considerations.</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <article class="blog-card scroll-animate">
+                    <div class="blog-image">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">May 8, 2025</div>
+                        <h3>Custom Graphics with SkiaSharp in Xamarin</h3>
+                        <p>Creating interactive touch interfaces and custom visualizations using SkiaSharp, based on experience building the ShowSize measurement app.</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <h3>Let's Build Something Amazing Together</h3>
+                <p>Experienced in industrial, banking, and consumer applications. Ready to bring technical excellence and innovative solutions to your next .NET project.</p>
+                <div class="social-links">
+                    <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" title="Stack Overflow"><i class="fab fa-stack-overflow"></i></a>
+                    <a href="mailto:-----------@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="tel:+48---------" title="Phone"><i class="fas fa-phone"></i></a>
+                </div>
+                <div class="cta-buttons">
+                    <a href="mailto::-----------@gmail.com" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i>
+                        Get In Touch
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Paweł Wielga. All rights reserved. Built with passion and .NET ❤️</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
