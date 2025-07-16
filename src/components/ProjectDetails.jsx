@@ -1,5 +1,5 @@
 import { useParams, Link } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useLayoutEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 
 const projects = {
@@ -28,7 +28,7 @@ const projects = {
 function ProjectDetails() {
   const { id } = useParams()
   const { t } = useTranslation()
-  useEffect(() => {
+  useLayoutEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [id])
   const project = projects[id]
