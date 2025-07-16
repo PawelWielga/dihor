@@ -1,6 +1,9 @@
+import Particles from './Particles.jsx'
+
 function Hero() {
   return (
     <section id="home" className="hero">
+      <Particles />
       <div className="container">
         <div className="hero-content">
           <h1>Paweł Wielga</h1>
