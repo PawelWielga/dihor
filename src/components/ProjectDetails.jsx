@@ -30,7 +30,7 @@ function ProjectDetails() {
   const { t } = useTranslation()
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
-  }, [])
+  }, [id])
   const project = projects[id]
 
   if (!project) {
