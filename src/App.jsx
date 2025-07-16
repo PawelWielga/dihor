@@ -1,25 +1,20 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar.jsx'
-import Hero from './components/Hero.jsx'
-import About from './components/About.jsx'
-import Projects from './components/Projects.jsx'
-import Blog from './components/Blog.jsx'
 import Footer from './components/Footer.jsx'
+import Home from './components/Home.jsx'
+import ProjectDetails from './components/ProjectDetails.jsx'
 import './App.css'
-import { sections } from './config.js'
-import useScrollAnimation from './hooks/useScrollAnimation.js'
 
 function App() {
-  useScrollAnimation()
-
   return (
-    <>
+    <BrowserRouter>
       <Navbar />
-      {sections.hero && <Hero />}
-      {sections.about && <About />}
-      {sections.projects && <Projects />}
-      {sections.blog && <Blog />}
-      {sections.footer && <Footer />}
-    </>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/project/:id" element={<ProjectDetails />} />
+      </Routes>
+      <Footer />
+    </BrowserRouter>
   )
 }
 

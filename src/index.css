@@ -386,6 +386,12 @@ html { scroll-behavior: smooth; }
             transition: all 0.3s ease;
         }
 
+        .project-links .details-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
         .project-links a:hover {
             color: var(--text-primary);
             text-shadow: 0 0 10px rgba(0, 191, 255, 0.5);
