@@ -107,15 +107,20 @@ html { scroll-behavior: smooth; }
 
         .lang-btn {
             background: none;
-            border: none;
+            border: 2px solid var(--accent-cyan);
+            border-radius: 50%;
             cursor: pointer;
             font-size: 1.5rem;
             color: var(--text-secondary);
             margin-left: 20px;
+            padding: 5px;
+            transition: all 0.3s ease;
         }
 
         .lang-btn:hover {
             color: var(--accent-cyan);
+            box-shadow: var(--glow);
+            transform: translateY(-2px);
         }
 
         .mobile-menu {
