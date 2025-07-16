@@ -2,8 +2,8 @@ import { useParams, Link } from 'react-router-dom'
 import { useLayoutEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import zSuite from '../projects-details/z-suite.js'
-import inCloud from '../projects-details/incloud.js'
+import zSuite from '../projects/z-suite.json'
+import inCloud from '../projects/incloud.json'
 
 const projects = {
   'z-suite': zSuite,

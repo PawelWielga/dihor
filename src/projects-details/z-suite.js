@@ -1,6 +1,0 @@
-export default {
-  title: 'Z-SUITE - 3D Printing Software',
-  description:
-    'Desktop application with embedded browser for 3D model loading, manipulation, print setting selection, support generation, slicing and toolpath computation.',
-  tech: ['C# .NET', 'WPF', 'CefSharp', 'AngularJS', 'Three.js', 'JavaScript'],
-}
