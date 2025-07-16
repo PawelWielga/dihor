@@ -2,27 +2,12 @@ import { useParams, Link } from 'react-router-dom'
 import { useLayoutEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import zSuite from '../projects-details/z-suite.js'
+import inCloud from '../projects-details/incloud.js'
+
 const projects = {
-  'z-suite': {
-    title: 'Z-SUITE - 3D Printing Software',
-    description:
-      'Desktop application with embedded browser for 3D model loading, manipulation, print setting selection, support generation, slicing and toolpath computation.',
-    tech: ['C# .NET', 'WPF', 'CefSharp', 'AngularJS', 'Three.js', 'JavaScript'],
-  },
-  incloud: {
-    title: 'Zortrax inCloud - Remote Printer Management',
-    description:
-      'Web application for remote 3D printer management with real-time status monitoring, job control and data collection.',
-    tech: [
-      '.NET Core',
-      'Entity Framework',
-      'TypeScript',
-      'Angular',
-      'RabbitMQ',
-      'SignalR',
-      'MongoDB',
-    ],
-  },
+  'z-suite': zSuite,
+  incloud: inCloud,
 }
 
 function ProjectDetails() {
