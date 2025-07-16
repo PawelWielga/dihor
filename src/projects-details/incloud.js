@@ -1,0 +1,14 @@
+export default {
+  title: 'Zortrax inCloud - Remote Printer Management',
+  description:
+    'Web application for remote 3D printer management with real-time status monitoring, job control and data collection.',
+  tech: [
+    '.NET Core',
+    'Entity Framework',
+    'TypeScript',
+    'Angular',
+    'RabbitMQ',
+    'SignalR',
+    'MongoDB',
+  ],
+}
