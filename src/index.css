@@ -572,6 +572,9 @@ html { scroll-behavior: smooth; }
 
         /* Responsive Design */
         @media (max-width: 768px) {
+            .hero {
+                padding-top: 80px;
+            }
             .nav-links {
                 display: none;
             }
