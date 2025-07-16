@@ -329,8 +329,11 @@ html { scroll-behavior: smooth; }
             background: var(--bg-tertiary);
             border-radius: 15px;
             padding: 30px;
+            padding-bottom: 70px;
             transition: all 0.3s ease;
             border: 1px solid transparent;
+            cursor: pointer;
+            position: relative;
         }
 
         .project-card:hover {
@@ -390,6 +393,9 @@ html { scroll-behavior: smooth; }
             display: inline-flex;
             align-items: center;
             gap: 5px;
+            position: absolute;
+            right: 30px;
+            bottom: 30px;
         }
 
         .project-links a:hover {
