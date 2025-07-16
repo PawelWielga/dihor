@@ -10,5 +10,14 @@
     "RabbitMQ",
     "SignalR",
     "MongoDB"
-  ]
+  ],
+  "category": "commercial",
+  "type": "Web Application",
+  "links": [
+    {
+      "label": "Cloud",
+      "icon": "fas fa-cloud"
+    }
+  ],
+  "hasDetails": true
 }
