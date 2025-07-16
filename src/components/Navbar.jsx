@@ -53,10 +53,12 @@ function Navbar() {
             <li>
               <Link to="/#contact" onClick={closeMenu}>{t('nav.contact')}</Link>
             </li>
+            <li>
+              <button className="lang-btn" onClick={toggleLanguage}>
+                {i18n.language === 'en' ? '🇬🇧' : '🇵🇱'}
+              </button>
+            </li>
           </ul>
-          <button className="lang-btn" onClick={toggleLanguage}>
-            {i18n.language === 'en' ? '🇬🇧' : '🇵🇱'}
-          </button>
           <div className="mobile-menu" onClick={toggleMenu}>
             <i className="fas fa-bars" />
           </div>
