@@ -8,8 +8,20 @@
     --text-secondary: #e0e0e0;
     --text-muted: #8b949e;
     --glow: 0 0 20px rgba(0, 191, 255, 0.3);
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: 1px solid rgba(255, 255, 255, 0.2);
+    --glass-blur: blur(15px);
+    --bg-gradient: linear-gradient(135deg, #1e215d 0%, #0d1117 100%);
 }
 html { scroll-behavior: smooth; }
+
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: var(--glass-border);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
 
         * {
             margin: 0;
@@ -19,7 +31,7 @@ html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Inter', sans-serif;
-            background: var(--bg-primary);
+            background: var(--bg-gradient);
             color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
@@ -36,15 +48,17 @@ html { scroll-behavior: smooth; }
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(13, 17, 23, 0.95);
-            backdrop-filter: blur(10px);
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border-bottom: var(--glass-border);
             z-index: 1000;
             padding: 15px 0;
             transition: all 0.3s ease;
         }
 
         nav.scrolled {
-            background: rgba(13, 17, 23, 0.98);
+            background: var(--glass-bg);
             box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
         }
 
@@ -197,15 +211,20 @@ html { scroll-behavior: smooth; }
         .section {
             padding: 100px 0;
             position: relative;
-            background: var(--bg-primary);
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: var(--glass-border);
+            border-radius: 20px;
+            margin: 60px 0;
         }
 
         .section:nth-child(even) {
-            background: var(--bg-secondary);
+            background: var(--glass-bg);
         }
 
         #about {
-            background: var(--bg-secondary);
+            background: var(--glass-bg);
         }
 
         .section-title {
@@ -242,12 +261,15 @@ html { scroll-behavior: smooth; }
             height: 300px;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 8rem;
             color: var(--text-primary);
             margin: 0 auto;
+            border: var(--glass-border);
         }
 
         .about-text h3 {
@@ -270,12 +292,14 @@ html { scroll-behavior: smooth; }
         }
 
         .tech-tag {
-            background: var(--bg-tertiary);
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
             padding: 8px 16px;
             border-radius: 25px;
             font-size: 0.9rem;
             color: var(--accent-cyan);
-            border: 1px solid var(--accent-blue);
+            border: var(--glass-border);
         }
 
         /* Projects Section */
@@ -287,11 +311,13 @@ html { scroll-behavior: smooth; }
         }
 
         .project-card {
-            background: var(--bg-tertiary);
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
             border-radius: 15px;
             padding: 30px;
             transition: all 0.3s ease;
-            border: 1px solid transparent;
+            border: var(--glass-border);
         }
 
         .project-card:hover {
@@ -328,11 +354,14 @@ html { scroll-behavior: smooth; }
         }
 
         .project-tech span {
-            background: var(--bg-primary);
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
             padding: 4px 10px;
             border-radius: 12px;
             font-size: 0.8rem;
             color: var(--text-muted);
+            border: var(--glass-border);
         }
 
         .project-links {
@@ -361,10 +390,13 @@ html { scroll-behavior: smooth; }
         }
 
         .blog-card {
-            background: var(--bg-tertiary);
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
             border-radius: 15px;
             overflow: hidden;
             transition: all 0.3s ease;
+            border: var(--glass-border);
         }
 
         .blog-card:hover {
@@ -417,10 +449,13 @@ html { scroll-behavior: smooth; }
 
         /* Footer */
         footer {
-            background: var(--bg-primary);
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
             padding: 60px 0 30px;
             text-align: center;
-            border-top: 1px solid var(--bg-tertiary);
+            border-top: var(--glass-border);
+            border-radius: 20px 20px 0 0;
         }
 
         .footer-content h3 {
@@ -456,7 +491,7 @@ html { scroll-behavior: smooth; }
         }
 
         .footer-bottom {
-            border-top: 1px solid var(--bg-tertiary);
+            border-top: var(--glass-border);
             padding-top: 20px;
             color: var(--text-muted);
         }
@@ -511,6 +546,9 @@ html { scroll-behavior: smooth; }
                 width: 200px;
                 height: 200px;
                 font-size: 5rem;
+                border: var(--glass-border);
+                backdrop-filter: var(--glass-blur);
+                -webkit-backdrop-filter: var(--glass-blur);
             }
 
             .projects-grid {

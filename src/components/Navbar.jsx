@@ -20,7 +20,7 @@ function Navbar() {
   const closeMenu = () => setOpen(false)
 
   return (
-    <nav id="navbar">
+    <nav id="navbar" className="glass">
       <div className="container">
         <div className="nav-container">
           <div className="logo">PW</div>
