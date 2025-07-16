@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
 import { sections } from '../config.js'
 
 function Navbar() {
@@ -36,21 +37,21 @@ function Navbar() {
             style={open ? { display: 'flex', flexDirection: 'column' } : {}}
           >
             <li>
-              <a href="#home" onClick={closeMenu}>{t('nav.home')}</a>
+              <Link to="/#home" onClick={closeMenu}>{t('nav.home')}</Link>
             </li>
             <li>
-              <a href="#about" onClick={closeMenu}>{t('nav.about')}</a>
+              <Link to="/#about" onClick={closeMenu}>{t('nav.about')}</Link>
             </li>
             <li>
-              <a href="#projects" onClick={closeMenu}>{t('nav.projects')}</a>
+              <Link to="/#projects" onClick={closeMenu}>{t('nav.projects')}</Link>
             </li>
             {sections.blog && (
               <li>
-                <a href="#blog" onClick={closeMenu}>{t('nav.blog')}</a>
+                <Link to="/#blog" onClick={closeMenu}>{t('nav.blog')}</Link>
               </li>
             )}
             <li>
-              <a href="#contact" onClick={closeMenu}>{t('nav.contact')}</a>
+              <Link to="/#contact" onClick={closeMenu}>{t('nav.contact')}</Link>
             </li>
           </ul>
           <button className="lang-btn" onClick={toggleLanguage}>
