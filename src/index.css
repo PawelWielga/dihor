@@ -291,6 +291,8 @@ html { scroll-behavior: smooth; }
             font-size: 8rem;
             color: var(--text-primary);
             margin: 0 auto;
+            border: 3px solid var(--accent-cyan);
+            box-shadow: var(--glow);
         }
 
         .profile-img img {
@@ -298,6 +300,7 @@ html { scroll-behavior: smooth; }
             height: 100%;
             object-fit: cover;
             border-radius: 50%;
+            filter: brightness(90%);
         }
 
         .about-text h3 {
