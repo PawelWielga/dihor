@@ -7,6 +7,7 @@ function Projects() {
     <section id="projects" className="section">
       <div className="container">
         <h2 className="section-title scroll-animate">My Projects</h2>
+        <h3 className="section-title scroll-animate">Commercial Projects</h3>
         <div className="projects-grid">
           <div
             className="project-card scroll-animate"
@@ -75,6 +76,9 @@ function Projects() {
               </Link>
             </div>
           </div>
+        </div>
+        <h3 className="section-title scroll-animate">Home Projects</h3>
+        <div className="projects-grid">
 
           <div className="project-card scroll-animate">
             <div className="project-type">Banking Application</div>
