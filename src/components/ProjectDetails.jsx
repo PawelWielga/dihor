@@ -2,13 +2,7 @@ import { useParams, Link } from 'react-router-dom'
 import { useLayoutEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import zSuite from '../projects/z-suite.json'
-import inCloud from '../projects/incloud.json'
-
-const projects = {
-  'z-suite': zSuite,
-  incloud: inCloud,
-}
+import { projectMap } from '../projects'
 
 function ProjectDetails() {
   const { id } = useParams()
@@ -16,7 +10,7 @@ function ProjectDetails() {
   useLayoutEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [id])
-  const project = projects[id]
+  const project = projectMap[id]
 
   if (!project) {
     return (

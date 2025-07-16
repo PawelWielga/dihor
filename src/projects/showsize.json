@@ -1,0 +1,19 @@
+{
+  "id": "showsize",
+  "category": "home",
+  "type": "Mobile Application",
+  "title": "ShowSize - Garment Measurement Tool",
+  "description": "Android app for interactive garment measurement annotation. Users can select clothing types and add measurements directly on silhouettes with customizable labels and image export functionality.",
+  "tech": [
+    "C# .NET",
+    "Xamarin.Forms",
+    "SkiaSharp",
+    "MVVM",
+    "Android"
+  ],
+  "links": [
+    { "label": "Garment Tool", "icon": "fas fa-tshirt" },
+    { "label": "Measurements", "icon": "fas fa-ruler" }
+  ],
+  "hasDetails": false
+}

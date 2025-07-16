@@ -9,5 +9,14 @@
     "AngularJS",
     "Three.js",
     "JavaScript"
-  ]
+  ],
+  "category": "commercial",
+  "type": "Desktop Application",
+  "links": [
+    {
+      "label": "3D Printing",
+      "icon": "fas fa-cube"
+    }
+  ],
+  "hasDetails": true
 }
