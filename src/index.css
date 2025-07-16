@@ -143,8 +143,8 @@ html { scroll-behavior: smooth; }
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('/img/rx7.png') center/cover no-repeat;
-            opacity: 0.1;
+            background: url('/img/rx7.png') bottom right/150px no-repeat;
+            opacity: 0.03;
             filter: grayscale(100%);
             z-index: 0;
         }
