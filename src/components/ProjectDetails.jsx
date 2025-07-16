@@ -1,4 +1,5 @@
 import { useParams, Link } from 'react-router-dom'
+import { useEffect } from 'react'
 
 const projects = {
   'z-suite': {
@@ -25,6 +26,9 @@ const projects = {
 
 function ProjectDetails() {
   const { id } = useParams()
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
   const project = projects[id]
 
   if (!project) {
@@ -50,7 +54,11 @@ function ProjectDetails() {
             <span key={t}>{t}</span>
           ))}
         </div>
-        <Link to="/" className="read-more" style={{ display: 'inline-block', marginTop: '20px' }}>
+        <Link
+          to="/#projects"
+          className="read-more"
+          style={{ display: 'inline-block', marginTop: '20px' }}
+        >
           Back to projects
         </Link>
       </div>

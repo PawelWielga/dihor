@@ -4,9 +4,18 @@ import Projects from './Projects.jsx'
 import Blog from './Blog.jsx'
 import { sections } from '../config.js'
 import useScrollAnimation from '../hooks/useScrollAnimation.js'
+import { useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 
 function Home() {
+  const location = useLocation()
   useScrollAnimation()
+  useEffect(() => {
+    if (location.hash === '#projects') {
+      const el = document.getElementById('projects')
+      el?.scrollIntoView({ behavior: 'smooth' })
+    }
+  }, [location])
 
   return (
     <>
