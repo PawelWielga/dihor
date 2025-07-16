@@ -10,7 +10,7 @@ function Hero() {
         <div className="hero-content">
           <div className="hero-image">
             <div className="profile-img">
-              <i className="fas fa-user-tie" />
+              <img src="/img/me.jpg" alt="Paweł Wielga" />
             </div>
           </div>
           <div className="hero-text">
