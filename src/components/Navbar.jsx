@@ -1,31 +1,31 @@
-import { useState, useEffect } from 'react'
-import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
-import { sections } from '../config.js'
+import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
+import { sections } from '../config.js';
 
 function Navbar() {
-  const [open, setOpen] = useState(false)
-  const { t, i18n } = useTranslation()
+  const [open, setOpen] = useState(false);
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     const onScroll = () => {
-      const navbar = document.getElementById('navbar')
+      const navbar = document.getElementById('navbar');
       if (window.scrollY > 50) {
-        navbar.classList.add('scrolled')
+        navbar.classList.add('scrolled');
       } else {
-        navbar.classList.remove('scrolled')
+        navbar.classList.remove('scrolled');
       }
-    }
-    window.addEventListener('scroll', onScroll)
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+    };
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
-  const toggleMenu = () => setOpen(!open)
-  const closeMenu = () => setOpen(false)
+  const toggleMenu = () => setOpen(!open);
+  const closeMenu = () => setOpen(false);
   const toggleLanguage = () => {
-    const newLang = i18n.language === 'en' ? 'pl' : 'en'
-    i18n.changeLanguage(newLang)
-  }
+    const newLang = i18n.language === 'en' ? 'pl' : 'en';
+    i18n.changeLanguage(newLang);
+  };
 
   return (
     <nav id="navbar" className="glass">
@@ -37,21 +37,31 @@ function Navbar() {
             style={open ? { display: 'flex', flexDirection: 'column' } : {}}
           >
             <li>
-              <Link to="/#home" onClick={closeMenu}>{t('nav.home')}</Link>
+              <Link to="/#home" onClick={closeMenu}>
+                {t('nav.home')}
+              </Link>
             </li>
             <li>
-              <Link to="/#about" onClick={closeMenu}>{t('nav.about')}</Link>
+              <Link to="/#about" onClick={closeMenu}>
+                {t('nav.about')}
+              </Link>
             </li>
             <li>
-              <Link to="/#projects" onClick={closeMenu}>{t('nav.projects')}</Link>
+              <Link to="/#projects" onClick={closeMenu}>
+                {t('nav.projects')}
+              </Link>
             </li>
             {sections.blog && (
               <li>
-                <Link to="/#blog" onClick={closeMenu}>{t('nav.blog')}</Link>
+                <Link to="/#blog" onClick={closeMenu}>
+                  {t('nav.blog')}
+                </Link>
               </li>
             )}
             <li>
-              <Link to="/#contact" onClick={closeMenu}>{t('nav.contact')}</Link>
+              <Link to="/#contact" onClick={closeMenu}>
+                {t('nav.contact')}
+              </Link>
             </li>
             <li>
               <button className="lang-btn" onClick={toggleLanguage}>
@@ -65,7 +75,7 @@ function Navbar() {
         </div>
       </div>
     </nav>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;

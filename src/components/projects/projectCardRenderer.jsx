@@ -1,7 +1,7 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom';
 
 function RenderCard({ project }) {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
     <div
@@ -13,13 +13,13 @@ function RenderCard({ project }) {
       <h3>{project.title}</h3>
       <p>{project.description}</p>
       <div className="project-tech">
-        {project.tech.map(t => (
+        {project.tech.map((t) => (
           <span key={t}>{t}</span>
         ))}
       </div>
       <div className="project-links">
-        {project.links.map(link => (
-          <a key={link.label} href="#" onClick={e => e.stopPropagation()}>
+        {project.links.map((link) => (
+          <a key={link.label} href="#" onClick={(e) => e.stopPropagation()}>
             <i className={link.icon} /> {link.label}
           </a>
         ))}
@@ -27,14 +27,14 @@ function RenderCard({ project }) {
           <Link
             to={`/project/${project.id}`}
             className="details-link"
-            onClick={e => e.stopPropagation()}
+            onClick={(e) => e.stopPropagation()}
           >
             <i className="fas fa-info-circle" /> Details
           </Link>
         )}
       </div>
     </div>
-  )
+  );
 }
 
-export default RenderCard
+export default RenderCard;

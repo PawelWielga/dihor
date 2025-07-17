@@ -1,16 +1,16 @@
-import Particles from './Particles.jsx'
-import { useTranslation } from 'react-i18next'
+import Particles from './Particles.jsx';
+import { useTranslation } from 'react-i18next';
 
 function Hero() {
-  const { t } = useTranslation()
-  const underConstruction = t('hero.underConstruction')
-  let parts = underConstruction.split(' - ')
-  let dash = ' -'
+  const { t } = useTranslation();
+  const underConstruction = t('hero.underConstruction');
+  let parts = underConstruction.split(' - ');
+  let dash = ' -';
   if (parts.length === 1) {
-    parts = underConstruction.split(' – ')
-    dash = ' –'
+    parts = underConstruction.split(' – ');
+    dash = ' –';
   }
-  const [before, after] = parts
+  const [before, after] = parts;
 
   return (
     <section id="home" className="hero">
@@ -37,9 +37,7 @@ function Hero() {
           <div className="hero-text">
             <h1>Paweł Wielga</h1>
             <p className="tagline">{t('hero.tagline')}</p>
-            <p className="subtitle">
-              {t('hero.subtitle')}
-            </p>
+            <p className="subtitle">{t('hero.subtitle')}</p>
             <div className="cta-buttons">
               <a href="#projects" className="btn btn-primary">
                 <i className="fas fa-laptop-code" />
@@ -54,7 +52,7 @@ function Hero() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
-export default Hero
+export default Hero;

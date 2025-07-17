@@ -4,14 +4,7 @@
   "type": "Banking Application",
   "title": "Internal Banking Systems - mBank",
   "description": "Developed internal banking applications to streamline operational workflows. Migrated business logic from T-SQL stored procedures to C# services with comprehensive testing.",
-  "tech": [
-    "C# .NET",
-    "T-SQL",
-    "WPF",
-    "MudBlazor",
-    "TeamCity",
-    "Octopus Deploy"
-  ],
+  "tech": ["C# .NET", "T-SQL", "WPF", "MudBlazor", "TeamCity", "Octopus Deploy"],
   "links": [
     { "label": "Banking", "icon": "fas fa-university" },
     { "label": "Enterprise", "icon": "fas fa-cogs" }

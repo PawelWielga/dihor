@@ -1,16 +1,16 @@
-import { useParams, Link } from 'react-router-dom'
-import { useLayoutEffect } from 'react'
-import { useTranslation } from 'react-i18next'
+import { useParams, Link } from 'react-router-dom';
+import { useLayoutEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
-import { projectMap } from '../../projects'
+import { projectMap } from '../../projects';
 
 function ProjectDetails() {
-  const { id } = useParams()
-  const { t } = useTranslation()
+  const { id } = useParams();
+  const { t } = useTranslation();
   useLayoutEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }, [id])
-  const project = projectMap[id]
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [id]);
+  const project = projectMap[id];
 
   if (!project) {
     return (
@@ -22,7 +22,7 @@ function ProjectDetails() {
           </Link>
         </div>
       </section>
-    )
+    );
   }
 
   return (
@@ -31,7 +31,7 @@ function ProjectDetails() {
         <h2 className="section-title">{project.title}</h2>
         <p>{project.description}</p>
         <div className="project-tech" style={{ marginTop: '20px' }}>
-          {project.tech.map(t => (
+          {project.tech.map((t) => (
             <span key={t}>{t}</span>
           ))}
         </div>
@@ -44,7 +44,7 @@ function ProjectDetails() {
         </Link>
       </div>
     </section>
-  )
+  );
 }
 
-export default ProjectDetails
+export default ProjectDetails;

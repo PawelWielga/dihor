@@ -1,15 +1,13 @@
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next';
 
 function Footer() {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   return (
     <footer id="contact">
       <div className="container">
         <div className="footer-content">
           <h3>{t('footer.cta')}</h3>
-          <p>
-            {t('footer.summary')}
-          </p>
+          <p>{t('footer.summary')}</p>
           <div className="social-links">
             <a href="#" title="GitHub">
               <i className="fab fa-github" />
@@ -39,7 +37,7 @@ function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }
 
-export default Footer
+export default Footer;

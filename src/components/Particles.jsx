@@ -10,9 +10,9 @@ function Particles({ count = 50 }) {
       left: `${Math.random() * 100}%`,
       top: `${Math.random() * 100}%`,
       animation: `float ${5 + Math.random() * 10}s linear infinite`,
-    }
-    return <div key={i} style={style} />
-  })
+    };
+    return <div key={i} style={style} />;
+  });
 
   return (
     <div
@@ -30,7 +30,7 @@ function Particles({ count = 50 }) {
     >
       {particles}
     </div>
-  )
+  );
 }
 
-export default Particles
+export default Particles;

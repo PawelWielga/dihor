@@ -1,4 +1,4 @@
-import timeline from '../timeline.json'
+import timeline from '../timeline.json';
 
 function Timeline() {
   return (
@@ -14,7 +14,7 @@ function Timeline() {
         ))}
       </div>
     </div>
-  )
+  );
 }
 
-export default Timeline
+export default Timeline;

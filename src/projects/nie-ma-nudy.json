@@ -4,15 +4,7 @@
   "type": "Mobile Application",
   "title": "Nie Ma Nudy - Family Attractions App",
   "description": "Mobile app aggregating family-friendly attractions across Poland. Features location-based search, detailed venue information, and personalized favorites list with comprehensive admin panel.",
-  "tech": [
-    ".NET Core",
-    "Blazor",
-    ".NET MAUI",
-    "Angular",
-    "Web API",
-    "MySQL",
-    "Entity Framework"
-  ],
+  "tech": [".NET Core", "Blazor", ".NET MAUI", "Angular", "Web API", "MySQL", "Entity Framework"],
   "links": [
     { "label": "Mobile App", "icon": "fas fa-mobile-alt" },
     { "label": "Location Based", "icon": "fas fa-map-marker-alt" }

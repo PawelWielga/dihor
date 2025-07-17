@@ -3,5 +3,5 @@ export const sections = {
   about: true,
   projects: true,
   blog: false,
-  footer: true
-}
+  footer: true,
+};
