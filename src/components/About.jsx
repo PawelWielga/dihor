@@ -1,3 +1,5 @@
+import Timeline from './Timeline.jsx'
+
 function About() {
   return (
     <section id="about" className="section">
@@ -49,6 +51,8 @@ function About() {
             </div>
           </div>
         </div>
+        <h3 className="timeline-header">header header</h3>
+        <Timeline />
       </div>
     </section>
   )
