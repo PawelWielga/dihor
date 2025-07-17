@@ -1,4 +1,4 @@
-import Timeline from './Timeline.jsx'
+// import Timeline from './Timeline.jsx'
 
 function About() {
   return (
@@ -51,7 +51,7 @@ function About() {
             </div>
           </div>
         </div>
-        <Timeline />
+        {/* <Timeline /> */}
       </div>
     </section>
   )
