@@ -1,5 +1,5 @@
 import { projectList } from '../../projects'
-import RenderCard from './projectCardRenderer.js'
+import RenderCard from './projectCardRenderer.jsx'
 
 function Projects() {
 
