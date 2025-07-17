@@ -1,5 +1,10 @@
-  function RenderCard(project){
-<div
+import { Link, useNavigate } from 'react-router-dom'
+
+function RenderCard({ project }) {
+  const navigate = useNavigate()
+
+  return (
+    <div
       key={project.id}
       className="project-card scroll-animate"
       onClick={() => project.hasDetails && navigate(`/project/${project.id}`)}
@@ -29,6 +34,7 @@
         )}
       </div>
     </div>
-  }
+  )
+}
 
-  export default RenderCard
+export default RenderCard
