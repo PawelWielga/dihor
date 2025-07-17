@@ -245,6 +245,7 @@ html { scroll-behavior: smooth; }
             top: 20px;
             left: 50%;
             transform: translateX(-50%);
+            margin-top: 60px;
             padding: 15px 30px;
             font-size: 1rem;
             font-weight: 600;
@@ -253,6 +254,7 @@ html { scroll-behavior: smooth; }
             color: var(--text-primary);
             border: none;
             cursor: pointer;
+            white-space: no
             z-index: 3;
             box-shadow: 0 0 10px rgba(255, 75, 43, 0.5);
         }
