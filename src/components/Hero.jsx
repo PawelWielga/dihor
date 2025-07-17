@@ -6,6 +6,9 @@ function Hero() {
   return (
     <section id="home" className="hero">
       <Particles />
+      <button className="construction-btn">
+        {t('hero.underConstruction')}
+      </button>
       <div className="container">
         <div className="hero-content">
           <div className="hero-image">

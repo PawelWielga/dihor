@@ -240,6 +240,30 @@ html { scroll-behavior: smooth; }
             box-shadow: var(--glow);
         }
 
+        .construction-btn {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-top: 60px;
+            padding: 15px 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            background: linear-gradient(135deg, #ff416c, #ff4b2b);
+            color: var(--text-primary);
+            border: none;
+            cursor: pointer;
+            white-space: nowrap;
+            z-index: 3;
+            box-shadow: 0 0 10px rgba(255, 75, 43, 0.5);
+        }
+
+        .construction-btn:hover {
+            transform: translate(-50%, -2px);
+            box-shadow: 0 0 15px rgba(255, 75, 43, 0.7);
+        }
+
         /* Sections */
         .section {
             padding: 100px 0;
