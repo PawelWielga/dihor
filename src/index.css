@@ -643,3 +643,171 @@ html { scroll-behavior: smooth; }
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 60px 0;
+            overflow-x: auto;
+            overflow-y: visible;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 50%;
+            height: 3px;
+            background: linear-gradient(to right, var(--accent-cyan), var(--accent-blue));
+            transform: translateY(-50%);
+            box-shadow: var(--glow);
+        }
+
+        .timeline-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            min-width: 800px;
+        }
+
+        .timeline-item {
+            position: relative;
+            text-align: center;
+            flex: 1;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .timeline-item:nth-child(1) { animation-delay: 0.2s; }
+        .timeline-item:nth-child(2) { animation-delay: 0.4s; }
+        .timeline-item:nth-child(3) { animation-delay: 0.6s; }
+        .timeline-item:nth-child(4) { animation-delay: 0.8s; }
+        .timeline-item:nth-child(5) { animation-delay: 1s; }
+
+        .timeline-dot {
+            width: 16px;
+            height: 16px;
+            background: var(--accent-cyan);
+            border-radius: 50%;
+            border: 3px solid var(--bg-primary);
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            box-shadow: var(--glow);
+            animation: pulse 2s infinite;
+        }
+
+        .current .timeline-dot {
+            background: var(--accent-cyan);
+            box-shadow: 0 0 25px rgba(0, 191, 255, 0.8);
+        }
+
+        .timeline-content {
+            position: absolute;
+            top: -80px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 140px;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover .timeline-content {
+            transform: translateX(-50%) translateY(-5px);
+        }
+
+        .date {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--accent-cyan);
+            margin-bottom: 5px;
+            white-space: nowrap;
+        }
+
+        .company {
+            font-size: 1rem;
+            color: var(--text-primary);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            line-height: 1.3;
+        }
+
+        .timeline-item:hover .company {
+            color: var(--accent-cyan);
+        }
+
+        .current .date {
+            color: var(--accent-cyan);
+        }
+
+        .current .company {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .current-label {
+            position: absolute;
+            top: -110px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+            letter-spacing: 1px;
+            opacity: 0.8;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .timeline {
+                overflow-x: scroll;
+                padding: 80px 20px 40px;
+            }
+
+            .timeline-container {
+                min-width: 600px;
+            }
+
+            .timeline-content {
+                width: 120px;
+                font-size: 0.9rem;
+            }
+
+            .date {
+                font-size: 0.8rem;
+            }
+
+            .company {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .timeline-container {
+                min-width: 500px;
+            }
+
+            .timeline-content {
+                width: 100px;
+            }
+
+            .date {
+                font-size: 0.75rem;
+            }
+
+            .company {
+                font-size: 0.8rem;
+            }
+        }
+
