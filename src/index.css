@@ -254,7 +254,7 @@ html { scroll-behavior: smooth; }
             color: var(--text-primary);
             border: none;
             cursor: pointer;
-            white-space: no
+            white-space: nowrap;
             z-index: 3;
             box-shadow: 0 0 10px rgba(255, 75, 43, 0.5);
         }
