@@ -3,18 +3,13 @@ import timeline from '../timeline.json'
 function Timeline() {
   return (
     <div className="timeline">
+      <h4 className="timeline-header">Timeline</h4>
       <div className="timeline-container">
-        {timeline.map(({ date, company, current }, index) => (
-          <div
-            key={index}
-            className={`timeline-item${current ? ' current' : ''}`}
-          >
+        {timeline.map(({ date, company }, index) => (
+          <div key={index} className="timeline-item">
+            <div className="company">{company}</div>
             <div className="timeline-dot" />
-            {current && <div className="current-label">CURRENT</div>}
-            <div className="timeline-content">
-              <div className="company">{company}</div>
-              <div className="date">{date}</div>
-            </div>
+            <div className="date">{date}</div>
           </div>
         ))}
       </div>
