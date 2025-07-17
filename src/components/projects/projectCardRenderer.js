@@ -1,11 +1,5 @@
-import { Link, useNavigate } from 'react-router-dom'
-import { projectList } from '../projects'
-
-function Projects() {
-  const navigate = useNavigate()
-
-  const renderCard = project => (
-    <div
+  function RenderCard(project){
+<div
       key={project.id}
       className="project-card scroll-animate"
       onClick={() => project.hasDetails && navigate(`/project/${project.id}`)}
@@ -35,22 +29,6 @@ function Projects() {
         )}
       </div>
     </div>
-  )
+  }
 
-  const commercial = projectList.filter(p => p.category === 'commercial')
-  const home = projectList.filter(p => p.category === 'home')
-
-  return (
-    <section id="projects" className="section">
-      <div className="container">
-        <h2 className="section-title scroll-animate">My Projects</h2>
-        <h3 className="section-title scroll-animate">Commercial Projects</h3>
-        <div className="projects-grid">{commercial.map(renderCard)}</div>
-        <h3 className="section-title scroll-animate">Home Projects</h3>
-        <div className="projects-grid">{home.map(renderCard)}</div>
-      </div>
-    </section>
-  )
-}
-
-export default Projects
+  export default RenderCard
