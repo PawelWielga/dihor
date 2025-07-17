@@ -1,0 +1,26 @@
+{
+  "commercial": [
+    {
+      "class": "languages",
+      "skills": ["C# .NET", "ASP.NET Core", "Entity Framework"]
+    },
+    {
+      "class": "frontend",
+      "skills": ["WPF", "Blazor", "Angular"]
+    },
+    {
+      "class": "infra",
+      "skills": ["RabbitMQ", "SignalR", "Docker"]
+    }
+  ],
+  "home": [
+    {
+      "class": "languages",
+      "skills": ["TypeScript"]
+    },
+    {
+      "class": "database",
+      "skills": ["MongoDB", "MySQL"]
+    }
+  ]
+}

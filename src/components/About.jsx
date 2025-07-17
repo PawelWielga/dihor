@@ -1,6 +1,8 @@
 // import Timeline from './Timeline.jsx'
+import skills from '../skills.json'
 
 function About() {
+  const { commercial, home } = skills
   return (
     <section id="about" className="section">
       <div className="container">
@@ -29,25 +31,27 @@ function About() {
             </p>
             <div className="skills-section">
               <h4>Commercial</h4>
-              <div className="tech-stack">
-                <span className="tech-tag">C# .NET</span>
-                <span className="tech-tag">WPF</span>
-                <span className="tech-tag">Blazor</span>
-                <span className="tech-tag">Entity Framework</span>
-                <span className="tech-tag">ASP.NET Core</span>
-                <span className="tech-tag">Angular</span>
-                <span className="tech-tag">RabbitMQ</span>
-                <span className="tech-tag">SignalR</span>
-                <span className="tech-tag">Docker</span>
-              </div>
+              {commercial.map(({ class: cls, skills: list }) => (
+                <div className="skill-group" key={cls}>
+                  <div className="tech-stack">
+                    {list.map((skill) => (
+                      <span key={skill} className={`tech-tag ${cls}`}>{skill}</span>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
             <div className="skills-section">
               <h4>Home-made Projects</h4>
-              <div className="tech-stack">
-                <span className="tech-tag">TypeScript</span>
-                <span className="tech-tag">MongoDB</span>
-                <span className="tech-tag">MySQL</span>
-              </div>
+              {home.map(({ class: cls, skills: list }) => (
+                <div className="skill-group" key={cls}>
+                  <div className="tech-stack">
+                    {list.map((skill) => (
+                      <span key={skill} className={`tech-tag ${cls}`}>{skill}</span>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>

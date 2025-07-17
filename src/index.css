@@ -4,6 +4,8 @@
     --bg-tertiary: #21262d;
     --accent-blue: #007acc;
     --accent-cyan: #00bfff;
+    --accent-orange: #e67e22;
+    --accent-green: #27ae60;
     --text-primary: #ffffff;
     --text-secondary: #e0e0e0;
     --text-muted: #8b949e;
@@ -350,10 +352,15 @@ html { scroll-behavior: smooth; }
             margin-top: 30px;
         }
 
-        .skills-section h4 {
-            margin-bottom: 10px;
-            color: var(--accent-cyan);
-        }
+.skills-section h4 {
+    margin-bottom: 10px;
+    color: var(--accent-cyan);
+}
+
+.skill-group {
+    margin-top: 15px;
+}
+
 
         .tech-tag {
             background: var(--bg-tertiary);
@@ -362,6 +369,26 @@ html { scroll-behavior: smooth; }
             font-size: 0.9rem;
             color: var(--accent-cyan);
             border: 1px solid var(--accent-blue);
+        }
+
+        .tech-tag.languages {
+            color: var(--accent-cyan);
+            border-color: var(--accent-cyan);
+        }
+
+        .tech-tag.frontend {
+            color: var(--accent-blue);
+            border-color: var(--accent-blue);
+        }
+
+        .tech-tag.infra {
+            color: var(--accent-orange);
+            border-color: var(--accent-orange);
+        }
+
+        .tech-tag.database {
+            color: var(--accent-green);
+            border-color: var(--accent-green);
         }
 
         /* Projects Section */
