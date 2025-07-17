@@ -3,11 +3,29 @@ import { useTranslation } from 'react-i18next'
 
 function Hero() {
   const { t } = useTranslation()
+  const underConstruction = t('hero.underConstruction')
+  let parts = underConstruction.split(' - ')
+  let dash = ' -'
+  if (parts.length === 1) {
+    parts = underConstruction.split(' – ')
+    dash = ' –'
+  }
+  const [before, after] = parts
+
   return (
     <section id="home" className="hero">
       <Particles />
       <button className="construction-btn">
-        {t('hero.underConstruction')}
+        {after ? (
+          <>
+            {before}
+            {dash}
+            <br />
+            {after}
+          </>
+        ) : (
+          underConstruction
+        )}
       </button>
       <div className="container">
         <div className="hero-content">
