@@ -2,7 +2,7 @@ import { useParams, Link } from 'react-router-dom';
 import { useLayoutEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { projectMap } from '../../projects';
+import { projectMap } from '../../data/projects';
 
 function ProjectDetails() {
   const { id } = useParams();
