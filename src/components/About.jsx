@@ -1,5 +1,5 @@
 // import Timeline from './Timeline.jsx'
-import skills from '../skills.json';
+import skills from '../data/skills.json';
 
 function About() {
   const { commercial, home } = skills;

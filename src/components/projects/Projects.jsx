@@ -1,4 +1,4 @@
-import { projectList } from '../../projects';
+import { projectList } from '../../data/projects';
 import RenderCard from './projectCardRenderer.jsx';
 
 function Projects() {
