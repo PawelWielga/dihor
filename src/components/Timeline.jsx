@@ -12,8 +12,8 @@ function Timeline() {
             <div className="timeline-dot" />
             {current && <div className="current-label">CURRENT</div>}
             <div className="timeline-content">
-              <div className="date">{date}</div>
               <div className="company">{company}</div>
+              <div className="date">{date}</div>
             </div>
           </div>
         ))}
