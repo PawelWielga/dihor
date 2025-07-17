@@ -1,8 +1,6 @@
 [
-  { "date": "Summer 2017", "company": "Local Tech Company" },
-  { "date": "2018 - 2019", "company": "WebDev Agency" },
-  { "date": "2019 - 2021", "company": "StartupXYZ" },
-  { "date": "2021 - 2023", "company": "Digital Solutions Ltd" },
-  { "date": "2023 - Present", "company": "Tech Innovation Corp", "current": true }
+  { "date": "05.2016 - 02.2017", "company": "GlobTree", "website": "https://globtree.pl/" },
+  { "date": "04.2017 - 09.2024", "company": "Zortrax", "website": "https://zortrax.com/" },
+  { "date": "09.2024 - ...", "company": "mBank", "website": "https://www.mbank.pl/", "current": true }
 ]
 
