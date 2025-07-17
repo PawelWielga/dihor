@@ -701,33 +701,18 @@ html { scroll-behavior: smooth; }
             animation: pulse 2s infinite;
         }
 
-        .current .timeline-dot {
-            background: var(--accent-cyan);
-            box-shadow: 0 0 25px rgba(0, 191, 255, 0.8);
+        .timeline-header {
+            text-align: center;
+            color: var(--accent-cyan);
+            margin-bottom: 40px;
         }
 
-        .timeline-content {
+        .company {
             position: absolute;
             top: -80px;
             left: 50%;
             transform: translateX(-50%);
             width: 140px;
-            transition: all 0.3s ease;
-        }
-
-        .timeline-item:hover .timeline-content {
-            transform: translateX(-50%) translateY(-5px);
-        }
-
-        .date {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--accent-cyan);
-            margin-top: 5px;
-            white-space: nowrap;
-        }
-
-        .company {
             font-size: 1rem;
             color: var(--text-primary);
             font-weight: 500;
@@ -739,25 +724,15 @@ html { scroll-behavior: smooth; }
             color: var(--accent-cyan);
         }
 
-        .current .date {
-            color: var(--accent-cyan);
-        }
-
-        .current .company {
-            color: var(--text-primary);
-            font-weight: 600;
-        }
-
-        .current-label {
+        .date {
             position: absolute;
-            top: -110px;
+            top: calc(50% + 30px);
             left: 50%;
             transform: translateX(-50%);
-            font-size: 0.7rem;
-            font-weight: 700;
+            font-size: 0.9rem;
+            font-weight: 600;
             color: var(--accent-cyan);
-            letter-spacing: 1px;
-            opacity: 0.8;
+            white-space: nowrap;
         }
 
         @keyframes pulse {
@@ -779,10 +754,6 @@ html { scroll-behavior: smooth; }
                 min-width: 600px;
             }
 
-            .timeline-content {
-                width: 120px;
-                font-size: 0.9rem;
-            }
 
             .date {
                 font-size: 0.8rem;
@@ -798,9 +769,6 @@ html { scroll-behavior: smooth; }
                 min-width: 500px;
             }
 
-            .timeline-content {
-                width: 100px;
-            }
 
             .date {
                 font-size: 0.75rem;
