@@ -723,7 +723,7 @@ html { scroll-behavior: smooth; }
             font-size: 0.9rem;
             font-weight: 600;
             color: var(--accent-cyan);
-            margin-bottom: 5px;
+            margin-top: 5px;
             white-space: nowrap;
         }
 
