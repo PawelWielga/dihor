@@ -2,6 +2,8 @@
   --bg-primary: #0d1117;
   --bg-secondary: #161b22;
   --bg-tertiary: #21262d;
+  --bg-quaternary: #2c313a;
+  --bg-quinary: #363c44;
   --accent-blue: #007acc;
   --accent-cyan: #00bfff;
   --accent-orange: #e67e22;
@@ -277,12 +279,20 @@ nav.scrolled {
   background: var(--bg-primary);
 }
 
-.section:nth-child(even) {
+#about {
   background: var(--bg-secondary);
 }
 
-#about {
-  background: var(--bg-secondary);
+#projects {
+  background: var(--bg-tertiary);
+}
+
+#blog {
+  background: var(--bg-quaternary);
+}
+
+footer {
+  background: var(--bg-quinary);
 }
 
 .section-title {
