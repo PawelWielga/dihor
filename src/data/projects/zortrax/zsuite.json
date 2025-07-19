@@ -5,6 +5,7 @@
   "tech": ["C# .NET", "WPF", "CefSharp", "AngularJS", "Three.js", "JavaScript"],
   "category": "commercial",
   "type": "Desktop Application",
+  "company": "Zortrax",
   "links": [
     {
       "label": "3D Printing",

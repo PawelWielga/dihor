@@ -10,6 +10,9 @@ function RenderCard({ project }) {
       onClick={() => project.hasDetails && navigate(`/project/${project.id}`)}
     >
       <div className="project-type">{project.type}</div>
+      {project.company && (
+        <div className="project-company">{project.company}</div>
+      )}
       <h3>{project.title}</h3>
       <p>{project.description}</p>
       <div className="project-tech">

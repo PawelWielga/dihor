@@ -448,6 +448,12 @@ nav.scrolled {
   margin-bottom: 10px;
 }
 
+.project-company {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
 .project-card h3 {
   font-size: 1.4rem;
   color: var(--text-primary);
