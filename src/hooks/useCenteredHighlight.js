@@ -7,8 +7,10 @@ export default function useCenteredHighlight(ref) {
 
     const options = {
       root: null,
+      // shrink viewport to center 10% to detect when the card's middle enters
+      // that zone. threshold 0 ensures any overlap triggers the highlight
       rootMargin: '-45% 0px -45% 0px',
-      threshold: 0.5,
+      threshold: 0,
     };
 
     const observer = new IntersectionObserver((entries) => {
