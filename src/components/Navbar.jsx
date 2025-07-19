@@ -66,9 +66,9 @@ function Navbar() {
               </button>
             </li>
           </ul>
-          <div className="mobile-menu" onClick={toggleMenu}>
+          <button className="mobile-menu" onClick={toggleMenu} aria-label="Toggle menu">
             <i className={`fas ${open ? 'fa-times' : 'fa-bars'}`} />
-          </div>
+          </button>
         </div>
       </div>
     </nav>
