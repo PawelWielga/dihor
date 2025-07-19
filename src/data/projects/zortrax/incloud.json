@@ -9,7 +9,7 @@
     "Angular",
     "RabbitMQ",
     "SignalR",
-    "MongoDB"
+    "MariaDB"
   ],
   "category": "commercial",
   "type": "Web Application",
