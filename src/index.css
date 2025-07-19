@@ -447,6 +447,12 @@ footer {
   overflow: hidden;
 }
 
+
+.center-highlight {
+  box-shadow: var(--glow);
+  border-color: var(--accent-cyan);
+}
+
 .project-card:hover {
   transform: translateY(-10px);
   border-color: var(--accent-cyan);

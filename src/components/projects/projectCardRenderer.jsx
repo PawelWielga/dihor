@@ -1,11 +1,16 @@
 import { Link, useNavigate } from 'react-router-dom';
+import { useRef } from 'react';
+import useCenteredHighlight from '../../hooks/useCenteredHighlight.js';
 
 function RenderCard({ project }) {
   const navigate = useNavigate();
+  const cardRef = useRef(null);
+  useCenteredHighlight(cardRef);
 
   return (
     <div
       key={project.id}
+      ref={cardRef}
       className="project-card glass scroll-animate"
       onClick={() => project.hasDetails && navigate(`/project/${project.id}`)}
     >
