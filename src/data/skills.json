@@ -1,5 +1,5 @@
 {
-  "professional": [
+  "commercial": [
     {
       "class": "languages",
       "skills": [
@@ -13,7 +13,8 @@
       "class": "backend",
       "skills": [
         "Entity Framework",
-        "SignalR"
+        "SignalR",
+        "Web API"
       ]
     },
     {
@@ -38,9 +39,17 @@
       ]
     },
     {
+      "class": "patterns",
+      "skills": [
+        "MVC",
+        "OOP"
+      ]
+    },
+    {
       "class": "database",
       "skills": [
-        "MongoDB"
+        "MariaDB",
+        "Microsoft SQL Server"
       ]
     },
     {
@@ -55,11 +64,12 @@
       ]
     }
   ],
-  "personal": [
+  "home": [
     {
       "class": "languages",
       "skills": [
         "C# .NET Core",
+        "JavaScript",
         "TypeScript"
       ]
     },
@@ -81,6 +91,14 @@
       ]
     },
     {
+      "class": "infrastructure",
+      "skills": [
+        "Docker",
+        "Docker Compose",
+        "ProxMox"
+      ]
+    },
+    {
       "class": "patterns",
       "skills": [
         "MVVM",
@@ -92,6 +110,12 @@
       "skills": [
         "MongoDB",
         "MySQL"
+      ]
+    },
+    {
+      "class": "devops",
+      "skills": [
+        "TeamCity"
       ]
     }
   ]
