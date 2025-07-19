@@ -23,15 +23,13 @@ function ScrollToTop() {
   };
 
   return (
-    visible && (
-      <button
-        className="scroll-top-btn"
-        onClick={scrollToTop}
-        aria-label="Scroll to top"
-      >
-        <i className="fas fa-arrow-up" />
-      </button>
-    )
+    <button
+      className={`scroll-top-btn${visible ? ' visible' : ''}`}
+      onClick={scrollToTop}
+      aria-label="Scroll to top"
+    >
+      <i className="fas fa-arrow-up" />
+    </button>
   );
 }
 
