@@ -2,6 +2,7 @@
   "id": "mbank",
   "category": "commercial",
   "type": "Banking Application",
+  "company": "mBank",
   "title": "Internal Banking Systems",
   "description": "Developed internal banking applications to streamline operational workflows. Migrated business logic from T-SQL stored procedures to C# services with comprehensive testing.",
   "tech": ["C# .NET", "T-SQL", "WPF", "MudBlazor", "TeamCity", "Octopus Deploy"],

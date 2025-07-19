@@ -2,6 +2,7 @@
   "id": "jiraapiintegrationtools",
   "category": "commercial",
   "type": "Console Applications",
+  "company": "mBank",
   "title": "Jira API Integration Tools",
   "description": "A suite of lightweight C# and Python console utilities that query and update Jira issues via JQL-driven REST calls. Retrieved data is transformed and exported as structured JSON payloads for downstream automation tools.",
   "tech": [
