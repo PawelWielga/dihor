@@ -114,7 +114,6 @@ nav.scrolled {
   width: 100%;
 }
 
-
 .mobile-menu {
   display: none;
   color: var(--text-primary);
@@ -136,6 +135,8 @@ nav.scrolled {
 /* Hero Section */
 .hero {
   height: 100vh;
+  height: 100dvh; /* fix Safari iOS viewport issue */
+  min-height: 100vh;
   display: flex;
   align-items: center;
   position: relative;
