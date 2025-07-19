@@ -10,9 +10,7 @@ function RenderCard({ project }) {
       onClick={() => project.hasDetails && navigate(`/project/${project.id}`)}
     >
       <div className="project-type">{project.type}</div>
-      {project.company && (
-        <div className="project-company">{project.company}</div>
-      )}
+      {project.company && <div className="project-company">{project.company}</div>}
       <h3>{project.title}</h3>
       <p>{project.description}</p>
       <div className="project-tech">
@@ -22,9 +20,9 @@ function RenderCard({ project }) {
       </div>
       <div className="project-links">
         {project.links.map((link) => (
-          <a key={link.label} href="#" onClick={(e) => e.stopPropagation()}>
+          <span key={link.label}>
             <i className={link.icon} /> {link.label}
-          </a>
+          </span>
         ))}
         {project.hasDetails && (
           <Link
