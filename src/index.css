@@ -272,7 +272,7 @@ nav.scrolled {
 
 /* Sections */
 .section {
-  padding: 100px 0;
+  padding: 50px 0;
   position: relative;
   background: var(--bg-primary);
 }
@@ -294,7 +294,7 @@ nav.scrolled {
 }
 
 .section-title:not(:first-of-type) {
-  margin-top: 40px;
+  margin-top: 80px;
 }
 
 .section-title::after {
