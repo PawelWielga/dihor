@@ -6,7 +6,7 @@ function RenderCard({ project }) {
   return (
     <div
       key={project.id}
-      className="project-card scroll-animate"
+      className="project-card glass scroll-animate"
       onClick={() => project.hasDetails && navigate(`/project/${project.id}`)}
     >
       <div className="project-type">{project.type}</div>
