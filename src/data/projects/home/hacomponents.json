@@ -1,0 +1,25 @@
+{
+  "id": "hacomponents",
+  "category": "home",
+  "type": "Web Component Library",
+  "title": "Custom Home Assistant Web Components",
+  "description": "A set of TypeScript-based Web Components for Home Assistant integration, bundled with Rollup and distributed via HACS.",
+  "tech": [
+    "TypeScript",
+    "JavaScript",
+    "Rollup",
+    "HACS",
+    "GitHub Actions"
+  ],
+  "links": [
+    {
+      "label": "Home Assistant",
+      "icon": "fas fa-home"
+    },
+    {
+      "label": "HACS",
+      "icon": "fas fa-puzzle-piece"
+    }
+  ],
+  "hasDetails": false
+}

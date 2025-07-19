@@ -104,8 +104,10 @@
     {
       "class": "patterns",
       "skills": [
+        "CQRS",
+        "MVC",
         "MVVM",
-        "CQRS"
+        "SPA"
       ]
     },
     {
@@ -118,6 +120,7 @@
     {
       "class": "devops",
       "skills": [
+        "GitHub Actions",
         "TeamCity"
       ]
     }

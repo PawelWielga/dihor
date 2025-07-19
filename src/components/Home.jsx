@@ -2,7 +2,7 @@ import Hero from './Hero.jsx';
 import About from './About.jsx';
 import Projects from './projects/Projects.jsx';
 import Blog from './Blog.jsx';
-import { sections } from '../config.js';
+import { sections } from '../config/sections.js';
 import useScrollAnimation from '../hooks/useScrollAnimation.js';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';

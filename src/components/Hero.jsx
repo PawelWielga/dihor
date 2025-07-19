@@ -15,7 +15,7 @@ function Hero() {
   return (
     <section id="home" className="hero">
       <Particles />
-      <button className="construction-btn">
+      {/* <button className="construction-btn">
         {after ? (
           <>
             {before}
@@ -26,7 +26,7 @@ function Hero() {
         ) : (
           underConstruction
         )}
-      </button>
+      </button> */}
       <div className="container">
         <div className="hero-content">
           <div className="hero-image">

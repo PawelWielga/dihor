@@ -293,6 +293,10 @@ nav.scrolled {
   color: var(--text-primary);
 }
 
+.section-title:not(:first-of-type) {
+  margin-top: 40px;
+}
+
 .section-title::after {
   content: '';
   display: block;

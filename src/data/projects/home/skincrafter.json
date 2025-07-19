@@ -1,0 +1,17 @@
+{
+  "id": "skincrafter",
+  "category": "home",
+  "type": "Web Application",
+  "title": "SkinCrafter - RPG-style Minecraft Skin Editor",
+  "description": "An interactive web editor that lets users design and customize Minecraft character skins in real time.",
+  "tech": [
+    "TypeScript","React",
+    "Three.js",
+    "GitHub Actions"
+  ],
+  "links": [
+    { "label": "Web App", "icon": "fas fa-globe" },
+    { "label": "3D Editor", "icon": "fas fa-cube" }
+  ],
+  "hasDetails": false
+}

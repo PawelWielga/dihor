@@ -1,0 +1,24 @@
+{
+  "id": "mbankcimonitor",
+  "category": "commercial",
+  "type": "Web Application & Background Service",
+  "title": "CI/CD Test Scheduler & Monitor",
+  "description": "An internal Blazor-based dashboard for defining execution windows and shell commands for automated CI/CD test runs. A companion console service polls the database at configurable intervals, executes the specified commands, and records pass/fail results back to the database.",
+  "tech": [
+    "C# .NET Core",
+    "Blazor",
+    "SQL Server",
+    "Background Service"
+  ],
+  "links": [
+    {
+      "label": "Dashboard",
+      "icon": "fas fa-tachometer-alt"
+    },
+    {
+      "label": "Console",
+      "icon": "fas fa-terminal"
+    }
+  ],
+  "hasDetails": false
+}
