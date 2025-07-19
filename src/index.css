@@ -440,7 +440,7 @@ footer {
 }
 
 .project-card {
-  background: var(--glass-bg);
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
   border-radius: 15px;
