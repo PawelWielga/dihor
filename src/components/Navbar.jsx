@@ -32,10 +32,7 @@ function Navbar() {
       <div className="container">
         <div className="nav-container">
           <div className="logo">PW</div>
-          <ul
-            className="nav-links"
-            style={open ? { display: 'flex', flexDirection: 'column' } : {}}
-          >
+          <ul className={`nav-links ${open ? 'open' : ''}`}>
             <li>
               <Link to="/#home" onClick={closeMenu}>
                 {t('nav.home')}
@@ -69,9 +66,14 @@ function Navbar() {
               </button>
             </li>
           </ul>
-          <div className="mobile-menu" onClick={toggleMenu}>
-            <i className="fas fa-bars" />
-          </div>
+          <button
+            className="mobile-menu"
+            onClick={toggleMenu}
+            aria-label="Toggle menu"
+            aria-expanded={open}
+          >
+            <i className={`fas ${open ? 'fa-times' : 'fa-bars'}`} />
+          </button>
         </div>
       </div>
     </nav>
