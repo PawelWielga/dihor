@@ -441,7 +441,7 @@ footer {
 
 .project-card {
   background:
-    linear-gradient(135deg, rgba(0, 122, 204, 0.2), rgba(0, 191, 255, 0.2)),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0)),
     var(--glass-bg);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
