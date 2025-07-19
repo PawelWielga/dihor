@@ -434,7 +434,7 @@ footer {
 }
 
 .project-card {
-  background: var(--bg-tertiary);
+  background: var(--bg-quaternary);
   border-radius: 15px;
   padding: 30px;
   padding-bottom: 70px;
