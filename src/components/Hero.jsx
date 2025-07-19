@@ -3,14 +3,6 @@ import { useTranslation } from 'react-i18next';
 
 function Hero() {
   const { t } = useTranslation();
-  const underConstruction = t('hero.underConstruction');
-  let parts = underConstruction.split(' - ');
-  let dash = ' -';
-  if (parts.length === 1) {
-    parts = underConstruction.split(' – ');
-    dash = ' –';
-  }
-  const [before, after] = parts;
 
   return (
     <section id="home" className="hero">
