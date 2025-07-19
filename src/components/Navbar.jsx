@@ -5,7 +5,7 @@ import { sections } from '../config.js';
 
 function Navbar() {
   const [open, setOpen] = useState(false);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const onScroll = () => {
@@ -22,10 +22,6 @@ function Navbar() {
 
   const toggleMenu = () => setOpen(!open);
   const closeMenu = () => setOpen(false);
-  const toggleLanguage = () => {
-    const newLang = i18n.language === 'en' ? 'pl' : 'en';
-    i18n.changeLanguage(newLang);
-  };
 
   return (
     <nav id="navbar" className="glass">
@@ -59,11 +55,6 @@ function Navbar() {
               <Link to="/#contact" onClick={closeMenu}>
                 {t('nav.contact')}
               </Link>
-            </li>
-            <li>
-              <button className="lang-btn" onClick={toggleLanguage}>
-                {i18n.language === 'en' ? '🇬🇧' : '🇵🇱'}
-              </button>
             </li>
           </ul>
           <button
