@@ -66,7 +66,12 @@ function Navbar() {
               </button>
             </li>
           </ul>
-          <button className="mobile-menu" onClick={toggleMenu} aria-label="Toggle menu">
+          <button
+            className="mobile-menu"
+            onClick={toggleMenu}
+            aria-label="Toggle menu"
+            aria-expanded={open}
+          >
             <i className={`fas ${open ? 'fa-times' : 'fa-bars'}`} />
           </button>
         </div>
