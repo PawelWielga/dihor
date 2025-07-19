@@ -1,57 +1,98 @@
 {
-  "commercial": [
+  "professional": [
     {
       "class": "languages",
       "skills": [
-        "C# .NET",
-        "ASP.NET Core",
-        "Entity Framework",
         "C# .NET Core",
-        "C#",
         "JavaScript",
-        "TypeScript",
-        "T-SQL"
+        "T-SQL",
+        "TypeScript"
+      ]
+    },
+    {
+      "class": "backend",
+      "skills": [
+        "Entity Framework",
+        "SignalR"
       ]
     },
     {
       "class": "frontend",
       "skills": [
-        "WPF",
-        "Blazor",
         "Angular",
-        "MudBlazor",
-        "CefSharp",
         "AngularJS",
+        "Blazor",
+        "CefSharp",
         "CSS",
+        "MudBlazor",
         "Three.js",
+        "WPF",
         "Windows Forms"
       ]
     },
     {
-      "class": "infra",
-      "skills": ["RabbitMQ", "SignalR", "Docker"]
+      "class": "infrastructure",
+      "skills": [
+        "Docker",
+        "RabbitMQ"
+      ]
     },
     {
       "class": "database",
-      "skills": ["MongoDB"]
+      "skills": [
+        "MongoDB"
+      ]
     },
     {
       "class": "devops",
-      "skills": ["TeamCity", "Octopus Deploy", "Ansible", "Jira", "Splunk", "CI/CD", "Jenkins"]
+      "skills": [
+        "Ansible",
+        "CI/CD",
+        "Jenkins",
+        "Octopus Deploy",
+        "Splunk",
+        "TeamCity"
+      ]
     }
   ],
-  "home": [
+  "personal": [
     {
       "class": "languages",
-      "skills": ["TypeScript", "C# .NET Core", "Web API", "Entity Framework", "C# .NET"]
+      "skills": [
+        "C# .NET Core",
+        "TypeScript"
+      ]
+    },
+    {
+      "class": "backend",
+      "skills": [
+        "Entity Framework",
+        "Web API"
+      ]
     },
     {
       "class": "frontend",
-      "skills": ["Blazor", ".NET MAUI", "Angular", "Xamarin.Forms", "SkiaSharp", "MVVM"]
+      "skills": [
+        ".NET MAUI",
+        "Angular",
+        "Blazor",
+        "SkiaSharp",
+        "Xamarin.Forms"
+      ]
+    },
+    {
+      "class": "patterns",
+      "skills": [
+        "MVVM",
+        "CQRS"
+      ]
     },
     {
       "class": "database",
-      "skills": ["MongoDB", "MySQL"]
+      "skills": [
+        "MongoDB",
+        "MySQL"
+      ]
     }
   ]
 }
