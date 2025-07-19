@@ -6,6 +6,7 @@
   --accent-cyan: #00bfff;
   --accent-orange: #e67e22;
   --accent-green: #27ae60;
+  --accent-purple: #9b59b6;
   --text-primary: #ffffff;
   --text-secondary: #e0e0e0;
   --text-muted: #8b949e;
@@ -401,6 +402,11 @@ nav.scrolled {
 .tech-tag.database {
   color: var(--accent-green);
   border-color: var(--accent-green);
+}
+
+.tech-tag.devops {
+  color: var(--accent-purple);
+  border-color: var(--accent-purple);
 }
 
 /* Projects Section */

@@ -2,21 +2,52 @@
   "commercial": [
     {
       "class": "languages",
-      "skills": ["C# .NET", "ASP.NET Core", "Entity Framework"]
+      "skills": [
+        "C# .NET",
+        "ASP.NET Core",
+        "Entity Framework",
+        "C# .NET Core",
+        "C#",
+        "JavaScript",
+        "TypeScript",
+        "T-SQL"
+      ]
     },
     {
       "class": "frontend",
-      "skills": ["WPF", "Blazor", "Angular"]
+      "skills": [
+        "WPF",
+        "Blazor",
+        "Angular",
+        "MudBlazor",
+        "CefSharp",
+        "AngularJS",
+        "CSS",
+        "Three.js",
+        "Windows Forms"
+      ]
     },
     {
       "class": "infra",
       "skills": ["RabbitMQ", "SignalR", "Docker"]
+    },
+    {
+      "class": "database",
+      "skills": ["MongoDB"]
+    },
+    {
+      "class": "devops",
+      "skills": ["TeamCity", "Octopus Deploy", "Ansible", "Jira", "Splunk", "CI/CD", "Jenkins"]
     }
   ],
   "home": [
     {
       "class": "languages",
-      "skills": ["TypeScript"]
+      "skills": ["TypeScript", "C# .NET Core", "Web API", "Entity Framework", "C# .NET"]
+    },
+    {
+      "class": "frontend",
+      "skills": ["Blazor", ".NET MAUI", "Angular", "Xamarin.Forms", "SkiaSharp", "MVVM"]
     },
     {
       "class": "database",
