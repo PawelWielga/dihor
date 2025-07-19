@@ -27,7 +27,7 @@ function Navbar() {
     <nav id="navbar" className="glass">
       <div className="container">
         <div className="nav-container">
-          <div className="logo">Paweł Wielga</div>
+          <div className="logo"></div>
           <ul className={`nav-links ${open ? 'open' : ''}`}>
             <li>
               <Link to="/#home" onClick={closeMenu}>
