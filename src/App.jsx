@@ -3,6 +3,7 @@ import Navbar from './components/Navbar.jsx';
 import Footer from './components/Footer.jsx';
 import Home from './components/Home.jsx';
 import ProjectDetails from './components/projects/ProjectDetails.jsx';
+import ScrollToTop from './components/ScrollToTop.jsx';
 import './App.css';
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <Route path="/project/:id" element={<ProjectDetails />} />
       </Routes>
       <Footer />
+      <ScrollToTop />
     </BrowserRouter>
   );
 }
