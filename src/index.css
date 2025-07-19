@@ -112,18 +112,6 @@ nav.scrolled {
   width: 100%;
 }
 
-.lang-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 1.5rem;
-  color: var(--text-secondary);
-  margin-left: 20px;
-}
-
-.lang-btn:hover {
-  color: var(--accent-cyan);
-}
 
 .mobile-menu {
   display: none;
