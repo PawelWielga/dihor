@@ -16,7 +16,13 @@ function Blog() {
                 <div className="blog-date">{post.date}</div>
                 <h3>{post.title}</h3>
                 <p>{post.summary}</p>
-                <Link to={`/blog/${post.id}`} className="read-more">
+                <Link
+                  to={`/blog/${post.id}`}
+                  className="read-more"
+                  onClick={() =>
+                    window.scrollTo({ top: 0, behavior: 'smooth' })
+                  }
+                >
                   Read More <i className="fas fa-arrow-right" />
                 </Link>
               </div>

@@ -26,7 +26,9 @@ function BlogPostDetails() {
   return (
     <section className="section">
       <div className="container">
-        <h2 className="section-title">{post.title}</h2>
+        <h2 className="section-title" style={{ marginTop: '40px' }}>
+          {post.title}
+        </h2>
         <div className="blog-date" style={{ marginBottom: '20px' }}>{post.date}</div>
         {post.content.map((block, idx) => {
           if (block.type === 'text') {
