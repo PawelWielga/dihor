@@ -1,17 +1,11 @@
 import { useParams, Link } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
 import { blogPostMap } from '../../data/blogposts';
 
 function BlogPostDetails() {
   const { id } = useParams();
-  useEffect(() => {
-    const scrollTop = () => window.scrollTo(0, 0);
-    if (document.readyState === 'complete') {
-      scrollTop();
-    } else {
-      window.addEventListener('load', scrollTop);
-      return () => window.removeEventListener('load', scrollTop);
-    }
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
   }, [id]);
 
   const post = blogPostMap[id];
