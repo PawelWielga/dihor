@@ -1,0 +1,16 @@
+{
+  "id": "migrating-tsql",
+  "title": "Migrating from T-SQL to C# Services",
+  "date": "05.06.2025",
+  "tags": ["Banking", "C#"],
+  "summary": "Practical insights on moving complex logic from stored procedures to services.",
+  "content": [
+    { "type": "text", "text": "lorem ipsum" },
+    {
+      "type": "code",
+      "language": "csharp",
+      "lines": ["// migration snippet", "Console.WriteLine(\"Hello\");"]
+    },
+    { "type": "text", "text": "more lorem" }
+  ]
+}

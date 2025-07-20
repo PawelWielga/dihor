@@ -1,0 +1,18 @@
+{
+  "id": "hello-homeassistant",
+  "title": "How to integrate Home Assistant",
+  "date": "23.03.2025",
+  "tags": ["HomeAssistant", "hello"],
+  "summary": "A brief introduction to integrating Home Assistant with custom components.",
+  "content": [
+    { "type": "text", "text": "lorem ipsum" },
+    {
+      "type": "code",
+      "language": "csharp",
+      "lines": ["console.log(s);", "todo: something"]
+    },
+    { "type": "text", "text": "lorem ipsum" },
+    { "type": "image", "url": "img/example.jpg", "alt": "Example" },
+    { "type": "text", "text": "lorem ipsum" }
+  ]
+}
