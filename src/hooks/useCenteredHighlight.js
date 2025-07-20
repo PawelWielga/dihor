@@ -5,6 +5,12 @@ export default function useCenteredHighlight(ref) {
     const el = ref.current;
     if (!el) return;
 
+    const isMobile =
+      typeof navigator !== 'undefined' &&
+      /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+    if (!isMobile) return;
+
     const options = {
       root: null,
       // shrink viewport to center 10% to detect when the card's middle enters
