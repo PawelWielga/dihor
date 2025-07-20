@@ -1,13 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useLayoutEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 function ScrollToTop() {
   const location = useLocation();
   const [visible, setVisible] = useState(false);
 
-  // scroll to top automatically when navigating to a new route
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'auto' });
+  // ensure the page always starts at the top after navigation
+  useLayoutEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.history.scrollRestoration = 'manual';
+      window.scrollTo(0, 0);
+    }
   }, [location.pathname]);
 
   useEffect(() => {

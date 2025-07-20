@@ -5,7 +5,7 @@ import { blogPostMap } from '../../data/blogposts';
 function BlogPostDetails() {
   const { id } = useParams();
   useLayoutEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo(0, 0);
   }, [id]);
 
   const post = blogPostMap[id];
