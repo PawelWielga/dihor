@@ -16,20 +16,25 @@ const SITE_URL = 'https://pawelwielga.dihor.pl';
 const routes = ['/', '/blog'];
 
 function loadBlogPosts() {
-  const blogFile = resolve(__dirname, '../src/data/blogposts/blogposts.js');
-  let code = readFileSync(blogFile, 'utf8');
-
-  // Convert ESM default export to CommonJS for quick evaluation
-  code = code
-    .replace(/export\s+default\s+/, 'module.exports = ')
-    .replace(/import[^;]+;\s*/g, '');
-
-  const moduleShim = { exports: [] };
-  // eslint-disable-next-line no-new-func
-  const fn = new Function('module', 'exports', code);
-  fn(moduleShim, moduleShim.exports);
-  const posts = moduleShim.exports || [];
-  return Array.isArray(posts) ? posts : [];
+  const dir = resolve(__dirname, '../src/data/blogposts');
+  const blogFile = resolve(dir, 'blogposts.js');
+  const code = readFileSync(blogFile, 'utf8');
+  const importRegex = /import\s+\w+\s+from\s+'\.\/([\w-]+\.js)';/g;
+  const posts = [];
+  let match;
+  while ((match = importRegex.exec(code))) {
+    const file = resolve(dir, match[1]);
+    let postCode = readFileSync(file, 'utf8')
+      .replace(/import[^;]+;\s*/g, '')
+      .replace(/export\s+default\s+/, 'module.exports = ')
+      .replace(/\s*image:\s*[^,]+,/, '');
+    const moduleShim = { exports: {} };
+    const fn = new Function('module', 'exports', postCode);
+    fn(moduleShim, moduleShim.exports);
+    const post = moduleShim.exports.default || moduleShim.exports;
+    if (post) posts.push(post);
+  }
+  return posts;
 }
 
 function iso(dateStr) {
