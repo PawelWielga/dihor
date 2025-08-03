@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { Helmet } from 'react-helmet-async';
 import blogPosts from '../data/blogposts/blogposts.js';
 import hljs from 'highlight.js/lib/core';
 import javascript from 'highlight.js/lib/languages/javascript';
@@ -10,6 +11,9 @@ import xml from 'highlight.js/lib/languages/xml';
 import css from 'highlight.js/lib/languages/css';
 import bash from 'highlight.js/lib/languages/bash';
 import 'highlight.js/styles/github-dark.css';
+
+const SITE_URL = 'https://pawelwielga.dihor.pl';
+const AUTHOR = 'Paweł Wielga';
 
 function BlogPost() {
   const { id } = useParams();
@@ -30,13 +34,10 @@ function BlogPost() {
 
   // Ensure we land at the very top on route change and after paint on mobile
   useEffect(() => {
-    // Immediate scroll reset
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-    // Fallback after layout/paint (addresses mobile browsers restoring scroll)
     const t1 = setTimeout(() => {
       window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     }, 0);
-    // Extra fallback shortly after (for iOS/Android history restoration)
     const t2 = setTimeout(() => {
       window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     }, 150);
@@ -52,7 +53,6 @@ function BlogPost() {
   // Compute newest posts (visible only), excluding current, take up to 3
   const latestPosts = useMemo(() => {
     const list = Array.isArray(blogPosts) ? blogPosts.filter((p) => p.visible && p.id !== id) : [];
-    // If posts contain a date, you could sort here. For now, keep array order as "newest first".
     return list.slice(0, 3);
   }, [id]);
 
@@ -70,23 +70,93 @@ function BlogPost() {
     );
   }
 
+  const pageUrl = `${SITE_URL}/blog/${post.id}`;
+  const description = Array.isArray(post.content)
+    ? (post.content.find((b) => b.type === 'paragraph')?.text ?? '').slice(0, 180)
+    : (typeof post.content === 'string' ? post.content.slice(0, 180) : '');
+  const image = post.image?.startsWith('http') ? post.image : (post.image ? `${SITE_URL}${post.image}` : `${SITE_URL}/img/me.jpg`);
+  const datePublished = post.dateISO || post.date || undefined;
+
+  const articleLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    description,
+    author: {
+      '@type': 'Person',
+      name: AUTHOR
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': pageUrl
+    },
+    image: image ? [image] : undefined,
+    datePublished,
+    dateModified: datePublished
+  };
+
   return (
     <section className="section" style={{ minHeight: '100vh' }}>
+      <Helmet>
+        <title>{post.title} | {AUTHOR}</title>
+        <meta name="description" content={description} />
+        <link rel="canonical" href={pageUrl} />
+
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content={post.title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:url" content={pageUrl} />
+        <meta property="og:image" content={image} />
+        <meta property="og:image:alt" content={post.title} />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={post.title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={image} />
+
+        <script type="application/ld+json">{JSON.stringify(articleLd)}</script>
+      </Helmet>
+
       <div className="container">
         <article className="blog-post blog-post--narrow">
           <header className="blog-post-header align-left">
             <h1 className="blog-post-title align-left">{post.title}</h1>
             <p className="blog-post-date align-left">{post.date}</p>
+            <p
+              className="blog-disclaimer align-left"
+              style={{
+                marginTop: '0.5rem',
+                fontSize: '0.95rem',
+                lineHeight: 1.6,
+                color: 'var(--text, #e6e6e6)',
+                opacity: 0.9
+              }}
+            >
+              These are my personal notes based on my own experience and ongoing learning.
+            </p>
           </header>
 
-          {/* Divider line above first paragraph - full content width */}
           <div className="blog-post-divider blog-post-divider--wide" aria-hidden="true"></div>
 
           <div className="blog-post-content">
             {Array.isArray(post.content) ? (
               post.content.map((block, idx) => {
+                if (block.type === 'header') {
+                  const level = Math.min(Math.max(parseInt(block.level ?? 2, 10) || 2, 2), 4); // h2-h4
+                  const Tag = `h${level}`;
+                  return <Tag key={idx} className={`blog-subtitle h${level}`}>{block.text}</Tag>;
+                }
                 if (block.type === 'paragraph') {
                   return <p key={idx}>{block.text}</p>;
+                }
+                if (block.type === 'list' && Array.isArray(block.elements)) {
+                  return (
+                    <ul key={idx} className="blog-list">
+                      {block.elements.map((item, i) => (
+                        <li key={i}>{item}</li>
+                      ))}
+                    </ul>
+                  );
                 }
                 if (block.type === 'code') {
                   const rawLang = (block.lang || 'plaintext');
@@ -107,7 +177,12 @@ function BlogPost() {
                     <div key={idx} className="code-block-wrapper">
                       <div className="code-lang">{label}</div>
                       <pre className="code-block">
-                        <code className={className} data-lang={lang} dangerouslySetInnerHTML={{ __html: html }} />
+                        <code
+                          className={className}
+                          data-lang={lang}
+                          aria-label={`Code example in ${label}`}
+                          dangerouslySetInnerHTML={{ __html: html }}
+                        />
                       </pre>
                     </div>
                   );
@@ -120,24 +195,21 @@ function BlogPost() {
           </div>
         </article>
 
-        {/* Back button below blog post container, aligned left */}
         <div className="blog-post-actions left">
           <button
             type="button"
             className="btn btn-secondary back-btn"
             onClick={() => {
-              if (window.history.length > 1) {
-                navigate(-1);
-              } else {
-                navigate('/#blog');
-              }
+              window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+              setTimeout(() => {
+                navigate('/blog');
+              }, 0);
             }}
           >
             {t('blog.back', { defaultValue: 'Back to blog' })}
           </button>
         </div>
 
-        {/* Latest posts section */}
         {latestPosts.length > 0 && (
           <div className="latest-posts">
             <h3 className="latest-posts-title">
@@ -154,7 +226,20 @@ function BlogPost() {
                 return (
                   <article key={p.id} className="blog-card">
                     <Link to={`/blog/${p.id}`} className="blog-card-link" aria-label={p.title}>
-                      <div className="blog-image" aria-hidden="true">✦</div>
+                      <div className="blog-image" aria-hidden="true">
+                        {p.image ? (
+                          <img
+                            src={p.image}
+                            alt={`Thumbnail for ${p.title}`}
+                            loading="lazy"
+                            decoding="async"
+                            width="640"
+                            height="360"
+                          />
+                        ) : (
+                          '✦'
+                        )}
+                      </div>
                       <div className="blog-content">
                         <div className="blog-date">{p.date}</div>
                         <h3>{p.title}</h3>

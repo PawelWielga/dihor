@@ -26,25 +26,30 @@ function Navbar() {
     <nav id="navbar" className="glass">
       <div className="container">
         <div className="nav-container">
-          <div className="logo"></div>
+          <div className="logo" aria-label="Site logo"></div>
           <ul className={`nav-links ${open ? 'open' : ''}`}>
             <li>
-              <Link to="/#home" onClick={closeMenu}>
+              <Link to="/#home" onClick={closeMenu} aria-label="Go to Home section">
                 {t('nav.home')}
               </Link>
             </li>
             <li>
-              <Link to="/#about" onClick={closeMenu}>
+              <Link to="/#about" onClick={closeMenu} aria-label="Go to About section">
                 {t('nav.about')}
               </Link>
             </li>
             <li>
-              <Link to="/#projects" onClick={closeMenu}>
+              <Link to="/#projects" onClick={closeMenu} aria-label="Go to Projects section">
                 {t('nav.projects')}
               </Link>
             </li>
             <li>
-              <Link to="/#contact" onClick={closeMenu}>
+              <Link to="/#blog" onClick={closeMenu} aria-label="Go to Blog section">
+                {t('nav.blog', { defaultValue: 'Blog' })}
+              </Link>
+            </li>
+            <li>
+              <Link to="/#contact" onClick={closeMenu} aria-label="Go to Contact section">
                 {t('nav.contact')}
               </Link>
             </li>
@@ -52,10 +57,10 @@ function Navbar() {
           <button
             className="mobile-menu"
             onClick={toggleMenu}
-            aria-label="Toggle menu"
+            aria-label={open ? 'Close menu' : 'Open menu'}
             aria-expanded={open}
           >
-            <i className={`fas ${open ? 'fa-times' : 'fa-bars'}`} />
+            <i className={`fas ${open ? 'fa-times' : 'fa-bars'}`} aria-hidden="true" />
           </button>
         </div>
       </div>

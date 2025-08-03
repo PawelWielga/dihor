@@ -7,23 +7,18 @@ function Hero() {
   return (
     <section id="home" className="hero">
       <Particles />
-      {/* <button className="construction-btn">
-        {after ? (
-          <>
-            {before}
-            {dash}
-            <br />
-            {after}
-          </>
-        ) : (
-          underConstruction
-        )}
-      </button> */}
       <div className="container">
         <div className="hero-content">
           <div className="hero-image">
             <div className="profile-img">
-              <img src={`${import.meta.env.BASE_URL}img/me.jpg`} alt="Paweł Wielga" />
+              <img
+                src={`${import.meta.env.BASE_URL}img/me.jpg`}
+                alt="Portrait of Paweł Wielga"
+                width="240"
+                height="240"
+                loading="eager"
+                decoding="async"
+              />
             </div>
           </div>
           <div className="hero-text">
@@ -32,11 +27,11 @@ function Hero() {
             <p className="subtitle">{t('hero.subtitle')}</p>
             <div className="cta-buttons">
               <a href="#projects" className="btn btn-primary">
-                <i className="fas fa-laptop-code" />
+                <i className="fas fa-laptop-code" aria-hidden="true" />
                 {t('hero.viewWork')}
               </a>
               <a href="#contact" className="btn btn-secondary">
-                <i className="fas fa-envelope" />
+                <i className="fas fa-envelope" aria-hidden="true" />
                 {t('hero.getInTouch')}
               </a>
             </div>

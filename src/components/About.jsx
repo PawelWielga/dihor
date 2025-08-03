@@ -1,10 +1,26 @@
 // import Timeline from './Timeline.jsx'
+import { Helmet } from 'react-helmet-async';
 import skills from '../config/skills.json';
+
+const SITE_URL = 'https://pawelwielga.dihor.pl';
 
 function About() {
   const { commercial, home } = skills;
+  const description = 'About Paweł Wielga — experienced .NET Software Engineer working on desktop, web and mobile applications.';
+  const pageUrl = `${SITE_URL}/#about`;
+
   return (
     <section id="about" className="section">
+      <Helmet>
+        <title>About | Paweł Wielga</title>
+        <meta name="description" content={description} />
+        <link rel="canonical" href={pageUrl} />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="About | Paweł Wielga" />
+        <meta property="og:description" content={description} />
+        <meta property="og:url" content={pageUrl} />
+      </Helmet>
+
       <div className="container">
         <h2 className="section-title scroll-animate">About Me</h2>
         <div className="about-content scroll-animate">

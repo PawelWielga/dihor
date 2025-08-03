@@ -6,7 +6,9 @@
   "homepage": "https://pawelwielga.dihor.pl",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node ./scripts/generate-sitemap.mjs",
+    "postbuild": "node ./scripts/generate-sitemap.mjs",
+    "generate:sitemap": "node ./scripts/generate-sitemap.mjs",
     "lint": "eslint .",
     "preview": "vite preview",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\""
@@ -17,6 +19,7 @@
     "i18next-browser-languagedetector": "^8.2.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-helmet-async": "^2.0.5",
     "react-i18next": "^15.6.0",
     "react-router-dom": "^6.30.1"
   },

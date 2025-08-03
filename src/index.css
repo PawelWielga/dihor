@@ -577,6 +577,7 @@ footer {
   box-shadow: 0 10px 30px rgba(0, 191, 255, 0.25);
 }
 
+/* Image wrapper so we can clip the shine inside image bounds */
 .blog-image {
   height: 160px;
   background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
@@ -585,6 +586,67 @@ footer {
   justify-content: center;
   font-size: 2.2rem;
   color: var(--text-primary);
+  overflow: hidden;            /* ensure image clips to container */
+  position: relative;
+  isolation: isolate;          /* keep effects within */
+  transition: filter 280ms ease, transform 280ms ease;
+  will-change: filter, transform;
+}
+.blog-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;           /* fill nicely */
+  display: block;
+  transition: transform 280ms ease;
+  will-change: transform;
+}
+
+/* soft glow on card hover + a tiny lift */
+.blog-card:hover .blog-image {
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.25))
+          drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  transform: translateY(-2px);
+}
+
+/* diagonal shine sweep */
+.blog-image::after {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  background: linear-gradient(
+    120deg,
+    rgba(255,255,255,0) 30%,
+    rgba(255,255,255,0.25) 48%,
+    rgba(255,255,255,0.6) 50%,
+    rgba(255,255,255,0.25) 52%,
+    rgba(255,255,255,0) 70%
+  );
+  transform: translateX(-140%) rotate(0.001deg);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* trigger shine on hover */
+.blog-card:hover .blog-image::after {
+  animation: blog-card-shine 900ms ease forwards;
+  opacity: 1;
+}
+
+/* slight image zoom to sell the effect */
+.blog-card:hover .blog-image img {
+  transform: scale(1.03);
+}
+
+@keyframes blog-card-shine {
+  0% {
+    transform: translateX(-140%) rotate(0.001deg);
+  }
+  60% {
+    transform: translateX(0%) rotate(0.001deg);
+  }
+  100% {
+    transform: translateX(140%) rotate(0.001deg);
+  }
 }
 
 .blog-content {
@@ -775,6 +837,36 @@ footer {
 
 .blog-post-content {
   margin-top: 18px;
+}
+
+/* Blog list styling - colored bullets matching primary color (accent-cyan) */
+.blog-post-content .blog-list {
+  margin: 0 0 1.25rem 1.25rem;
+  padding: 0;
+  list-style: none;
+}
+.blog-post-content .blog-list li {
+  position: relative;
+  margin: 0 0 0.5rem 0;
+  padding-left: 1.25rem;
+  line-height: 1.6;
+}
+.blog-post-content .blog-list li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translateY(2px);
+  font-weight: 700;
+  color: var(--accent-cyan);
+}
+
+/* Optional: headers spacing within blog content */
+.blog-post-content h2.blog-subtitle,
+.blog-post-content h3.blog-subtitle,
+.blog-post-content h4.blog-subtitle {
+  margin: 1.5rem 0 0.75rem;
+  line-height: 1.3;
 }
 
 .blog-post-content p {
