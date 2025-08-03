@@ -62,50 +62,43 @@ function BlogPost() {
   return (
     <section className="section" style={{ minHeight: '100vh' }}>
       <div className="container">
-        <h2 className="section-title">{post.title}</h2>
-        <p className="blog-post-date">{post.date}</p>
-        <div className="blog-post-content">
-          {/* Render blog post content here */}
-          {Array.isArray(post.content) ? (
-            post.content.map((block, idx) => {
-              if (block.type === 'paragraph') {
-                return <p key={idx}>{block.text}</p>;
-              }
-              if (block.type === 'code') {
-                const lang = (block.lang || 'plaintext').toLowerCase();
-                const className = `language-${lang}`;
-                let html;
-                try {
-                  if (hljs.getLanguage(lang)) {
-                    html = hljs.highlight(block.text, { language: lang }).value;
-                  } else {
-                    html = hljs.highlightAuto(block.text).value;
-                  }
-                } catch {
-                  html = block.text;
+        <article className="blog-post">
+          <header className="blog-post-header">
+            <h1 className="blog-post-title">{post.title}</h1>
+            <p className="blog-post-date">{post.date}</p>
+          </header>
+          <div className="blog-post-content">
+            {Array.isArray(post.content) ? (
+              post.content.map((block, idx) => {
+                if (block.type === 'paragraph') {
+                  return <p key={idx}>{block.text}</p>;
                 }
-                return (
-                  <pre
-                    key={idx}
-                    style={{
-                      background: '#0d1117',
-                      color: '#c9d1d9',
-                      padding: '12px',
-                      borderRadius: '6px',
-                      overflowX: 'auto',
-                      border: '1px solid #30363d',
-                    }}
-                  >
-                    <code className={className} data-lang={lang} dangerouslySetInnerHTML={{ __html: html }} />
-                  </pre>
-                );
-              }
-              return null;
-            })
-          ) : (
-            <p>{post.content}</p>
-          )}
-        </div>
+                if (block.type === 'code') {
+                  const lang = (block.lang || 'plaintext').toLowerCase();
+                  const className = `language-${lang}`;
+                  let html;
+                  try {
+                    if (hljs.getLanguage(lang)) {
+                      html = hljs.highlight(block.text, { language: lang }).value;
+                    } else {
+                      html = hljs.highlightAuto(block.text).value;
+                    }
+                  } catch {
+                    html = block.text;
+                  }
+                  return (
+                    <pre key={idx} className="code-block">
+                      <code className={className} data-lang={lang} dangerouslySetInnerHTML={{ __html: html }} />
+                    </pre>
+                  );
+                }
+                return null;
+              })
+            ) : (
+              <p>{post.content}</p>
+            )}
+          </div>
+        </article>
       </div>
     </section>
   );
