@@ -22,5 +22,13 @@
     "backToHome": "Back to home",
     "backToProjects": "Back to projects",
     "notFound": "Project not found"
+  },
+  "notFound": {
+    "message": "Oops! The page you're looking for doesn't exist.",
+    "goHome": "Go to Homepage"
+  },
+  "blogPost": {
+    "notFound": "Blog Post Not Found",
+    "notFoundMessage": "The blog post you're looking for doesn't exist."
   }
 }

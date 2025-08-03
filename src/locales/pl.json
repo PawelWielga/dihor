@@ -22,5 +22,13 @@
     "backToHome": "Powrót na stronę główną",
     "backToProjects": "Powrót do projektów",
     "notFound": "Projekt nie znaleziony"
+  },
+  "notFound": {
+    "message": "Ups! Strona, której szukasz, nie istnieje.",
+    "goHome": "Przejdź do strony głównej"
+  },
+  "blogPost": {
+    "notFound": "Wpis na blogu nie znaleziony",
+    "notFoundMessage": "Wpis na blogu, którego szukasz, nie istnieje."
   }
 }

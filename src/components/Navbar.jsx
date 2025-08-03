@@ -44,13 +44,6 @@ function Navbar() {
                 {t('nav.projects')}
               </Link>
             </li>
-            {sections.blog && (
-              <li>
-                <Link to="/#blog" onClick={closeMenu}>
-                  {t('nav.blog')}
-                </Link>
-              </li>
-            )}
             <li>
               <Link to="/#contact" onClick={closeMenu}>
                 {t('nav.contact')}

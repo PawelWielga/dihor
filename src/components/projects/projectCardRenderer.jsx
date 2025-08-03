@@ -12,7 +12,10 @@ function RenderCard({ project }) {
       key={project.id}
       ref={cardRef}
       className="project-card glass scroll-animate"
-      onClick={() => project.hasDetails && navigate(`/project/${project.id}`)}
+      onClick={() =>
+        project.hasDetails &&
+        navigate(project.isBlogPost ? `/blog/${project.id}` : `/project/${project.id}`)
+      }
     >
       <div className="project-type">{project.type}</div>
       {project.company && <div className="project-company">{project.company}</div>}
@@ -31,7 +34,7 @@ function RenderCard({ project }) {
         ))}
         {project.hasDetails && (
           <Link
-            to={`/project/${project.id}`}
+            to={project.isBlogPost ? `/blog/${project.id}` : `/project/${project.id}`}
             className="details-link"
             onClick={(e) => e.stopPropagation()}
           >

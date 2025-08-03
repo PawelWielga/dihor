@@ -1,13 +1,13 @@
 {
-  "id": "niemanudy",
+  "id": "first-post",
   "category": "home",
-  "type": "Mobile Application",
-  "title": "Nie Ma Nudy - Family Attractions App",
-  "description": "Mobile app aggregating family-friendly attractions across Poland. Features location-based search, detailed venue information, and personalized favorites list with comprehensive admin panel.",
-  "tech": [".NET Core", "Blazor", ".NET MAUI", "Angular", "Web API", "MySQL", "Entity Framework"],
+  "type": "Blog Post",
+  "title": "My First Blog Post - Featured",
+  "description": "This project card now links to my first blog post, covering various topics related to web development and programming.",
+  "tech": ["React", "JavaScript", "CSS"],
   "links": [
-    { "label": "Mobile App", "icon": "fas fa-mobile-alt" },
-    { "label": "Location Based", "icon": "fas fa-map-marker-alt" }
+    { "label": "Read Blog", "icon": "fas fa-book-open" }
   ],
-  "hasDetails": false
+  "hasDetails": true,
+  "isBlogPost": true
 }

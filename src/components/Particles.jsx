@@ -1,3 +1,5 @@
+import React from 'react';
+
 function Particles({ count = 50 }) {
   const particles = Array.from({ length: count }).map((_, i) => {
     const style = {
@@ -33,4 +35,4 @@ function Particles({ count = 50 }) {
   );
 }
 
-export default Particles;
+export default React.memo(Particles);

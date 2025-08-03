@@ -281,7 +281,7 @@ nav.scrolled {
 
 /* Sections */
 .section {
-  padding: 50px 0;
+  padding: 90px 0 50px; /* add extra top padding to clear fixed navbar */
   position: relative;
   background: var(--bg-primary);
 }
@@ -692,8 +692,14 @@ footer {
 /* Responsive Design */
 @media (max-width: 768px) {
   .hero {
-    padding-top: 80px;
+    padding-top: 100px; /* ensure hero clears fixed navbar on mobile */
   }
+
+  /* Ensure all sections clear the fixed navbar on mobile */
+  .section {
+    padding-top: 100px;
+  }
+
   .nav-links {
     position: fixed;
     top: 0;
@@ -969,4 +975,62 @@ footer {
   border-color: var(--accent-cyan);
   box-shadow: var(--glow);
   color: var(--accent-cyan);
+}
+
+/* Not Found Section */
+.not-found {
+  height: 100vh;
+  height: 100dvh; /* fix Safari iOS viewport issue */
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+  text-align: center;
+}
+
+.not-found::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23ffffff" stroke-width="0.1" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+  opacity: 0.1;
+  z-index: 1;
+}
+
+.not-found-content {
+  position: relative;
+  z-index: 2;
+  animation: fadeInUp 1s ease-out;
+}
+
+.not-found h1 {
+  font-size: 8rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.not-found p {
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+  margin-bottom: 40px;
+}
+
+@media (max-width: 768px) {
+  .not-found h1 {
+    font-size: 6rem;
+  }
+
+  .not-found p {
+    font-size: 1.2rem;
+  }
 }
