@@ -2,11 +2,17 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Redirecting…</title>
+    <title>404 | Page not found</title>
+    <meta name="robots" content="noindex,follow" />
     <script>
+      // Preserve the originally requested path for SPA routing
       sessionStorage.setItem('redirect', location.pathname + location.search + location.hash);
+      // Redirect to the SPA entry. Keep relative root for gh-pages with custom domain.
       location.replace('/');
     </script>
+    <noscript>
+      <meta http-equiv="refresh" content="0;url=/" />
+    </noscript>
   </head>
   <body></body>
 </html>
