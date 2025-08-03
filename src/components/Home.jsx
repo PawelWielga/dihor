@@ -4,8 +4,9 @@ import Projects from './projects/Projects.jsx';
 import Blog from './Blog.jsx';
 import { sections } from '../config/sections.js';
 import useScrollAnimation from '../hooks/useScrollAnimation.js';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
+import blogPosts from '../data/blogposts/blogposts.js';
 
 function Home() {
   const location = useLocation();
@@ -18,12 +19,16 @@ function Home() {
     }
   }, [location]);
 
+  const hasVisiblePosts = useMemo(() => {
+    return Array.isArray(blogPosts) && blogPosts.some((p) => p.visible);
+  }, []);
+
   return (
     <>
       {sections.hero && <Hero />}
       {sections.about && <About />}
       {sections.projects && <Projects />}
-      {sections.blog && <Blog />}
+      {sections.blog && hasVisiblePosts && <Blog />}
     </>
   );
 }
