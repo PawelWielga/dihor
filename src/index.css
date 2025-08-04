@@ -196,10 +196,18 @@ nav.scrolled {
 }
 
 .hero .tagline {
-  font-size: 1.5rem;
-  color: var(--text-secondary);
+  /* Fluid, readable line length and size; themeable via CSS vars */
+  --hero-tagline-color: var(--text-secondary);
+  --hero-tagline-weight: 300;
+  --hero-tagline-max-ch: 60ch;
+  --hero-tagline-size: clamp(1.125rem, 2.5vw + 0.2rem, 1.75rem);
+
+  font-size: var(--hero-tagline-size);
+  color: var(--hero-tagline-color);
   margin-bottom: 30px;
-  font-weight: 300;
+  font-weight: var(--hero-tagline-weight);
+  line-height: 1.35;
+  max-width: var(--hero-tagline-max-ch);
 }
 
 .hero .subtitle {
@@ -977,6 +985,12 @@ footer {
     padding-top: 100px;
   }
 
+  /* tighten tagline line-length on small screens */
+  .hero .tagline {
+    --hero-tagline-max-ch: 42ch;
+    --hero-tagline-size: clamp(1rem, 3.2vw + 0.2rem, 1.35rem);
+  }
+
   .nav-links {
     position: fixed;
     top: 0;
@@ -1011,8 +1025,10 @@ footer {
     font-size: 2.5rem;
   }
 
+  /* tighten tagline line-length and size on small screens */
   .hero .tagline {
-    font-size: 1.2rem;
+    --hero-tagline-max-ch: 42ch;
+    --hero-tagline-size: clamp(1rem, 3.2vw + 0.2rem, 1.35rem);
   }
 
   .cta-buttons {
