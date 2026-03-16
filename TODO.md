@@ -2,7 +2,7 @@
 
 ## P0 (wysoki priorytet)
 
-- [ ] Zaktualizować podatne paczki z `npm audit`
+- [x] Zaktualizować podatne paczki z `npm audit`
   - `react-router-dom` (obecnie `6.30.1`, advisory dla `<6.30.2`)
   - `vite` (obecnie `7.0.4`, advisory dla `<=7.0.7`)
   - Cel: zejść do `0 high` w `npm audit`
@@ -16,7 +16,7 @@
 
 - [ ] Naprawić uszkodzone kodowanie znaków (mojibake) w plikach wejściowych SEO/UI
   - Dotyczy m.in. `index.html`, `src/components/Hero.jsx`, `src/components/Footer.jsx`
-  - Objawy: `PaweĹ‚`, `â€”`, `â€¦` itp.
+  - Objawy: `Paweł`, `—`, `…` itp.
   - Cel: spójne UTF-8 i poprawne polskie znaki w źródłach
 
 - [ ] Naprawić błędny import w `Timeline`
@@ -36,7 +36,7 @@
     - dodać manifest, albo
     - usunąć link
 
-- [ ] Zaktualizować `README.md` (teraz to domyślny template Vite)
+- [x] Zaktualizować `README.md` (teraz to domyślny template Vite)
   - Dodać realny opis projektu, komendy, deploy (GitHub Pages), strukturę danych blog/projects
 
 - [ ] Ujednolicić i18n dla głównych elementów UI
