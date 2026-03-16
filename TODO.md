@@ -1,4 +1,4 @@
-# TODO
+﻿# TODO
 
 ## P0 (wysoki priorytet)
 
@@ -7,12 +7,9 @@
   - `vite` (obecnie `7.0.4`, advisory dla `<=7.0.7`)
   - Cel: zejść do `0 high` w `npm audit`
 
-- [ ] Rozwiązać konflikt peer dependencies `react-helmet-async` vs React 19
-  - Obecnie instalacja wymaga `--legacy-peer-deps`
-  - Decyzja do wdrożenia:
-    - aktualizacja `react-helmet-async` do wersji wspierającej React 19 (jeśli dostępna), albo
-    - zmiana biblioteki SEO/meta
-  - Cel: `npm install` działa bez flag wymuszających
+- [x] Rozwiązać konflikt peer dependencies `react-helmet-async` vs React 19
+  - Status: rozwiązane przez aktualizację zależności (w tym `react-helmet-async@^3.0.0`)
+  - Wynik: `npm install` działa bez `--legacy-peer-deps`
 
 - [ ] Naprawić uszkodzone kodowanie znaków (mojibake) w plikach wejściowych SEO/UI
   - Dotyczy m.in. `index.html`, `src/components/Hero.jsx`, `src/components/Footer.jsx`
@@ -58,4 +55,3 @@
 - [ ] Uspójnić copy i daty stałe
   - `Footer` ma statyczny rok `2025`
   - Dobrze przejść na rok dynamiczny
-
