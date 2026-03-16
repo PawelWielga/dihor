@@ -16,7 +16,7 @@
   - Objawy: `Paweł`, `—`, `…` itp.
   - Cel: spójne UTF-8 i poprawne polskie znaki w źródłach
 
-- [ ] Naprawić błędny import w `Timeline`
+- [x] Naprawić błędny import w `Timeline`
   - `src/components/Timeline.jsx` importuje `../timeline.json`, a plik jest w `src/config/timeline.json`
   - Nawet jeśli sekcja jest chwilowo ukryta, kod powinien być poprawny
 
@@ -55,4 +55,5 @@
 - [ ] Uspójnić copy i daty stałe
   - `Footer` ma statyczny rok `2025`
   - Dobrze przejść na rok dynamiczny
+
 

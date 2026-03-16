@@ -1,4 +1,4 @@
-import timeline from '../timeline.json';
+import timeline from '../config/timeline.json';
 
 function Timeline() {
   return (
