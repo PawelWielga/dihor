@@ -11,7 +11,7 @@
   - Status: rozwiązane przez aktualizację zależności (w tym `react-helmet-async@^3.0.0`)
   - Wynik: `npm install` działa bez `--legacy-peer-deps`
 
-- [ ] Naprawić uszkodzone kodowanie znaków (mojibake) w plikach wejściowych SEO/UI
+- [x] Naprawić uszkodzone kodowanie znaków (mojibake) w plikach wejściowych SEO/UI
   - Dotyczy m.in. `index.html`, `src/components/Hero.jsx`, `src/components/Footer.jsx`
   - Objawy: `Paweł`, `—`, `…` itp.
   - Cel: spójne UTF-8 i poprawne polskie znaki w źródłach
@@ -55,3 +55,4 @@
 - [ ] Uspójnić copy i daty stałe
   - `Footer` ma statyczny rok `2025`
   - Dobrze przejść na rok dynamiczny
+

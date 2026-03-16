@@ -1,4 +1,4 @@
-import { useTranslation } from 'react-i18next';
+﻿import { useTranslation } from 'react-i18next';
 
 function Footer() {
   const { t } = useTranslation();
@@ -21,7 +21,7 @@ function Footer() {
           </div>
         </div>
         <div className="footer-bottom">
-          <p>&copy; 2025 Paweł Wielga. All rights reserved. Built with passion and Vite+React ❤️</p>
+          <p>&copy; 2025 Paweł Wielga. All rights reserved. Built with passion and Vite+React ❤</p>
         </div>
       </div>
     </footer>
