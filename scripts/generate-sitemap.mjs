@@ -6,11 +6,10 @@
 import { readFileSync, writeFileSync, mkdirSync } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { SITE_URL } from '../src/config/site.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-
-const SITE_URL = 'https://pawelwielga.dihor.pl';
 
 // Known static routes of the SPA
 const routes = ['/', '/blog'];
@@ -41,7 +40,9 @@ function iso(dateStr) {
   try {
     const d = new Date(dateStr);
     if (!isNaN(d.getTime())) return d.toISOString();
-  } catch {}
+  } catch {
+    // Keep fallback below when date cannot be parsed.
+  }
   return new Date().toISOString();
 }
 

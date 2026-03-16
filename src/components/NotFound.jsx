@@ -1,8 +1,7 @@
 import Particles from './Particles.jsx';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
-
-const SITE_URL = 'https://pawelwielga.dihor.pl';
+import { SITE_URL } from '../config/site.js';
 
 function NotFound() {
   const { t } = useTranslation();

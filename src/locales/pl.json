@@ -6,12 +6,38 @@
     "blog": "Blog",
     "contact": "Kontakt"
   },
+  "home": {
+    "seoDescription": "Witaj na portfolio i blogu Pawła Wielgi — .NET Developera i Software Engineera."
+  },
   "hero": {
     "tagline": "Tworzę potężne rozwiązania .NET",
     "subtitle": "Inżynier oprogramowania z ponad 8-letnim doświadczeniem w technologii .NET. Specjalizuję się w aplikacjach desktopowych, webowych i mobilnych dla przemysłu, bankowości oraz rozwiązań konsumenckich.",
     "viewWork": "Zobacz moje projekty",
     "getInTouch": "Skontaktuj się",
-    "underConstruction": "Strona w budowie – część treści to tylko wypełniacz."
+    "underConstruction": "Strona w budowie - część treści to tylko wypełniacz."
+  },
+  "about": {
+    "title": "O mnie",
+    "subtitle": "Doświadczony .NET Software Engineer",
+    "paragraph1": "Mam ponad 8 lat doświadczenia w .NET i specjalizuję się w projektowaniu oraz tworzeniu aplikacji desktopowych, webowych i mobilnych. Pracuję przy złożonych systemach dla przemysłu (druk 3D), bankowości i aplikacji konsumenckich.",
+    "paragraph2": "Mocno skupiam się na analizie kodu i refaktoryzacji pod wydajność, budując rozwiązania oparte o wzorce MVVM. W praktyce korzystam m.in. z CI/CD, Dockera, komunikacji asynchronicznej (RabbitMQ, SignalR) oraz architektur opartych na interfejsach i dependency injection.",
+    "paragraph3": "Obecnie pracuję w 7N (mBank), gdzie rozwijam wewnętrzne aplikacje bankowe. Wcześniej w Zortrax S.A. tworzyłem oprogramowanie dla druku 3D, w tym platformy Z-SUITE i Zortrax inCloud.",
+    "commercialSkills": "Komercyjnie",
+    "homeSkills": "Projekty domowe",
+    "seoDescription": "O Pawle Wielga — doświadczonym .NET Software Engineerze tworzącym aplikacje desktopowe, webowe i mobilne."
+  },
+  "projects": {
+    "title": "Projekty",
+    "commercial": "Projekty komercyjne",
+    "home": "Projekty domowe",
+    "seoDescription": "Wybrane projekty komercyjne i domowe Pawła Wielgi (.NET, React, DevOps, HomeLab)."
+  },
+  "blog": {
+    "back": "Powrót do bloga",
+    "latest": "Najnowsze wpisy",
+    "readMore": "Czytaj więcej",
+    "empty": "Brak wpisów. Zajrzyj ponownie wkrótce.",
+    "seoDescription": "Artykuły i notatki Pawła Wielgi o software engineeringu, .NET, DevOps i home-labie."
   },
   "footer": {
     "cta": "Zbudujmy razem coś niesamowitego",
@@ -21,14 +47,14 @@
   "projectDetails": {
     "backToHome": "Powrót na stronę główną",
     "backToProjects": "Powrót do projektów",
-    "notFound": "Projekt nie znaleziony"
+    "notFound": "Nie znaleziono projektu"
   },
   "notFound": {
     "message": "Ups! Strona, której szukasz, nie istnieje.",
     "goHome": "Przejdź do strony głównej"
   },
   "blogPost": {
-    "notFound": "Wpis na blogu nie znaleziony",
-    "notFoundMessage": "Wpis na blogu, którego szukasz, nie istnieje."
+    "notFound": "Nie znaleziono wpisu",
+    "notFoundMessage": "Wpis, którego szukasz, nie istnieje."
   }
 }

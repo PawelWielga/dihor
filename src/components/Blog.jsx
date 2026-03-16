@@ -3,35 +3,40 @@ import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
 import blogPosts from '../data/blogposts/blogposts.js';
 import { Link } from 'react-router-dom';
+import { AUTHOR_NAME, SITE_URL } from '../config/site.js';
 
-const SITE_URL = 'https://pawelwielga.dihor.pl';
+function getPostTime(post) {
+  return Date.parse(post?.dateISO || post?.date || 0) || 0;
+}
 
 function Blog() {
   const { t } = useTranslation();
 
   const visiblePosts = Array.isArray(blogPosts)
-    ? blogPosts.filter((p) => p.visible)
+    ? blogPosts
+        .filter((p) => p.visible)
+        .sort((a, b) => getPostTime(b) - getPostTime(a))
     : [];
 
   const pageUrl = `${SITE_URL}/blog`;
-  const description = 'Articles and notes by Paweł Wielga on software engineering, .NET, DevOps, and home-lab.';
+  const description = t('blog.seoDescription');
 
   return (
     <section id="blog" className="section">
       <Helmet>
-        <title>Blog | Paweł Wielga</title>
+        <title>{`Blog | ${AUTHOR_NAME}`}</title>
         <meta name="description" content={description} />
         <link rel="canonical" href={pageUrl} />
 
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Blog | Paweł Wielga" />
+        <meta property="og:title" content={`Blog | ${AUTHOR_NAME}`} />
         <meta property="og:description" content={description} />
         <meta property="og:url" content={pageUrl} />
         <meta property="og:image" content={`${SITE_URL}/img/me.jpg`} />
-        <meta property="og:image:alt" content="Portrait of Paweł Wielga" />
+        <meta property="og:image:alt" content={`Portrait of ${AUTHOR_NAME}`} />
 
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Blog | Paweł Wielga" />
+        <meta name="twitter:title" content={`Blog | ${AUTHOR_NAME}`} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={`${SITE_URL}/img/me.jpg`} />
 
@@ -40,12 +45,12 @@ function Blog() {
           '@type': 'Blog',
           headline: 'Blog',
           description,
-          url: pageUrl
+          url: pageUrl,
         })}</script>
       </Helmet>
 
       <div className="container" itemScope itemType="https://schema.org/Blog">
-        <meta itemProp="name" content="Paweł Wielga Blog" />
+        <meta itemProp="name" content={`${AUTHOR_NAME} Blog`} />
         <meta itemProp="url" content={pageUrl} />
         <h1 className="section-title">{t('nav.blog')}</h1>
         <p
@@ -55,10 +60,10 @@ function Blog() {
             fontSize: '0.95rem',
             lineHeight: 1.6,
             color: 'var(--text, #e6e6e6)',
-            opacity: 0.9
+            opacity: 0.9,
           }}
         >
-          These are my personal notes based on my own experience and ongoing learning.
+          To moje osobiste notatki bazujące na własnym doświadczeniu i ciągłej nauce.
         </p>
 
         {visiblePosts.length === 0 ? (
@@ -71,11 +76,17 @@ function Blog() {
                 ? post.content.find((b) => b.type === 'paragraph')?.text ?? ''
                 : '';
               const preview =
-                firstParagraph.length > 180 ? `${firstParagraph.slice(0, 180)}…` : firstParagraph;
+                firstParagraph.length > 180 ? `${firstParagraph.slice(0, 180)}...` : firstParagraph;
 
               const postUrl = `/blog/${post.id}`;
               return (
-                <article key={post.id} className="blog-card" itemScope itemType="https://schema.org/BlogPosting" itemProp="itemListElement">
+                <article
+                  key={post.id}
+                  className="blog-card"
+                  itemScope
+                  itemType="https://schema.org/BlogPosting"
+                  itemProp="itemListElement"
+                >
                   <meta itemProp="position" content={index + 1} />
                   <Link to={postUrl} className="blog-card-link" aria-label={`Read blog post: ${post.title}`}>
                     <div className="blog-image" aria-hidden="true">

@@ -11,9 +11,12 @@ import xml from 'highlight.js/lib/languages/xml';
 import css from 'highlight.js/lib/languages/css';
 import bash from 'highlight.js/lib/languages/bash';
 import 'highlight.js/styles/github-dark.css';
+import { AUTHOR_NAME, SITE_URL } from '../config/site.js';
 
-const SITE_URL = 'https://pawelwielga.dihor.pl';
-const AUTHOR = 'Paweł Wielga';
+function getPostTime(post) {
+  return Date.parse(post?.dateISO || post?.date || 0) || 0;
+}
+
 
 function BlogPost() {
   const { id } = useParams();
@@ -53,7 +56,7 @@ function BlogPost() {
   // Compute newest posts (visible only), excluding current, take up to 3
   const latestPosts = useMemo(() => {
     const list = Array.isArray(blogPosts) ? blogPosts.filter((p) => p.visible && p.id !== id) : [];
-    return list.slice(0, 3);
+    return list.sort((a, b) => getPostTime(b) - getPostTime(a)).slice(0, 3);
   }, [id]);
 
   if (!post) {
@@ -84,7 +87,7 @@ function BlogPost() {
     description,
     author: {
       '@type': 'Person',
-      name: AUTHOR
+      name: AUTHOR_NAME
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
@@ -98,7 +101,7 @@ function BlogPost() {
   return (
     <section className="section" style={{ minHeight: '100vh' }}>
       <Helmet>
-        <title>{post.title} | {AUTHOR}</title>
+        <title>{post.title} | {AUTHOR_NAME}</title>
         <meta name="description" content={description} />
         <link rel="canonical" href={pageUrl} />
 
@@ -132,7 +135,7 @@ function BlogPost() {
                 opacity: 0.9
               }}
             >
-              These are my personal notes based on my own experience and ongoing learning.
+              To moje osobiste notatki bazujące na własnym doświadczeniu i ciągłej nauce.
             </p>
           </header>
 
@@ -221,7 +224,7 @@ function BlogPost() {
                   ? p.content.find((b) => b.type === 'paragraph')?.text ?? ''
                   : '';
                 const preview =
-                  firstParagraph.length > 140 ? `${firstParagraph.slice(0, 140)}…` : firstParagraph;
+                  firstParagraph.length > 140 ? `${firstParagraph.slice(0, 140)}...` : firstParagraph;
 
                 return (
                   <article key={p.id} className="blog-card">
