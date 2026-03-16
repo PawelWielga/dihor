@@ -1,4 +1,4 @@
-﻿# TODO
+# TODO
 
 ## P0 (wysoki priorytet)
 
@@ -20,6 +20,11 @@
   - `src/components/Timeline.jsx` importuje `../timeline.json`, a plik jest w `src/config/timeline.json`
   - Nawet jeśli sekcja jest chwilowo ukryta, kod powinien być poprawny
 
+- [ ] Dokończyć naprawę kodowania UTF-8 w całym repo (mojibake nadal występuje)
+  - Dotyczy m.in. `src/locales/*.json`, `src/content/**/*.md`, `src/config/site.js`, `src/index.css`
+  - Objawy: `PaweĹ‚`, `Ä…`, `â€”`, `â€˘` w treściach i stylach
+  - Cel: spójny UTF-8 + szybka walidacja (np. skrypt wykrywający typowe sekwencje mojibake)
+
 ## P1 (średni priorytet)
 
 - [ ] Ujednolicić źródło danych domeny w plikach statycznych
@@ -40,6 +45,20 @@
   - Zostały hardcoded fragmenty (np. część alt/title/etykiet, elementy nawigacji/komunikatów technicznych)
   - Blog ma pozostać po polsku (zgodnie z decyzją), ale UI powinno być konsekwentnie tłumaczalne
 
+- [ ] Ujednolicić parser frontmatter między runtime a sitemapą
+  - Teraz są dwa niezależne parsery: `src/content/markdownParser.js` i `scripts/generate-sitemap.mjs`
+  - Ryzyko: inna interpretacja tych samych metadanych (np. listy/typy/booleany)
+  - Cel: jedno źródło parsera i identyczny wynik dla UI + sitemap
+
+- [ ] Dodać walidację kontraktów contentu (blog/projects) w build/CI
+  - Sprawdzać: unikalność `id`, wymagane pola, zgodność folderu ze slug/id, obecność `index.md`
+  - Sprawdzać też konflikty: duplikaty wpisów i osierocone assety deklarowane w `meta.json`
+  - Cel: szybki fail przy literówkach w content-as-code
+
+- [ ] Uspójnić nawigację do sekcji `/#home`, `/#about`, `/#projects`, `/#blog`, `/#contact`
+  - Obecnie linki w `Navbar` są hash-based, ale brak jednego kontrolowanego mechanizmu scrollowania do anchorów
+  - Cel: przewidywalne przejścia (desktop/mobile, wejście z podstron, odświeżenie)
+
 ## P2 (niski priorytet / porządki)
 
 - [ ] Usunąć pusty `src/App.css` albo zacząć go realnie używać
@@ -55,5 +74,14 @@
 - [ ] Uspójnić copy i daty stałe
   - `Footer` ma statyczny rok `2025`
   - Dobrze przejść na rok dynamiczny
+
+- [ ] Przenieść style inline z komponentów do CSS
+  - Dotyczy m.in. `Blog.jsx`, `BlogPost.jsx`, `ProjectDetails.jsx`
+  - Cel: jeden styl systemowy (łatwiejsze utrzymanie, theming, porządek)
+
+- [ ] Uspójnić a11y/i18n dla etykiet pomocniczych
+  - Część `aria-label` i `title` jest hardcoded po angielsku i poza i18n
+  - `Navbar` ma pusty element `.logo` z `aria-label`, który nie wnosi treści
+  - Cel: semantyka i dostępność bez “martwych” elementów
 
 

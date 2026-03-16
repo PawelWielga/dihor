@@ -1,0 +1,9 @@
+{
+  "id": "reverse-proxy-nginx-pihole",
+  "visible": true,
+  "title": "Lokalne domeny bez portów: Reverse Proxy z Nginx i Pi-hole (Docker, Debian)",
+  "date": "2025-06-14",
+  "dateISO": "2025-06-14",
+  "tags": ["reverse-proxy", "nginx", "docker", "pi-hole", "self-hosting", "debian", "dns"],
+  "thumbnail": "thumbnail.png"
+}

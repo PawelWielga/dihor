@@ -8,7 +8,7 @@ import { useEffect, useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
-import blogPosts from '../data/blogposts/blogposts.js';
+import { blogPosts } from '../content/index.js';
 import { AUTHOR_NAME, SITE_URL } from '../config/site.js';
 
 function Home() {

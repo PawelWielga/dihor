@@ -1,4 +1,4 @@
-﻿import Particles from './Particles.jsx';
+import Particles from './Particles.jsx';
 import { useTranslation } from 'react-i18next';
 import HeroTagline from './HeroTagline.tsx';
 

@@ -6,10 +6,13 @@
   "homepage": "https://pawelwielga.dihor.pl",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node ./scripts/generate-sitemap.mjs",
+    "build": "npm run check:encoding && vite build && node ./scripts/generate-sitemap.mjs",
     "postbuild": "node ./scripts/generate-sitemap.mjs",
     "generate:sitemap": "node ./scripts/generate-sitemap.mjs",
-    "lint": "eslint .",
+    "check:encoding": "node ./scripts/check-encoding.mjs",
+    "lint": "npm run check:encoding && eslint .",
+    "hooks:install": "git config core.hooksPath .githooks",
+    "hooks:status": "git config --get core.hooksPath",
     "preview": "vite preview",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\""
   },

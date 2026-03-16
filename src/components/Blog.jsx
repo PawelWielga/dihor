@@ -1,22 +1,14 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
-import blogPosts from '../data/blogposts/blogposts.js';
+import { blogPosts } from '../content/index.js';
 import { Link } from 'react-router-dom';
 import { AUTHOR_NAME, SITE_URL } from '../config/site.js';
-
-function getPostTime(post) {
-  return Date.parse(post?.dateISO || post?.date || 0) || 0;
-}
 
 function Blog() {
   const { t } = useTranslation();
 
-  const visiblePosts = Array.isArray(blogPosts)
-    ? blogPosts
-        .filter((p) => p.visible)
-        .sort((a, b) => getPostTime(b) - getPostTime(a))
-    : [];
+  const visiblePosts = Array.isArray(blogPosts) ? blogPosts.filter((p) => p.visible) : [];
 
   const pageUrl = `${SITE_URL}/blog`;
   const description = t('blog.seoDescription');
@@ -72,12 +64,6 @@ function Blog() {
           <div className="blog-grid" itemScope itemType="https://schema.org/ItemList">
             <meta itemProp="itemListOrder" content="https://schema.org/ItemListUnordered" />
             {visiblePosts.map((post, index) => {
-              const firstParagraph = Array.isArray(post.content)
-                ? post.content.find((b) => b.type === 'paragraph')?.text ?? ''
-                : '';
-              const preview =
-                firstParagraph.length > 180 ? `${firstParagraph.slice(0, 180)}...` : firstParagraph;
-
               const postUrl = `/blog/${post.id}`;
               return (
                 <article
@@ -101,13 +87,13 @@ function Blog() {
                           itemProp="image"
                         />
                       ) : (
-                        '✦'
+                        '*'
                       )}
                     </div>
                     <div className="blog-content">
                       <div className="blog-date" itemProp="datePublished">{post.date}</div>
                       <h2 itemProp="headline">{post.title}</h2>
-                      {preview && <p itemProp="description">{preview}</p>}
+                      {post.excerpt && <p itemProp="description">{post.excerpt}</p>}
                       <span className="read-more">
                         {t('blog.readMore', { defaultValue: 'Read more' })}
                       </span>
@@ -125,3 +111,4 @@ function Blog() {
 }
 
 export default Blog;
+
