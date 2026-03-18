@@ -18,11 +18,11 @@ function Hero() {
     startDelay: 300,
     loop: true,
     showCursor: true,
-    cursorChar: '_'
+    cursorChar: '_',
   };
 
   return (
-    <section id="home" className="hero hero--compact" aria-labelledby="hero-title">
+    <section id="home" className="hero" aria-labelledby="hero-title">
       <HeroBackground />
       <div className="container">
         <div className="hero-content hero-content--single">

@@ -37,6 +37,10 @@ html {
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: 'Inter', sans-serif;
   background: var(--bg-primary);
@@ -353,61 +357,40 @@ nav.scrolled {
 
 /* Sections */
 .section {
-  padding: 90px 0 50px; /* add extra top padding to clear fixed navbar */
-  position: relative;
-  background: var(--bg-primary);
+  min-height: 100vh;
+  padding: 80px 0 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-#about {
+#about.section {
   background: var(--bg-secondary);
-  position: relative;
-  z-index: 10;
-  margin-top: -150px;
-  padding-top: 200px;
-  border-radius: 40px 40px 0 0;
-  transform: translateZ(0);
 }
 
-#projects {
+#projects.section {
   background: var(--bg-tertiary);
-  position: relative;
-  z-index: 9;
-  margin-top: -100px;
-  padding-top: 150px;
-  border-radius: 40px 40px 0 0;
-  transform: translateZ(0);
 }
 
-#blog {
+#blog.section {
   background: var(--bg-quaternary);
-  position: relative;
-  z-index: 8;
-  margin-top: -100px;
-  padding-top: 150px;
-  border-radius: 40px 40px 0 0;
-  transform: translateZ(0);
 }
 
 footer {
   background: var(--bg-quinary);
-  position: relative;
-  z-index: 7;
-  margin-top: -100px;
-  padding-top: 150px;
-  border-radius: 40px 40px 0 0;
-  transform: translateZ(0);
 }
 
+/* Section Titles */
 .section-title {
   text-align: center;
   font-size: 2.5rem;
   font-weight: 700;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
   color: var(--text-primary);
 }
 
 .section-title:not(:first-of-type) {
-  margin-top: 80px;
+  margin-top: 60px;
 }
 
 .section-title::after {
@@ -417,6 +400,16 @@ footer {
   height: 3px;
   background: var(--accent-cyan);
   margin: 20px auto;
+}
+
+/* Hero Section */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background: #000;
 }
 
 /* About Section */
@@ -527,31 +520,27 @@ footer {
   border-color: var(--accent-yellow);
 }
 
-/* Projects Section */
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 30px;
-  margin-top: 40px;
-}
-
-.project-card {
+/* Unified Card Component */
+.card {
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0)),
-    var(--glass-bg);
+    linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0)), var(--glass-bg);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
   border-radius: 15px;
-  padding: 30px;
-  padding-bottom: 70px;
+  overflow: hidden;
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease,
     border-color 0.3s ease;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  cursor: pointer;
   position: relative;
-  overflow: hidden;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  border-color: var(--accent-cyan);
+  box-shadow: 0 10px 30px rgba(0, 191, 255, 0.25);
 }
 
 .center-highlight {
@@ -559,120 +548,8 @@ footer {
   border-color: var(--accent-cyan);
 }
 
-.project-card:hover {
-  transform: translateY(-10px);
-  border-color: var(--accent-cyan);
-  box-shadow: 0 10px 30px rgba(0, 191, 255, 0.3);
-}
-
-.project-type {
-  color: var(--accent-cyan);
-  font-size: 0.9rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 10px;
-}
-
-.project-company {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  margin-bottom: 10px;
-}
-
-.project-card h3 {
-  font-size: 1.4rem;
-  color: var(--text-primary);
-  margin-bottom: 15px;
-}
-
-.project-card p {
-  color: var(--text-secondary);
-  margin-bottom: 20px;
-}
-
-.project-tech {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 20px;
-}
-
-.project-tech span {
-  background: var(--bg-primary);
-  padding: 4px 10px;
-  border-radius: 12px;
-  font-size: 0.8rem;
-  color: var(--text-muted);
-}
-
-.project-links {
-  display: flex;
-  gap: 15px;
-}
-
-.project-links span {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  color: var(--accent-cyan);
-  transition: color 0.3s ease;
-}
-
-.project-links a {
-  color: var(--accent-cyan);
-  text-decoration: none;
-  font-weight: 500;
-  transition: all 0.3s ease;
-}
-
-.project-links .details-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  position: absolute;
-  right: 30px;
-  bottom: 30px;
-}
-
-.project-links a:hover,
-.project-links span:hover {
-  color: var(--text-primary);
-  text-shadow: 0 0 10px rgba(0, 191, 255, 0.5);
-}
-
-/* Blog Section */
-.blog-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 30px;
-  margin-top: 40px;
-}
-
-.blog-card {
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0)),
-    var(--glass-bg);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border-radius: 15px;
-  overflow: hidden;
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease,
-    border-color 0.3s ease;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  position: relative;
-}
-
-.blog-card:hover {
-  transform: translateY(-8px);
-  border-color: var(--accent-cyan);
-  box-shadow: 0 10px 30px rgba(0, 191, 255, 0.25);
-}
-
-/* Image wrapper so we can clip the shine inside image bounds */
-.blog-image {
+/* Card Image */
+.card-image {
   height: 160px;
   background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
   display: flex;
@@ -680,58 +557,56 @@ footer {
   justify-content: center;
   font-size: 2.2rem;
   color: var(--text-primary);
-  overflow: hidden;            /* ensure image clips to container */
+  overflow: hidden;
   position: relative;
-  isolation: isolate;          /* keep effects within */
-  transition: filter 280ms ease, transform 280ms ease;
+  isolation: isolate;
+  transition:
+    filter 280ms ease,
+    transform 280ms ease;
   will-change: filter, transform;
 }
-.blog-image img {
+
+.card-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover;           /* fill nicely */
+  object-fit: cover;
   display: block;
   transition: transform 280ms ease;
   will-change: transform;
 }
 
-/* soft glow on card hover + a tiny lift */
-.blog-card:hover .blog-image {
-  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.25))
-          drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+.card:hover .card-image {
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.25)) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
   transform: translateY(-2px);
 }
 
-/* diagonal shine sweep */
-.blog-image::after {
-  content: "";
+.card-image::after {
+  content: '';
   position: absolute;
   inset: -20%;
   background: linear-gradient(
     120deg,
-    rgba(255,255,255,0) 30%,
-    rgba(255,255,255,0.25) 48%,
-    rgba(255,255,255,0.6) 50%,
-    rgba(255,255,255,0.25) 52%,
-    rgba(255,255,255,0) 70%
+    rgba(255, 255, 255, 0) 30%,
+    rgba(255, 255, 255, 0.25) 48%,
+    rgba(255, 255, 255, 0.6) 50%,
+    rgba(255, 255, 255, 0.25) 52%,
+    rgba(255, 255, 255, 0) 70%
   );
   transform: translateX(-140%) rotate(0.001deg);
   opacity: 0;
   pointer-events: none;
 }
 
-/* trigger shine on hover */
-.blog-card:hover .blog-image::after {
-  animation: blog-card-shine 900ms ease forwards;
+.card:hover .card-image::after {
+  animation: card-shine 900ms ease forwards;
   opacity: 1;
 }
 
-/* slight image zoom to sell the effect */
-.blog-card:hover .blog-image img {
+.card:hover .card-image img {
   transform: scale(1.03);
 }
 
-@keyframes blog-card-shine {
+@keyframes card-shine {
   0% {
     transform: translateX(-140%) rotate(0.001deg);
   }
@@ -743,11 +618,125 @@ footer {
   }
 }
 
-.blog-content {
-  padding: 24px 24px 28px 24px;
+/* Card Content */
+.card-content {
+  padding: 24px;
 }
 
-/* Make entire blog card clickable via full-area link */
+.card-date {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+}
+
+.card-type {
+  color: var(--accent-cyan);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+
+.card-company {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.card-excerpt,
+.card-description {
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+.card-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.card-tech span {
+  background: var(--bg-primary);
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.card-links {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.card-links span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--accent-cyan);
+  transition: color 0.3s ease;
+}
+
+.card-links span:hover {
+  color: var(--text-primary);
+  text-shadow: 0 0 10px rgba(0, 191, 255, 0.5);
+}
+
+.card-details-link,
+.card-read-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--accent-cyan);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.card-details-link {
+  position: absolute;
+  right: 24px;
+  bottom: 24px;
+}
+
+.card-read-more:hover,
+.card-details-link:hover {
+  color: var(--text-primary);
+  text-shadow: 0 0 10px rgba(0, 191, 255, 0.5);
+}
+
+/* Backward compatibility aliases */
+.project-card,
+.blog-card {
+  composes: card;
+}
+
+/* Blog Section */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+/* Backward compatibility - these are now aliases */
+.blog-image {
+  composes: card-image;
+}
+
+.blog-content {
+  composes: card-content;
+}
+
 .blog-card-link {
   display: block;
   color: inherit;
@@ -770,42 +759,20 @@ footer {
 }
 
 .blog-date {
-  color: var(--text-muted);
-  font-size: 0.9rem;
-  margin-bottom: 8px;
+  composes: card-date;
 }
 
+/* Backward compatibility for old selectors */
 .blog-card h3 {
-  font-size: 1.25rem;
-  color: var(--text-primary);
-  margin-bottom: 12px;
-}
-
-.blog-card h3 a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.blog-card h3 a:hover {
-  color: var(--accent-cyan);
-  text-shadow: 0 0 10px rgba(0, 191, 255, 0.5);
+  composes: card-title;
 }
 
 .blog-card p {
-  color: var(--text-secondary);
-  margin-bottom: 16px;
+  composes: card-description;
 }
 
 .read-more {
-  color: var(--accent-cyan);
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-
-.read-more:hover {
-  color: var(--text-primary);
-  text-shadow: 0 0 10px rgba(0, 191, 255, 0.5);
+  composes: card-read-more;
 }
 
 /* Blog Post (detail) actions and latest section */
@@ -888,8 +855,7 @@ footer {
   max-width: 1200px; /* container width */
   margin: 0 auto;
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0)),
-    var(--glass-bg);
+    linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0)), var(--glass-bg);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -1484,6 +1450,3 @@ footer {
     font-size: 1.2rem;
   }
 }
-
-
-
