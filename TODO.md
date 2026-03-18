@@ -20,10 +20,20 @@
   - `src/components/Timeline.jsx` importuje `../timeline.json`, a plik jest w `src/config/timeline.json`
   - Nawet jeśli sekcja jest chwilowo ukryta, kod powinien być poprawny
 
+
 - [ ] Dokończyć naprawę kodowania UTF-8 w całym repo (mojibake nadal występuje)
+  - błąd prawdopodobnie wynikła z kodowania w powershell. wdrożyłem rozwiązanie które opisałe w 'blogpost-powershell.md'
+  - przed jakakimikolwiek zamianami sprawdź czy problem nadal występuje i czy nie mamy w kodzie jakich innych obejść którymi próbowaliśmy to wczesniej naprawić, a teraz po wprowadzeniu zmian z blogposta już nie sa już potrzebne, jeżeli tak to je usuń
   - Dotyczy m.in. `src/locales/*.json`, `src/content/**/*.md`, `src/config/site.js`, `src/index.css`
   - Objawy: `PaweĹ‚`, `Ä…`, `â€”`, `â€˘` w treściach i stylach
   - Cel: spójny UTF-8 + szybka walidacja (np. skrypt wykrywający typowe sekwencje mojibake)
+
+- [ ] Zmiana sekcji hero
+  - po czesci już wykonana
+  - usunięcie zdjecia profilowego
+  - zmiana tła na to z 'new-hero-background.html'
+  - zmniejszenie wysokości sekcji hero dopasowana do kontentu
+  - efekt paralaxy pierwszy panel pod sekcją hero, najeżdza na niego, zamiast zwykłedo przewijania strony
 
 ## P1 (średni priorytet)
 

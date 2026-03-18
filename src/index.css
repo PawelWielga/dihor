@@ -102,7 +102,7 @@ nav.scrolled {
 }
 
 .nav-links a::after {
-  content: '\\2022';
+  content: '';
   position: absolute;
   bottom: -5px;
   left: 0;
@@ -136,39 +136,85 @@ nav.scrolled {
 
 /* Hero Section */
 .hero {
-  height: 100vh;
-  height: 100dvh; /* fix Safari iOS viewport issue */
-  min-height: 100vh;
+  height: auto;
+  min-height: 60vh;
   display: flex;
   align-items: center;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+  background: #000;
+  padding: 80px 0 40px;
 }
 
-.hero::before {
-  content: '\\2022';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23ffffff" stroke-width="0.1" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-  opacity: 0.1;
-  z-index: 1;
+.hero--compact {
+  min-height: 50vh;
+  padding: 60px 0 30px;
 }
 
-.hero::after {
-  content: '\\2022';
+.hero-space-canvas {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  /* background: url('/img/rx7.png') bottom right/150px no-repeat; */
-  opacity: 0.03;
-  filter: grayscale(100%);
+  inset: 0;
+  width: 100%;
+  height: 100%;
   z-index: 0;
+  display: block;
+}
+
+.hero .container {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-scroll-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 26px;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  opacity: 0.9;
+  transition: opacity 0.2s ease;
+}
+
+.hero-scroll-hint:hover {
+  opacity: 1;
+}
+
+.hero-scroll-hint-mouse {
+  width: 24px;
+  height: 38px;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  border-radius: 14px;
+  display: inline-flex;
+  justify-content: center;
+  padding-top: 6px;
+}
+
+.hero-scroll-hint-wheel {
+  width: 3px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--accent-cyan);
+  animation: heroScrollWheel 1.6s ease-in-out infinite;
+}
+
+.hero-scroll-hint-arrow-wrap {
+  display: inline-flex;
+  animation: heroScrollArrow 1.6s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.hero-scroll-hint-arrow {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid rgba(255, 255, 255, 0.9);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.9);
+  transform: rotate(45deg);
 }
 
 .hero-content {
@@ -181,8 +227,18 @@ nav.scrolled {
   align-items: center;
 }
 
+.hero-content--single {
+  grid-template-columns: 1fr;
+  justify-items: center;
+}
+
 .hero-image {
   text-align: center;
+}
+
+.hero-text {
+  text-align: center;
+  max-width: var(--hero-tagline-max-ch);
 }
 
 .hero h1 {
@@ -208,6 +264,8 @@ nav.scrolled {
   font-weight: var(--hero-tagline-weight);
   line-height: 1.35;
   max-width: var(--hero-tagline-max-ch);
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .hero .subtitle {
@@ -215,12 +273,16 @@ nav.scrolled {
   color: var(--text-muted);
   margin-bottom: 40px;
   max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .cta-buttons {
   display: flex;
   gap: 20px;
   margin-top: 40px;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 @supports (-webkit-touch-callout: none) {
@@ -298,6 +360,11 @@ nav.scrolled {
 
 #about {
   background: var(--bg-secondary);
+  position: relative;
+  z-index: 10;
+  margin-top: -100px;
+  padding-top: 150px;
+  border-radius: 30px 30px 0 0;
 }
 
 #projects {
@@ -860,7 +927,7 @@ footer {
   line-height: 1.6;
 }
 .blog-post-content .blog-list li::before {
-  content: '•';
+  content: '\\2022';
   position: absolute;
   left: 0;
   top: 0;
@@ -1136,7 +1203,7 @@ footer {
 }
 
 .timeline::before {
-  content: '\\2022';
+  content: '';
   position: absolute;
   left: 0;
   right: 0;
@@ -1240,6 +1307,36 @@ footer {
   }
 }
 
+@keyframes heroScrollWheel {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  70% {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+}
+
+@keyframes heroScrollArrow {
+  0% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateY(6px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(12px);
+    opacity: 0.4;
+  }
+}
+
 @media (max-width: 768px) {
   .timeline {
     overflow-x: scroll;
@@ -1326,7 +1423,7 @@ footer {
 }
 
 .not-found::before {
-  content: '\\2022';
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
@@ -1368,5 +1465,6 @@ footer {
     font-size: 1.2rem;
   }
 }
+
 
 

@@ -2,13 +2,19 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://pawelwielga.dihor.pl/</loc>
-    <lastmod>2026-03-16T13:04:38.669Z</lastmod>
+    <lastmod>2026-03-18T11:17:49.809Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://pawelwielga.dihor.pl/blog</loc>
-    <lastmod>2026-03-16T13:04:38.670Z</lastmod>
+    <lastmod>2026-03-18T11:17:49.809Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pawelwielga.dihor.pl/blog/jak-naprawic-polskie-znaki-w-powershell</loc>
+    <lastmod>2024-03-18T00:00:00.000Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

@@ -1,6 +1,6 @@
-import Particles from './Particles.jsx';
 import { useTranslation } from 'react-i18next';
 import HeroTagline from './HeroTagline.tsx';
+import HeroBackground from './HeroBackground.jsx';
 
 function Hero() {
   const { t } = useTranslation();
@@ -22,22 +22,10 @@ function Hero() {
   };
 
   return (
-    <section id="home" className="hero" aria-labelledby="hero-title">
-      <Particles />
+    <section id="home" className="hero hero--compact" aria-labelledby="hero-title">
+      <HeroBackground />
       <div className="container">
-        <div className="hero-content">
-          <div className="hero-image">
-            <div className="profile-img">
-              <img
-                src={`${import.meta.env.BASE_URL}img/me.jpg`}
-                alt="Portrait of Paweł Wielga"
-                width="240"
-                height="240"
-                loading="eager"
-                decoding="async"
-              />
-            </div>
-          </div>
+        <div className="hero-content hero-content--single">
           <div className="hero-text">
             <h1 id="hero-title">Paweł Wielga</h1>
 
@@ -71,6 +59,14 @@ function Hero() {
           </div>
         </div>
       </div>
+      <a href="#about" className="hero-scroll-hint" aria-label="Scroll down">
+        <span className="hero-scroll-hint-mouse" aria-hidden="true">
+          <span className="hero-scroll-hint-wheel" />
+        </span>
+        <span className="hero-scroll-hint-arrow-wrap" aria-hidden="true">
+          <span className="hero-scroll-hint-arrow" />
+        </span>
+      </a>
     </section>
   );
 }
