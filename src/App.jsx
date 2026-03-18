@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar.jsx';
-import Footer from './components/Footer.jsx';
 import Home from './components/Home.jsx';
 import NotFound from './components/NotFound.jsx';
 import Blog from './components/Blog.jsx';
@@ -22,7 +21,6 @@ function App() {
         <Route path="/blog/:id" element={<BlogPost />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-      <Footer />
       <ScrollToTop />
     </BrowserRouter>
   );

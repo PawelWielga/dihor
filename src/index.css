@@ -46,13 +46,62 @@ body {
   background: var(--bg-primary);
   color: var(--text-primary);
   line-height: 1.6;
-  overflow-x: hidden;
+  overflow-x: clip; /* clip instead of hidden to allow position: sticky to work */
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
+}
+
+/* Focus Visible Styles - Accessibility */
+:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 3px;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.nav-links a:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 3px;
+  box-shadow: var(--glow);
+}
+
+.card:focus-visible,
+.blog-card:focus-visible,
+.project-card:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 4px;
+  border-radius: 15px;
+}
+
+.card-link:focus-visible,
+.blog-card-link:focus-visible {
+  outline: none;
+}
+
+.social-links a:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 3px;
+  border-radius: 50%;
+}
+
+/* Remove default focus outline when not visible */
+:focus:not(:focus-visible) {
+  outline: none;
 }
 
 /* Navigation */
@@ -718,6 +767,14 @@ footer {
 .project-card,
 .blog-card {
   composes: card;
+}
+
+/* Projects Section */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
 }
 
 /* Blog Section */
