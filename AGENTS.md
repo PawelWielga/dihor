@@ -1,254 +1,249 @@
 # AGENTS.md
 
-## Cel
-Ten plik opisuje aktualne zasady pracy agentów (AI/deweloperskich) w repozytorium `dihor`, tak aby zmiany były spójne z architekturą i procesem publikacji.
+## Purpose
 
-## Szybki kontekst projektu
-- Typ projektu: statyczne portfolio + blog (SPA).
-- Stack: React 19 + Vite + React Router + i18next + react-helmet-async.
-- Główna rola aplikacji: prezentacja profilu, projektów i wpisów blogowych.
-- Aktualna domena/canonical: `https://pawelwielga.dihor.pl`.
-- Publiczne assety i routing SPA wspierane przez `public/404.html` (redirect do `/` i restore path przez `sessionStorage`).
+This file provides guidelines for AI coding agents working in this repository. All changes must pass lint and build before completion.
 
-## Komendy developerskie
-- Instalacja: `npm install`
-- Dev server: `npm run dev`
-- Build: `npm run build`
-- Preview builda: `npm run preview`
-- Encoding check: `npm run check:encoding`
-- Lint: `npm run lint`
-- Hooks install: `npm run hooks:install`
-- Hooks status: `npm run hooks:status`
-- Format: `npm run format`
-- Sitemap ręcznie: `npm run generate:sitemap`
+---
 
-Uwaga:
-- `build` uruchamia generator sitemap (`scripts/generate-sitemap.mjs`).
-- `postbuild` również uruchamia sitemapę.
-- `lint` i `build` uruchamiają automatycznie `check:encoding`, który wykrywa mojibake.
-- Pre-commit hook jest w `.githooks/pre-commit` (instalacja przez `npm run hooks:install`).
+## Developer Commands
 
-## Architektura aplikacji
-- Entry: `src/main.jsx`
-- Routing i layout globalny: `src/App.jsx`
-  - `/` -> Home
-  - `/project/:id` -> szczegóły projektu
-  - `/blog` -> listing bloga
-  - `/blog/:id` -> wpis blogowy
-- Główne sekcje home:
-  - `Hero`, `About`, `Projects`, `Blog`
-  - widoczność sekcji sterowana przez `src/config/sections.js`
+```bash
+# Installation
+npm install
 
-## Dane i kontrakty
+# Development
+npm run dev              # Start dev server (http://localhost:5173)
 
-### Projekty (karty)
-- Źródło: `src/data/projects/**.json`
-- Rejestracja: `src/data/projects/index.js` (`projectMap`, `projectList`)
-- Minimalny kontrakt pojedynczego projektu:
-  - `id` (unikalne, używane w URL)
-  - `category` (`commercial` albo `home`)
-  - `type`, `title`, `description`
-  - `tech` (tablica stringów)
-  - `links` (tablica `{ label, icon }`)
-  - `hasDetails` (boolean; ustawiany też automatycznie na podstawie `src/content/projects/<id>/`)
+# Build & Test
+npm run build            # Production build + sitemap generation
+npm run preview          # Preview production build locally
+npm run lint             # Run ESLint + encoding check
 
-Zasada:
-- Po dodaniu nowego pliku projektu trzeba go dodać do `src/data/projects/index.js`, inaczej nie pojawi się na stronie.
+# Quality Checks
+npm run check:encoding   # Detect mojibake/encoding issues
+npm run format          # Format code with Prettier
 
-### Content V2 (blog + project details)
-Od teraz content jest w modelu: 1 wpis/projekt = 1 dedykowany folder.
+# Git Hooks
+npm run hooks:install    # Install pre-commit hooks
+npm run hooks:status    # Check hook status
 
-Źródło prawdy:
-- `src/content/index.js`
-
-Parser:
-- `src/content/markdownParser.js`
-
-Foldery contentu:
-- blog: `src/content/blog/<post-slug>/`
-- szczegóły projektów: `src/content/projects/<project-id>/`
-
-Wewnątrz folderu wpisu/projektu:
-- `index.md` (treść)
-- `meta.json` (konfiguracja)
-- assety lokalne (np. `thumbnail.png`, obrazki używane w markdown)
-
-#### Blog `meta.json` (zalecane pola)
-- `id`
-- `visible`
-- `title`
-- `date`
-- opcjonalnie: `dateISO`, `tags`, `thumbnail`, `excerpt`
-
-#### Project details `meta.json` (zalecane pola)
-- `id`
-- `title`
-- `summary`
-- `seoDescription`
-
-#### Mechanizm ładowania
-Loader:
-- czyta markdown z:
-  - `./blog/*/index.md`
-  - `./projects/*/index.md`
-- czyta konfigurację z:
-  - `./blog/*/meta.json`
-  - `./projects/*/meta.json`
-- scala dane: `meta.json` + frontmatter z `index.md` (frontmatter może nadpisać `meta.json`)
-- rozwiązuje względne ścieżki do assetów lokalnych
-- parsuje markdown do bloków UI (`MarkdownRenderer`)
-- sortuje blog malejąco po `dateISO/date`
-- buduje `blogPostMap` i `projectDetailsMap`
-
-#### Assety i markdown
-Przykład obrazka w `index.md`:
-
-```md
-![Diagram](diagram.png)
+# Manual
+npm run generate:sitemap   # Regenerate sitemap.xml
 ```
 
-Ścieżki względne są mapowane przez loader do finalnych URL-i bundlera (Vite), więc nie trzeba ręcznych importów w JSX.
+**Pre-commit hooks:** `.githooks/pre-commit` - runs lint automatically before commit.
 
-#### Sitemap
-`scripts/generate-sitemap.mjs` czyta foldery `src/content/blog/<slug>/` i uwzględnia `meta.json` oraz frontmatter z `index.md`.
-Do sitemapy trafiają tylko wpisy z `visible !== false`.
+---
 
-## i18n i treści
-- i18n init: `src/i18n.js`
-- Słowniki: `src/locales/en.json`, `src/locales/pl.json`
-- Język startowy: `en` (`lng: 'en'`, `fallbackLng: 'en'`)
+## Code Style Guidelines
 
-Zasady:
-- Dodając nowy klucz tłumaczenia, uzupełnij oba pliki locale.
-- Nie mieszaj kluczy dynamicznych i hardcodowanych stringów bez uzasadnienia.
+### General
 
-## SEO i metadane
-- Meta/OG/Twitter ustawiane per widok przez `react-helmet-async`.
-- Główne URL-e i canonical na bazie `SITE_URL` z `src/config/site.js`.
+- **ES Modules**: All files use ESM (`"type": "module"` in package.json)
+- **File extensions**: `.jsx` for React components, `.js` for utilities, `.ts` for typed files
+- **No default exports for utilities** - prefer named exports for better refactoring
 
-## Styl i UI
-- Główne style: `src/index.css`
-- Preferuj istniejące CSS variables zamiast nowych kolorów na sztywno.
-- Dla nowych sekcji zachowuj klasę `section` i `container`.
+### Naming Conventions
 
-## Konwencje kodu
-- Prettier: single quotes, `printWidth: 100`, semicolons.
-- ESLint: flat config (`eslint.config.js`), `no-unused-vars`.
-- Moduły ESM (`"type": "module"` w `package.json`).
+| Type        | Convention                  | Example                                  |
+| ----------- | --------------------------- | ---------------------------------------- |
+| Components  | PascalCase                  | `BlogCard.jsx`, `PageSection.jsx`        |
+| Hooks       | camelCase with `use` prefix | `useScrollToTop.js`, `useSeoMetadata.js` |
+| Utilities   | camelCase                   | `markdownParser.js`, `useDetailData.js`  |
+| CSS classes | kebab-case                  | `.section-title`, `.card-image`          |
+| Constants   | SCREAMING_SNAKE_CASE        | `SITE_URL`, `AUTHOR_NAME`                |
+| i18n keys   | dot notation, lowercase     | `about.title`, `blog.empty`              |
 
-## Checklist przed zakończeniem pracy
-1. Uruchom `npm run lint`.
-2. Uruchom `npm run build`.
-3. Jeśli zmieniałeś blog/routes, sprawdź `public/sitemap.xml`.
-4. Zweryfikuj działanie tras po odświeżeniu (SPA + 404 fallback).
+### Imports Order
 
-## Znane ryzyka do ostrożnej edycji
-- W repo występują problemy kodowania polskich znaków (mojibake w części starszych treści). Nie rób masowych podmian bez uzgodnienia i testu.
-- `SITE_URL` i domenowe dane statyczne wymagają spójnej aktualizacji (w tym `public/CNAME`).
-- Content-as-code: literówki w polach `meta.json`/JSON projektu mogą wyciąć element z UI bez błędu builda.
+```jsx
+// 1. React/framework
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-## Ustalone decyzje
-- Hosting: GitHub Pages.
-- Język: wykrywanie języka przeglądarki; `pl*` -> polski, reszta -> angielski.
-- Blog: wpisy po polsku.
-- Latest posts: sortowanie malejące po `dateISO/date`.
-- `SITE_URL`: jedno współdzielone miejsce: `src/config/site.js`.
-- Kontakt: placeholder `mailto` zostaje.
-- Timeline: kod zostaje w repo, ale bez renderowania na stronie.
-- Szczegóły projektów: część kart może mieć brak dedykowanych szczegółów.
-- `new-hero-background.html`: plik potrzebny, nie usuwać.
+// 2. Third-party libraries
+import { useTranslation } from 'react-i18next';
+import { Helmet } from 'react-helmet-async';
 
-## Aktualna struktura katalogów
-Poniżej aktualne foldery i podfoldery repozytorium, z pominięciem katalogów generowanych (`.git`, `node_modules`, `dist`).
+// 3. Internal components (absolute paths)
+import Card from '@/components/Card.jsx';
+import useScrollToTop from '@/hooks/useScrollToTop.js';
 
-```text
-.github
-.github/skills
-.github/skills/bmad-advanced-elicitation
-.github/skills/bmad-agent-wds-freya-ux
-.github/skills/bmad-agent-wds-saga-analyst
-.github/skills/bmad-brainstorming
-.github/skills/bmad-brainstorming/steps
-.github/skills/bmad-editorial-review-prose
-.github/skills/bmad-editorial-review-structure
-.github/skills/bmad-help
-.github/skills/bmad-index-docs
-.github/skills/bmad-master
-.github/skills/bmad-party-mode
-.github/skills/bmad-party-mode/steps
-.github/skills/bmad-review-adversarial-general
-.github/skills/bmad-review-edge-case-hunter
-.github/skills/bmad-shard-doc
-.github/skills/bmad-wds-acceptance-test
-.github/skills/bmad-wds-acceptance-testing
-.github/skills/bmad-wds-agentic-development
-.github/skills/bmad-wds-alignment-signoff
-.github/skills/bmad-wds-analysis
-.github/skills/bmad-wds-analyze-product
-.github/skills/bmad-wds-asset-generation
-.github/skills/bmad-wds-browse-design-system
-.github/skills/bmad-wds-bugfixing
-.github/skills/bmad-wds-content-creation
-.github/skills/bmad-wds-create-design-system
-.github/skills/bmad-wds-deploy
-.github/skills/bmad-wds-design-solution
-.github/skills/bmad-wds-design-system
-.github/skills/bmad-wds-development
-.github/skills/bmad-wds-edit-components
-.github/skills/bmad-wds-evolution
-.github/skills/bmad-wds-figma-integration
-.github/skills/bmad-wds-handover
-.github/skills/bmad-wds-icons
-.github/skills/bmad-wds-images
-.github/skills/bmad-wds-implement
-.github/skills/bmad-wds-import-design-system
-.github/skills/bmad-wds-Modular Component Architecture
-.github/skills/bmad-wds-Object Type Router
-.github/skills/bmad-wds-page-designs
-.github/skills/bmad-wds-product-evolution
-.github/skills/bmad-wds-project-brief
-.github/skills/bmad-wds-project-setup
-.github/skills/bmad-wds-prototyping
-.github/skills/bmad-wds-reverse-engineering
-.github/skills/bmad-wds-scenarios
-.github/skills/bmad-wds-scenarios-validate
-.github/skills/bmad-wds-scope-improvement
-.github/skills/bmad-wds-stitch-generation
-.github/skills/bmad-wds-trigger-mapping
-.github/skills/bmad-wds-trigger-mapping-validate
-.github/skills/bmad-wds-ui-elements
-.github/skills/bmad-wds-ux-design
-.github/skills/bmad-wds-videos
-.github/skills/bmad-wds-view-components
-.github/skills/bmad-wds-wireframes
-.github/skills/bmad-wds-workflow-design-system
-.github/skills/bmad-wds-workflow-discuss
-.github/skills/bmad-wds-workflow-dream
-.github/skills/bmad-wds-workflow-sketch
-.github/skills/bmad-wds-workflow-specify
-.github/skills/bmad-wds-workflow-suggest
-.github/skills/bmad-wds-workflow-validate
-.github/skills/bmad-wds-workflow-visual
-.github/workflows
-public
-public/img
-scripts
-src
-src/assets
-src/components
-src/components/projects
-src/config
-src/content
-src/content/blog
-src/content/blog/nextcloud-przez-cloudflare-tunnel
-src/content/blog/reverse-proxy-nginx-pihole
-src/content/projects
-src/content/projects/niemanudy
-src/data
-src/data/projects
-src/data/projects/home
-src/data/projects/mbank
-src/data/projects/zortrax
-src/hooks
-src/locales
+// 4. Internal utils (relative paths)
+import { projectList } from '../data/projects';
+
+// 5. Config/constants
+import { SITE_URL } from '../config/site.js';
+
+// 6. Styles (only when needed)
+import './Component.css';
 ```
+
+### React Patterns
+
+**Component structure:**
+
+```jsx
+// 1. Imports (alphabetical within groups)
+// 2. Component definition
+// 3. Export
+
+function ComponentName({ prop1, prop2 }) {
+  // 1. Hooks (always at top)
+  const [state, setState] = useState();
+
+  // 2. Derived state
+  const derived = useMemo(() => ..., []);
+
+  // 3. Handlers
+  const handleClick = () => { ... };
+
+  // 4. Early returns
+  if (!data) return <NotFound />;
+
+  // 5. Render
+  return (
+    <div>
+      {/* JSX */}
+    </div>
+  );
+}
+
+export default ComponentName;
+```
+
+**Hooks rules:**
+
+- Call hooks at the top level only
+- Never call hooks conditionally
+- Custom hooks must start with `use`
+
+### CSS Guidelines
+
+- Use CSS variables from `:root` in `src/index.css`
+- Prefer existing variables over new hardcoded colors
+- Use `composes:` for style inheritance when beneficial
+- Section components should use `.section` and `.container` classes
+- Use flexbox/grid over absolute positioning
+
+### Error Handling
+
+- Never swallow errors silently
+- Use early returns for invalid states
+- Log errors appropriately (not to console in production)
+- Validate props with reasonable defaults
+
+---
+
+## Project Architecture
+
+### Tech Stack
+
+- **React 19** + Vite
+- **React Router 7** for routing
+- **i18next** for internationalization
+- **react-helmet-async** for SEO meta
+
+### Key Files
+
+| File                     | Purpose                  |
+| ------------------------ | ------------------------ |
+| `src/App.jsx`            | Root with routing        |
+| `src/main.jsx`           | Entry point              |
+| `src/i18n.js`            | i18next configuration    |
+| `src/config/site.js`     | SITE_URL, AUTHOR_NAME    |
+| `src/config/sections.js` | Section visibility flags |
+
+### Routes
+
+| Path           | Component                          |
+| -------------- | ---------------------------------- |
+| `/`            | Home (Hero, About, Projects, Blog) |
+| `/project/:id` | ProjectDetails                     |
+| `/blog`        | Blog listing                       |
+| `/blog/:id`    | BlogPost                           |
+
+### Reusable Components
+
+| Component       | Location                           | Purpose                        |
+| --------------- | ---------------------------------- | ------------------------------ |
+| `Card`          | `src/components/Card.jsx`          | Unified card for projects/blog |
+| `PageSection`   | `src/components/PageSection.jsx`   | Section wrapper                |
+| `SectionTitle`  | `src/components/SectionTitle.jsx`  | Title with underline           |
+| `BackLink`      | `src/components/BackLink.jsx`      | Navigation back link           |
+| `SocialLinks`   | `src/components/SocialLinks.jsx`   | Social media links             |
+| `SkillsDisplay` | `src/components/SkillsDisplay.jsx` | Skills tags                    |
+| `BlogCard`      | `src/components/BlogCard.jsx`      | Blog card (uses Card)          |
+
+### Reusable Hooks
+
+| Hook                   | Location                            | Purpose                         |
+| ---------------------- | ----------------------------------- | ------------------------------- |
+| `useSeoMetadata`       | `src/hooks/useSeoMetadata.js`       | SEO meta tags                   |
+| `useScrollToTop`       | `src/hooks/useScrollToTop.js`       | Scroll management               |
+| `useScrollAnimation`   | `src/hooks/useScrollAnimation.js`   | IntersectionObserver animations |
+| `useCenteredHighlight` | `src/hooks/useCenteredHighlight.js` | Card highlighting               |
+| `useDetailData`        | `src/hooks/useDetailData.js`        | Data lookup                     |
+
+---
+
+## Content System
+
+### Blog Posts
+
+Location: `src/content/blog/<slug>/`
+
+- `index.md` - Content with frontmatter
+- `meta.json` - Metadata (id, title, date, visible, etc.)
+
+### Project Details
+
+Location: `src/content/projects/<id>/`
+
+- `index.md` - Content
+- `meta.json` - Metadata
+
+### Adding New Content
+
+1. Create folder in `src/content/{blog,projects}/`
+2. Add `index.md` and `meta.json`
+3. For projects: register in `src/data/projects/index.js`
+4. Run `npm run build` to regenerate sitemap
+
+---
+
+## i18n Guidelines
+
+- Language files: `src/locales/en.json`, `src/locales/pl.json`
+- Default language: English
+- Add new keys to both files
+- Use dot notation: `section.key`
+
+---
+
+## Pre-Commit Checklist
+
+1. Run `npm run lint` - must pass
+2. Run `npm run build` - must succeed
+3. Check `public/sitemap.xml` if routes changed
+4. Test navigation after refresh (SPA routing)
+
+---
+
+## Known Risks
+
+- **Encoding issues**: Polish characters may have mojibake in old content
+- **SITE_URL**: Single source is `src/config/site.js` - update here first
+- **Content JSON errors**: Typo in `meta.json` may silently break UI
+- **HeroBackground.jsx**: Contains inline classes (known ESLint warning)
+
+---
+
+## Decisions (Frozen)
+
+- Hosting: GitHub Pages
+- Blog posts: in Polish
+- Language detection: `pl*` → Polish, others → English
+- Timeline: code exists but not rendered
+- Contact: mailto placeholder (no form)
