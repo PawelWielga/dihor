@@ -90,12 +90,12 @@ function HeroBackground() {
           const angle = Math.random() * Math.PI * 2;
           const speed = Math.random() * 1.5 + 0.2;
           this.particles.push({
-            x: 0,
-            y: 0,
-            vx: Math.cos(angle) * speed,
-            vy: Math.sin(angle) * speed,
-            size: Math.random() * 1.5 + 0.5,
-            pLife: 1.0 + Math.random() * 0.5 
+              x: 0,
+              y: 0,
+              vx: Math.cos(angle) * speed,
+              vy: Math.sin(angle) * speed,
+              size: Math.random() * 1.5 + 0.5,
+              pLife: 1.0 + Math.random() * 0.5 
           });
         }
       }
@@ -189,6 +189,16 @@ function HeroBackground() {
       handleInteraction(e.touches[0].clientX, e.touches[0].clientY);
     }, { passive: true });
 
+    // Parallax effect on scroll
+    const handleScroll = () => {
+      const scrollTop = window.pageYOffset;
+      console.log('ScrollTop:', scrollTop);
+      const parallax = canvas.style;
+      parallax.transform = `translateY(${scrollTop * 0.3}px)`;
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
     function animate() {
       ctx.fillStyle = '#000';
       ctx.fillRect(0, 0, width, height);
@@ -220,6 +230,7 @@ function HeroBackground() {
       window.removeEventListener('resize', resize);
       canvas.removeEventListener('mousedown', handleInteraction);
       canvas.removeEventListener('touchstart', handleInteraction);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
@@ -234,6 +245,7 @@ function HeroBackground() {
         left: 0,
         width: '100%',
         height: '100%',
+        transform: 'translateZ(0)',
       }}
     />
   );
