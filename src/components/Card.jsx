@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useRef } from 'react';
+import { useRef, useCallback } from 'react';
+import PropTypes from 'prop-types';
 import { SITE_URL } from '../config/site.js';
 import useCenteredHighlight from '../hooks/useCenteredHighlight.js';
 
@@ -26,17 +27,36 @@ function Card({
 
   const cardUrl = url || (type === 'blog' ? `/blog/${id}` : `/project/${id}`);
 
-  const handleClick = () => {
+  const handleClick = useCallback(() => {
     if (hasDetails) {
       navigate(cardUrl);
     }
-  };
+  }, [hasDetails, cardUrl, navigate]);
+
+  const handleKeyDown = useCallback(
+    (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        if (hasDetails) {
+          navigate(cardUrl);
+        }
+      }
+    },
+    [hasDetails, cardUrl, navigate]
+  );
+
+  const handleLinkClick = useCallback((e) => {
+    e.stopPropagation();
+  }, []);
 
   return (
     <article
       ref={cardRef}
       className="card glass scroll-animate"
       onClick={handleClick}
+      onKeyDown={handleKeyDown}
+      tabIndex={hasDetails ? 0 : -1}
+      role={hasDetails ? 'button' : undefined}
       itemScope={itemScope}
       itemType={itemType}
       itemProp={itemProp}
@@ -45,7 +65,7 @@ function Card({
         <div className="card-image" aria-hidden="true">
           <img
             src={image}
-            alt={`Thumbnail for ${title}`}
+            alt={type === 'blog' ? `Blog thumbnail for: ${title}` : `Project thumbnail: ${title}`}
             loading="lazy"
             decoding="async"
             width="640"
@@ -89,24 +109,50 @@ function Card({
           <div className="card-links">
             {links.map((link) => (
               <span key={link.label}>
-                <i className={link.icon} /> {link.label}
+                <i className={link.icon} aria-hidden="true" /> {link.label}
               </span>
             ))}
           </div>
         )}
 
         {hasDetails && (
-          <Link to={cardUrl} className="card-details-link" onClick={(e) => e.stopPropagation()}>
+          <Link to={cardUrl} className="card-details-link" onClick={handleLinkClick}>
             <i className="fas fa-info-circle" /> Details
           </Link>
         )}
-
-        {!hasDetails && <span className="card-read-more">Read more</span>}
       </div>
 
       {itemScope && <meta itemProp="mainEntityOfPage" content={`${SITE_URL}${cardUrl}`} />}
     </article>
   );
 }
+
+Card.propTypes = {
+  id: PropTypes.string.isRequired,
+  type: PropTypes.oneOf(['blog', 'project']),
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string,
+  excerpt: PropTypes.string,
+  image: PropTypes.string,
+  date: PropTypes.string,
+  tech: PropTypes.arrayOf(PropTypes.string),
+  links: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      icon: PropTypes.string.isRequired,
+      url: PropTypes.string,
+      external: PropTypes.bool,
+    })
+  ),
+  hasDetails: PropTypes.bool,
+  url: PropTypes.string,
+  meta: PropTypes.shape({
+    type: PropTypes.string,
+    company: PropTypes.string,
+  }),
+  itemScope: PropTypes.bool,
+  itemType: PropTypes.string,
+  itemProp: PropTypes.string,
+};
 
 export default Card;

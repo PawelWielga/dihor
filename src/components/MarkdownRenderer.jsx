@@ -1,4 +1,3 @@
-import React from 'react';
 import hljs from 'highlight.js/lib/core';
 import javascript from 'highlight.js/lib/languages/javascript';
 import typescript from 'highlight.js/lib/languages/typescript';
@@ -10,6 +9,23 @@ import nginx from 'highlight.js/lib/languages/nginx';
 import ini from 'highlight.js/lib/languages/ini';
 import php from 'highlight.js/lib/languages/php';
 import 'highlight.js/styles/github-dark.css';
+
+const ALLOWED_LANGUAGES = [
+  'javascript',
+  'js',
+  'typescript',
+  'ts',
+  'json',
+  'xml',
+  'html',
+  'css',
+  'bash',
+  'sh',
+  'nginx',
+  'ini',
+  'php',
+  'plaintext',
+];
 
 const hasLanguage = (name) => Boolean(hljs.getLanguage(name));
 
@@ -49,6 +65,23 @@ function sanitizeImageSrc(url) {
   return '';
 }
 
+function highlightCode(text, lang) {
+  const safeLang = String(lang || 'plaintext').toLowerCase();
+
+  if (!ALLOWED_LANGUAGES.includes(safeLang)) {
+    return text;
+  }
+
+  try {
+    if (hljs.getLanguage(safeLang)) {
+      return hljs.highlight(text, { language: safeLang }).value;
+    }
+    return text;
+  } catch {
+    return text;
+  }
+}
+
 function renderInline(text) {
   const source = String(text || '');
   const tokenRegex = /(`[^`]+`|\*\*[^*]+\*\*|\*[^*]+\*|!\[[^\]]*\]\([^)]+\)|\[[^\]]+\]\([^)]+\))/g;
@@ -78,8 +111,8 @@ function renderInline(text) {
     } else if (token.startsWith('![')) {
       const imageMatch = token.match(/^!\[([^\]]*)\]\(([^)]+)\)$/);
       if (imageMatch) {
-        const alt = imageMatch[1];
-        const src = sanitizeImageSrc(imageMatch[2]);
+        const alt = imageMatch[1] ?? '';
+        const src = sanitizeImageSrc(imageMatch[2] ?? '');
         if (src) {
           nodes.push(
             <img
@@ -89,7 +122,7 @@ function renderInline(text) {
               className="blog-inline-image"
               loading="lazy"
               decoding="async"
-            />,
+            />
           );
         } else {
           nodes.push(token);
@@ -113,7 +146,7 @@ function renderInline(text) {
             rel={external ? 'noopener noreferrer' : undefined}
           >
             {label}
-          </a>,
+          </a>
         );
         key += 1;
       } else {
@@ -130,18 +163,6 @@ function renderInline(text) {
   }
 
   return nodes;
-}
-
-function highlightCode(text, lang) {
-  const safeLang = String(lang || 'plaintext').toLowerCase();
-  try {
-    if (hljs.getLanguage(safeLang)) {
-      return hljs.highlight(text, { language: safeLang }).value;
-    }
-    return hljs.highlightAuto(text).value;
-  } catch {
-    return text;
-  }
 }
 
 function MarkdownRenderer({ blocks, className = 'blog-post-content' }) {

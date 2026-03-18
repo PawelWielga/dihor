@@ -31,7 +31,7 @@ function Hero() {
 
             {/* Accessible, responsive animated tagline */}
             <HeroTagline
-              key={JSON.stringify({ strings: taglineArray, ...typingProps })}
+              key={`tagline-${taglineArray.length}-${typingProps.typeSpeed}-${typingProps.backSpeed}`}
               taglines={taglineArray}
               typeSpeed={typingProps.typeSpeed}
               backSpeed={typingProps.backSpeed}
@@ -47,11 +47,11 @@ function Hero() {
 
             <p className="subtitle">{t('hero.subtitle')}</p>
             <div className="cta-buttons">
-              <a href="#projects" className="btn btn-primary">
+              <a href="#projects" className="btn btn-primary" aria-label={t('hero.viewWork')}>
                 <i className="fas fa-laptop-code" aria-hidden="true" />
                 {t('hero.viewWork')}
               </a>
-              <a href="#contact" className="btn btn-secondary">
+              <a href="#contact" className="btn btn-secondary" aria-label={t('hero.getInTouch')}>
                 <i className="fas fa-envelope" aria-hidden="true" />
                 {t('hero.getInTouch')}
               </a>

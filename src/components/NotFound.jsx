@@ -1,5 +1,6 @@
 import Particles from './Particles.jsx';
 import { useTranslation } from 'react-i18next';
+import { Helmet } from 'react-helmet-async';
 import { SITE_URL } from '../config/site.js';
 import useSeoMetadata from '../hooks/useSeoMetadata.js';
 
@@ -13,11 +14,23 @@ function NotFound() {
     noIndex: true,
   });
 
+  const webPageLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: '404 - Page Not Found',
+    url: `${SITE_URL}/404`,
+    description: 'The page you are looking for does not exist.',
+    statusCode: 404,
+  };
+
   return (
     <section id="not-found" className="not-found">
       <Particles />
+      <Helmet>
+        <script type="application/ld+json">{JSON.stringify(webPageLd)}</script>
+      </Helmet>
       <div className="container">
-        <div className="not-found-content">
+        <div className="not-found-content" role="alert" aria-live="assertive">
           <h1>404</h1>
           <p>{t('notFound.message')}</p>
           <a href="/" className="btn btn-primary">

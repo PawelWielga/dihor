@@ -3,6 +3,8 @@ import SocialLinks from './SocialLinks.jsx';
 
 function Footer() {
   const { t } = useTranslation();
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer id="contact" className="section">
       <div className="container">
@@ -12,7 +14,10 @@ function Footer() {
           <SocialLinks />
         </div>
         <div className="footer-bottom">
-          <p>&copy; 2025 Paweł Wielga. All rights reserved. Built with passion and Vite+React</p>
+          <p>
+            &copy; {currentYear} Paweł Wielga. All rights reserved. Built with passion and
+            Vite+React
+          </p>
         </div>
       </div>
     </footer>

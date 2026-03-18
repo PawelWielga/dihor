@@ -42,16 +42,7 @@ function Blog() {
       </Helmet>
 
       <SectionTitle as="h1">{t('nav.blog')}</SectionTitle>
-      <p
-        className="blog-disclaimer"
-        style={{
-          marginTop: '0.5rem',
-          fontSize: '0.95rem',
-          lineHeight: 1.6,
-          color: 'var(--text, #e6e6e6)',
-          opacity: 0.9,
-        }}
-      >
+      <p className="blog-disclaimer">
         To moje osobiste notatki bazujące na własnym doświadczeniu i ciągłej nauce.
       </p>
 
@@ -62,8 +53,8 @@ function Blog() {
       ) : (
         <div className="blog-grid" itemScope itemType="https://schema.org/ItemList">
           <meta itemProp="itemListOrder" content="https://schema.org/ItemListUnordered" />
-          {visiblePosts.map((post, index) => (
-            <BlogCard key={post.id} post={post} index={index} />
+          {visiblePosts.map((post) => (
+            <BlogCard key={post.id} post={post} />
           ))}
         </div>
       )}

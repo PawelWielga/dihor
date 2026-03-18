@@ -1,8 +1,13 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
-// react-typed v2 exports a React component named ReactTyped (and also a default in CJS). Use named import:
+import React, {
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type FC,
+  type CSSProperties,
+  type ElementType,
+} from 'react';
 import { ReactTyped } from 'react-typed';
-
-type IntrinsicWrapper = keyof React.JSX.IntrinsicElements;
 
 export type HeroTaglineProps = {
   taglines: string[];
@@ -14,14 +19,14 @@ export type HeroTaglineProps = {
   showCursor?: boolean;
   cursorChar?: string;
   ariaLive?: 'polite' | 'assertive' | 'off';
-  wrapper?: IntrinsicWrapper;
+  wrapper?: ElementType;
   className?: string;
-  style?: React.CSSProperties & Record<string, string | number>;
+  style?: CSSProperties;
 };
 
 const isBrowser = typeof window !== 'undefined' && typeof document !== 'undefined';
 
-const HeroTagline: React.FC<HeroTaglineProps> = React.memo(
+const HeroTagline: FC<HeroTaglineProps> = React.memo(
   ({
     taglines,
     typeSpeed = 50,
@@ -32,29 +37,30 @@ const HeroTagline: React.FC<HeroTaglineProps> = React.memo(
     showCursor = true,
     cursorChar = '_',
     ariaLive = 'polite',
-    wrapper = 'p',
+    wrapper: Wrapper = 'p',
     className = '',
-    style
+    style,
   }) => {
-    const Wrapper = wrapper as any;
-
-    const strings = useMemo(() => (Array.isArray(taglines) ? taglines.filter(Boolean) : []), [taglines]);
+    const strings = useMemo(
+      () => (Array.isArray(taglines) ? taglines.filter(Boolean) : []),
+      [taglines]
+    );
 
     const [isVisible, setIsVisible] = useState(false);
-    const rootRef = useRef<HTMLElement | null>(null);
+    const rootRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
       if (!isBrowser) return;
       if (!rootRef.current) return;
 
       const el = rootRef.current;
-      let timeout: number | undefined;
+      let timeout: ReturnType<typeof setTimeout> | undefined;
 
       const io = new IntersectionObserver(
         (entries) => {
           const entry = entries[0];
           if (entry?.isIntersecting) {
-            timeout = window.setTimeout(() => setIsVisible(true), 50);
+            timeout = setTimeout(() => setIsVisible(true), 50);
           } else {
             setIsVisible(false);
           }
@@ -64,7 +70,7 @@ const HeroTagline: React.FC<HeroTaglineProps> = React.memo(
       io.observe(el);
 
       return () => {
-        if (timeout) window.clearTimeout(timeout);
+        if (timeout) clearTimeout(timeout);
         io.disconnect();
       };
     }, []);
@@ -77,16 +83,9 @@ const HeroTagline: React.FC<HeroTaglineProps> = React.memo(
     const fallbackText = strings[0] ?? '';
 
     return (
-      <section
-        ref={rootRef as unknown as React.RefObject<HTMLElement>}
-        aria-label="Hero section"
-        className="hero-tagline-wrapper"
-        style={{
-          ...(style || {}),
-        }}
-      >
+      <div ref={rootRef} className="hero-tagline-wrapper">
         <Wrapper
-          className={`tagline ${className}`.trim()}
+          className={`tagline ${className}`}
           style={{
             color: 'var(--hero-tagline-color, var(--text-secondary))',
             fontSize: 'clamp(1.125rem, 2.5vw + 0.2rem, 1.75rem)',
@@ -114,12 +113,9 @@ const HeroTagline: React.FC<HeroTaglineProps> = React.memo(
           ) : (
             fallbackText
           )}
-          <noscript>{fallbackText}</noscript>
-          <span className="sr-only" aria-hidden="false" style={{ position: 'absolute', left: '-9999px' }}>
-            {ariaLiveText}
-          </span>
+          <span className="sr-only">{ariaLiveText}</span>
         </Wrapper>
-      </section>
+      </div>
     );
   }
 );

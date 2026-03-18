@@ -1,4 +1,4 @@
-import { useEffect, useCallback } from 'react';
+import { useEffect, useCallback, useRef } from 'react';
 
 export function useScrollToTop({ behavior = 'instant', delays = [0] } = {}) {
   const scrollToTop = useCallback(() => {
@@ -21,9 +21,14 @@ export function useScrollToTop({ behavior = 'instant', delays = [0] } = {}) {
     }
   }, []);
 
+  const scrollToTopRef = useRef(scrollToTop);
+
   useEffect(() => {
-    scrollToTop();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    scrollToTopRef.current = scrollToTop;
+  }, [scrollToTop]);
+
+  useEffect(() => {
+    scrollToTopRef.current();
   }, []);
 
   return { scrollToTop, scrollToElement };

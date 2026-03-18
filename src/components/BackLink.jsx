@@ -1,15 +1,15 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-function BackLink({ to, onClick, children, variant = 'button', className = '' }) {
+function BackLink({ to = '/', onClick, children, variant = 'link', className = '' }) {
   const { t } = useTranslation();
   const defaultLabel = children || t('blog.back', '← Back');
 
   if (variant === 'button') {
     return (
-      <button type="button" onClick={onClick} className={`btn back-btn ${className}`}>
+      <Link to={to} onClick={onClick} className={`btn back-btn ${className}`}>
         {defaultLabel}
-      </button>
+      </Link>
     );
   }
 

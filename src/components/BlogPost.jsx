@@ -46,7 +46,7 @@ function BlogPost() {
 
   if (!post) {
     return (
-      <PageSection id="blog-post" style={{ minHeight: '100vh' }}>
+      <PageSection id="blog-post">
         <h2 className="section-title">{t('blogPost.notFound')}</h2>
         <p>{t('blogPost.notFoundMessage')}</p>
         <div className="blog-post-actions">
@@ -79,7 +79,7 @@ function BlogPost() {
   };
 
   return (
-    <PageSection id="blog-post" style={{ minHeight: '100vh' }}>
+    <PageSection id="blog-post">
       <Helmet>
         <title>{helmetContent.title}</title>
         {helmetContent.meta.map((m, i) => (
@@ -91,15 +91,17 @@ function BlogPost() {
         <script type="application/ld+json">{JSON.stringify(articleLd)}</script>
       </Helmet>
 
-      <article className="blog-post blog-post--narrow">
+      <article className="blog-post blog-post--narrow" aria-labelledby="blog-post-title">
         <header className="blog-post-header align-left">
-          <h1 className="blog-post-title align-left">{post.title}</h1>
+          <h1 id="blog-post-title" className="blog-post-title align-left">
+            {post.title}
+          </h1>
           <p className="blog-post-date align-left">{post.date}</p>
         </header>
 
         <div className="blog-post-divider blog-post-divider--wide" aria-hidden="true"></div>
 
-        <MarkdownRenderer blocks={post.contentBlocks} />
+        <MarkdownRenderer blocks={post.contentBlocks || []} />
       </article>
 
       <div className="blog-post-actions left">
@@ -114,8 +116,8 @@ function BlogPost() {
             {t('blog.latest', { defaultValue: 'Latest posts' })}
           </h3>
           <div className="blog-grid">
-            {latestPosts.map((entry, index) => (
-              <BlogCard key={entry.id} post={entry} index={index} />
+            {latestPosts.map((entry) => (
+              <BlogCard key={entry.id} post={entry} />
             ))}
           </div>
         </div>

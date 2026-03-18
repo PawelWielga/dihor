@@ -31,8 +31,8 @@ function ProjectDetails() {
       <article className="blog-post blog-post--narrow">
         <h2 className="section-title">{projectDetails?.title || project.title}</h2>
         <p>{project.description}</p>
-        <div className="project-tech" style={{ marginTop: '20px' }}>
-          {project.tech.map((tech) => (
+        <div className="project-tech">
+          {(project.tech || []).map((tech) => (
             <span key={tech}>{tech}</span>
           ))}
         </div>
@@ -43,11 +43,7 @@ function ProjectDetails() {
           </>
         )}
       </article>
-      <BackLink
-        to="/#projects"
-        className="read-more"
-        style={{ display: 'inline-block', marginTop: '20px' }}
-      >
+      <BackLink to="/#projects" className="read-more project-back-link">
         {t('projectDetails.backToProjects')}
       </BackLink>
     </PageSection>

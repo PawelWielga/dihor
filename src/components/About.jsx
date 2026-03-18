@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import skills from '../config/skills.json';
+import { SITE_URL, AUTHOR_NAME } from '../config/site.js';
 import PageSection from './PageSection.jsx';
 import SectionTitle from './SectionTitle.jsx';
 import SkillsDisplay from './SkillsDisplay.jsx';
@@ -12,8 +13,17 @@ function About() {
   const { helmetContent } = useSeoMetadata({
     title: 'About',
     description: t('about.seoDescription'),
-    pageUrl: `${import.meta.env.SITE_URL || 'https://pawelwielga.dihor.pl'}/#about`,
+    pageUrl: `${SITE_URL}/#about`,
   });
+
+  const personJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: AUTHOR_NAME,
+    url: SITE_URL,
+    jobTitle: '.NET Developer & Software Engineer',
+    sameAs: ['https://github.com/PawelWielga', 'https://www.linkedin.com/in/pawel-wielga/'],
+  };
 
   return (
     <PageSection id="about">
@@ -25,6 +35,7 @@ function About() {
         {helmetContent.link.map((l, i) => (
           <link key={i} {...l} />
         ))}
+        <script type="application/ld+json">{JSON.stringify(personJsonLd)}</script>
       </Helmet>
 
       <SectionTitle>{t('about.title')}</SectionTitle>

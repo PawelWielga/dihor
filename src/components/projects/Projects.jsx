@@ -34,13 +34,13 @@ function Projects() {
       </Helmet>
 
       <SectionTitle>{t('projects.title')}</SectionTitle>
-      <SectionTitle as="h3">{t('projects.commercial')}</SectionTitle>
+      <SectionTitle as="h2">{t('projects.commercial')}</SectionTitle>
       <div className="projects-grid">
         {commercial.map((p) => (
           <RenderCard key={p.id} project={p} />
         ))}
       </div>
-      <SectionTitle as="h3">{t('projects.home')}</SectionTitle>
+      <SectionTitle as="h2">{t('projects.home')}</SectionTitle>
       <div className="projects-grid">
         {home.map((p) => (
           <RenderCard key={p.id} project={p} />

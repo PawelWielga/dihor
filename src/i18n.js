@@ -15,7 +15,7 @@ i18n
     supportedLngs: ['en', 'pl'],
     load: 'languageOnly',
     detection: {
-      order: ['localStorage', 'navigator'],
+      order: ['querystring', 'localStorage', 'navigator'],
       caches: ['localStorage'],
     },
     fallbackLng: 'en',
