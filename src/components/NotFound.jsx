@@ -1,4 +1,4 @@
-import Particles from './Particles.jsx';
+import HeroBackground from './HeroBackground.jsx';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
 import { SITE_URL } from '../config/site.js';
@@ -25,18 +25,17 @@ function NotFound() {
 
   return (
     <section id="not-found" className="not-found">
-      <Particles />
+      <HeroBackground />
       <Helmet>
         <script type="application/ld+json">{JSON.stringify(webPageLd)}</script>
       </Helmet>
-      <div className="container">
-        <div className="not-found-content" role="alert" aria-live="assertive">
-          <h1>404</h1>
-          <p>{t('notFound.message')}</p>
-          <a href="/" className="btn btn-primary">
-            {t('notFound.goHome')}
-          </a>
-        </div>
+      <div className="not-found-content">
+        <h1>404</h1>
+        <p>{t('notFound.message')}</p>
+        <a href="/" className="btn btn-primary">
+          <i className="fas fa-home" aria-hidden="true" />
+          {t('notFound.goHome')}
+        </a>
       </div>
     </section>
   );
