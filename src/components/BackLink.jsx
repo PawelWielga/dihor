@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 function BackLink({ to = '/', onClick, children, variant = 'link', className = '' }) {
   const { t } = useTranslation();
-  const defaultLabel = children || t('blog.back', '← Back');
+  const defaultLabel = children || t('blog.back', 'Back');
 
   if (variant === 'button') {
     return (

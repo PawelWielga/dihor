@@ -10,13 +10,20 @@ const STAR_COLORS = [
   'rgba(255, 204, 111,',
 ];
 
-const STAR_COUNT = 1000;
-const SPEED = 0.0008;
+const STAR_COUNT = 1400;
+const SPEED = 0.001;
 const INITIAL_Z = 1000;
-const COMET_CHANCE = 0.002;
+const COMET_CHANCE = 0.006;
 const FADE_START_Z = 800;
 const FADE_RANGE = INITIAL_Z - FADE_START_Z;
-const MAX_STAR_SIZE = 2.5;
+const MAX_STAR_SIZE = 3.4;
+const MAX_PIXEL_RATIO = 1.5;
+const MAX_EXPLOSIONS = 3;
+const EXPLOSION_COOLDOWN_MS = 120;
+
+function clamp(value, min, max) {
+  return Math.min(Math.max(value, min), max);
+}
 
 function createStar(ctx, state) {
   let x, y, z, opacity, baseColor, screenX, screenY, currentSize;
@@ -36,7 +43,7 @@ function createStar(ctx, state) {
     screenY = (y / z) * INITIAL_Z + state.centerY;
     currentSize = ((INITIAL_Z - z) / INITIAL_Z) * MAX_STAR_SIZE;
 
-    if (z > FADE_START_Z) opacity = (INITIAL_Z - z) / FADE_RANGE;
+    if (z > FADE_START_Z) opacity = Math.max(0.22, (INITIAL_Z - z) / FADE_RANGE);
     else opacity = 1;
   }
 
@@ -64,34 +71,40 @@ function createStar(ctx, state) {
     get baseColor() {
       return baseColor;
     },
+    get currentSize() {
+      return currentSize;
+    },
   };
 }
 
-function createExplosion(ctx, x, y, color) {
+function createExplosion(ctx, x, y, color = 'rgba(255, 255, 255,', strength = 1) {
   let ringRadius = 1;
   let life = 1.0;
   const particles = [];
+  const power = clamp(strength, 0.55, 1.75);
+  const ringSpeed = 0.75 + power * 0.42;
+  const lifeDecay = 0.011 - power * 0.0022;
 
-  const particleCount = 100;
+  const particleCount = Math.round(36 + power * 34);
   for (let i = 0; i < particleCount; i++) {
     const angle = Math.random() * Math.PI * 2;
-    const spd = Math.random() * 2.5 + 0.3;
+    const spd = (Math.random() * 2.5 + 0.5) * power;
     particles.push({
       x: 0,
       y: 0,
       vx: Math.cos(angle) * spd,
       vy: Math.sin(angle) * spd,
-      size: Math.random() * 2 + 0.5,
-      pLife: 0.3 + Math.random() * 2.0,
+      size: (Math.random() * 2.4 + 0.65) * clamp(power, 0.7, 1.7),
+      pLife: (0.35 + Math.random() * 1.8) * clamp(power, 0.85, 1.65),
       currentLife: 1.0,
       trail: [],
-      trailLength: Math.floor(Math.random() * 8) + 3,
+      trailLength: Math.floor(Math.random() * 4 + 5 + power * 2),
     });
   }
 
   function update() {
-    ringRadius += 0.8;
-    life -= 0.005;
+    ringRadius += ringSpeed;
+    life -= lifeDecay;
 
     particles.forEach((p) => {
       p.trail.push({ x: p.x, y: p.y });
@@ -112,8 +125,8 @@ function createExplosion(ctx, x, y, color) {
     ctx.save();
     ctx.translate(x, y);
 
-    ctx.strokeStyle = color + life * 0.3 + ')';
-    ctx.lineWidth = 1;
+    ctx.strokeStyle = color + life * clamp(power * 0.48, 0.28, 0.9) + ')';
+    ctx.lineWidth = clamp(power * 1.4, 1, 3.2);
     ctx.beginPath();
     ctx.arc(0, 0, ringRadius, 0, Math.PI * 2);
     ctx.stroke();
@@ -121,14 +134,19 @@ function createExplosion(ctx, x, y, color) {
     particles.forEach((p) => {
       if (p.currentLife <= 0) return;
 
-      p.trail.forEach((t, i) => {
-        const trailOpacity = (i / p.trail.length) * p.currentLife * 0.6;
-        const trailSize = p.size * (i / p.trail.length) * 0.8;
-        ctx.fillStyle = color + trailOpacity + ')';
+      if (p.trail.length > 1) {
+        const firstPoint = p.trail[0];
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+        ctx.strokeStyle = color + p.currentLife * 0.28 + ')';
+        ctx.lineWidth = Math.max(0.35, p.size * 1.15);
         ctx.beginPath();
-        ctx.arc(t.x, t.y, trailSize, 0, Math.PI * 2);
-        ctx.fill();
-      });
+        ctx.moveTo(firstPoint.x, firstPoint.y);
+        for (let i = 1; i < p.trail.length; i++) {
+          ctx.lineTo(p.trail[i].x, p.trail[i].y);
+        }
+        ctx.stroke();
+      }
 
       ctx.fillStyle = color + p.currentLife + ')';
       ctx.beginPath();
@@ -210,6 +228,7 @@ function HeroBackground() {
     if (!canvas) return;
 
     const ctx = canvas.getContext('2d');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     const state = {
       width: 0,
@@ -221,12 +240,17 @@ function HeroBackground() {
     let stars = [];
     let comets = [];
     let explosions = [];
+    let isVisible = true;
+    let lastExplosionAt = 0;
 
     function resize() {
-      state.width = window.innerWidth;
-      state.height = window.innerHeight;
-      canvas.width = state.width;
-      canvas.height = state.height;
+      const rect = canvas.getBoundingClientRect();
+      const pixelRatio = Math.min(window.devicePixelRatio || 1, MAX_PIXEL_RATIO);
+      state.width = Math.max(1, Math.floor(rect.width));
+      state.height = Math.max(1, Math.floor(rect.height));
+      canvas.width = Math.floor(state.width * pixelRatio);
+      canvas.height = Math.floor(state.height * pixelRatio);
+      ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
       state.centerX = state.width / 2;
       state.centerY = state.height / 2;
       initStars();
@@ -240,35 +264,65 @@ function HeroBackground() {
     }
 
     function handleInteraction(ex, ey) {
+      const now = performance.now();
+      if (now - lastExplosionAt < EXPLOSION_COOLDOWN_MS) return;
+
       let closestStar = null;
-      let minDist = 40;
+      let minDist = 72;
+      let minDistSq = minDist * minDist;
 
       stars.forEach((s) => {
         const dx = s.screenX - ex;
         const dy = s.screenY - ey;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < minDist) {
-          minDist = dist;
+        const distSq = dx * dx + dy * dy;
+        if (distSq < minDistSq) {
+          minDistSq = distSq;
           closestStar = s;
         }
       });
 
       if (closestStar) {
+        lastExplosionAt = now;
+        const starScale = clamp((closestStar.currentSize ?? 1) / MAX_STAR_SIZE, 0.2, 1);
+        const randomBoost = 0.75 + Math.random() * 0.65;
+        const explosionStrength = (0.65 + starScale * 1.35) * randomBoost;
+
+        if (explosions.length >= MAX_EXPLOSIONS) {
+          explosions.shift();
+        }
+
         explosions.push(
-          createExplosion(ctx, closestStar.screenX, closestStar.screenY, closestStar.baseColor)
+          createExplosion(
+            ctx,
+            closestStar.screenX,
+            closestStar.screenY,
+            closestStar.baseColor,
+            explosionStrength
+          )
         );
         closestStar.init(false);
       }
     }
 
-    canvas.addEventListener('mousedown', (e) => handleInteraction(e.clientX, e.clientY));
-    canvas.addEventListener(
-      'touchstart',
-      (e) => {
-        handleInteraction(e.touches[0].clientX, e.touches[0].clientY);
-      },
-      { passive: true }
-    );
+    const handlePointerDown = (e) => {
+      if (e.target instanceof Element && e.target.closest('#navbar')) {
+        return;
+      }
+
+      const rect = canvas.getBoundingClientRect();
+      if (
+        e.clientX < rect.left ||
+        e.clientX > rect.right ||
+        e.clientY < rect.top ||
+        e.clientY > rect.bottom
+      ) {
+        return;
+      }
+
+      handleInteraction(e.clientX - rect.left, e.clientY - rect.top);
+    };
+
+    window.addEventListener('pointerdown', handlePointerDown);
 
     const handleScroll = () => {
       const scrollTop = window.pageYOffset;
@@ -276,11 +330,20 @@ function HeroBackground() {
       parallax.transform = `translateY(${scrollTop * 0.3}px)`;
     };
 
+    window.addEventListener('resize', resize);
     window.addEventListener('scroll', handleScroll);
 
     const animationRef = { current: null };
+    const visibilityObserver = new IntersectionObserver(([entry]) => {
+      isVisible = entry.isIntersecting;
+    });
 
     function animate() {
+      if (!isVisible || document.hidden) {
+        animationRef.current = requestAnimationFrame(animate);
+        return;
+      }
+
       ctx.fillStyle = '#000';
       ctx.fillRect(0, 0, state.width, state.height);
 
@@ -310,13 +373,24 @@ function HeroBackground() {
     }
 
     resize();
-    animate();
+    visibilityObserver.observe(canvas);
+
+    if (prefersReducedMotion) {
+      ctx.fillStyle = '#000';
+      ctx.fillRect(0, 0, state.width, state.height);
+      stars.forEach((star) => {
+        star.update();
+        star.draw();
+      });
+    } else {
+      animate();
+    }
 
     return () => {
       window.removeEventListener('resize', resize);
-      canvas.removeEventListener('mousedown', handleInteraction);
-      canvas.removeEventListener('touchstart', handleInteraction);
+      window.removeEventListener('pointerdown', handlePointerDown);
       window.removeEventListener('scroll', handleScroll);
+      visibilityObserver.disconnect();
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
@@ -337,6 +411,7 @@ function HeroBackground() {
         left: 0,
         width: '100%',
         height: '100%',
+        pointerEvents: 'none',
         transform: 'translateZ(0)',
       }}
     />

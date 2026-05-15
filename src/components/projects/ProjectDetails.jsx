@@ -5,6 +5,7 @@ import PageSection from '../PageSection.jsx';
 import BackLink from '../BackLink.jsx';
 import useScrollToTop from '../../hooks/useScrollToTop.js';
 import { projectMap, projectDetailsMap } from '../../data/projects';
+import { getTechCategory } from '../../utils/techCategories.js';
 
 function ProjectDetails() {
   const { id } = useParams();
@@ -33,7 +34,9 @@ function ProjectDetails() {
         <p>{project.description}</p>
         <div className="project-tech">
           {(project.tech || []).map((tech) => (
-            <span key={tech}>{tech}</span>
+            <span key={tech} className={getTechCategory(tech)}>
+              {tech}
+            </span>
           ))}
         </div>
         {projectDetails?.contentBlocks?.length > 0 && (

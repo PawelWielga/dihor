@@ -41,7 +41,6 @@ function About() {
       <SectionTitle>{t('about.title')}</SectionTitle>
       <div className="about-content scroll-animate">
         <div className="about-text">
-          <h3>{t('about.subtitle')}</h3>
           <p>{t('about.paragraph1')}</p>
           <p>{t('about.paragraph2')}</p>
           <p>{t('about.paragraph3')}</p>

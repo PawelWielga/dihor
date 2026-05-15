@@ -35,9 +35,11 @@ const rawProjects = [
 ];
 
 function withDetails(project) {
+  const hasProjectDetails = project.id === 'niemanudy' && Boolean(projectDetailsMap[project.id]);
+
   return {
     ...project,
-    hasDetails: Boolean(project.hasDetails || projectDetailsMap[project.id]),
+    hasDetails: Boolean(project.hasDetails || hasProjectDetails),
   };
 }
 

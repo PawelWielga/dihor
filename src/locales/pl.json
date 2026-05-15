@@ -7,29 +7,48 @@
     "contact": "Kontakt"
   },
   "home": {
-    "seoDescription": "Witaj na portfolio i blogu Pawła Wielgi — .NET Developera i Software Engineera."
+    "seoDescription": "Witaj na portfolio i blogu Pawła Wielgi - .NET Developera i Software Engineera."
   },
   "hero": {
     "tagline": "Tworzę potężne rozwiązania .NET",
     "subtitle": "Inżynier oprogramowania z ponad 8-letnim doświadczeniem w technologii .NET. Specjalizuję się w aplikacjach desktopowych, webowych i mobilnych dla przemysłu, bankowości oraz rozwiązań konsumenckich.",
-    "viewWork": "Zobacz moje projekty",
-    "getInTouch": "Skontaktuj się",
-    "underConstruction": "Strona w budowie - część treści to tylko wypełniacz."
+    "viewWork": "Zobacz projekty",
+    "getInTouch": "Kontakt",
+    "underConstruction": "Strona w budowie - część treści to tylko wypełniacz.",
+    "statsLabel": "Najważniejsze informacje zawodowe",
+    "stats": {
+      "experience": {
+        "value": "8+",
+        "label": "lat w .NET"
+      },
+      "focus": {
+        "value": "Desktop / Web / Mobile",
+        "label": "tworzenie aplikacji"
+      },
+      "domains": {
+        "value": "Przemysł / Bankowość / Consumer",
+        "label": "obszary produktowe"
+      }
+    }
   },
   "about": {
     "title": "O mnie",
-    "subtitle": "Doświadczony .NET Software Engineer",
-    "paragraph1": "Mam ponad 8 lat doświadczenia w .NET i specjalizuję się w projektowaniu oraz tworzeniu aplikacji desktopowych, webowych i mobilnych. Pracuję przy złożonych systemach dla przemysłu (druk 3D), bankowości i aplikacji konsumenckich.",
-    "paragraph2": "Mocno skupiam się na analizie kodu i refaktoryzacji pod wydajność, budując rozwiązania oparte o wzorce MVVM. W praktyce korzystam m.in. z CI/CD, Dockera, komunikacji asynchronicznej (RabbitMQ, SignalR) oraz architektur opartych na interfejsach i dependency injection.",
-    "paragraph3": "Prace dla mBank (przez 7N) zakończyłem w czerwcu 2025. Od lipca 2025 pracuję w APN Promise (https://promisegroup.com), a wcześniej w Zortrax S.A. tworzyłem oprogramowanie dla druku 3D, w tym platformy Z-SUITE i Zortrax inCloud.",
+    "subtitle": ".NET Developer",
+    "paragraph1": "Jestem .NET Developerem z ponad 8-letnim doświadczeniem w projektowaniu i tworzeniu aplikacji desktopowych, webowych oraz mobilnych. Pracowałem przy złożonych systemach dla przemysłu, bankowości, sektora publicznego oraz przy aplikacjach konsumenckich.",
+    "paragraph2": "W pracy dużą wagę przykładam do jakości kodu, czytelnej architektury i wydajności aplikacji. Lubię analizować istniejące systemy, porządkować kod, upraszczać rozwiązania i refaktoryzować je tak, aby były łatwiejsze w utrzymaniu oraz dalszym rozwoju.",
+    "paragraph3": "Swoje doświadczenie rozwijałem m.in. w Zortrax S.A., gdzie tworzyłem oprogramowanie dla branży druku 3D, w tym platformy Z-SUITE oraz Zortrax inCloud. Następnie, we współpracy z 7N, realizowałem projekty dla mBanku. Ten etap zakończyłem w czerwcu 2025 roku. Od lipca 2025 pracuję w APN Promise, rozwijając oprogramowanie oferowane przez firmę oraz współtworząc rozwiązania dla sektora publicznego.",
     "commercialSkills": "Komercyjnie",
     "homeSkills": "Projekty domowe",
-    "seoDescription": "O Pawle Wielga — doświadczonym .NET Software Engineerze tworzącym aplikacje desktopowe, webowe i mobilne."
+    "seoDescription": "O Pawle Wielga - doświadczonym .NET Developerze tworzącym aplikacje desktopowe, webowe i mobilne."
   },
   "projects": {
     "title": "Projekty",
     "commercial": "Projekty komercyjne",
     "home": "Projekty domowe",
+    "actions": {
+      "details": "Opis projektu",
+      "product": "Przejdź do produktu"
+    },
     "seoDescription": "Wybrane projekty komercyjne i domowe Pawła Wielgi (.NET, React, DevOps, HomeLab)."
   },
   "blog": {
@@ -40,8 +59,8 @@
     "seoDescription": "Artykuły i notatki Pawła Wielgi o software engineeringu, .NET, DevOps i home-labie."
   },
   "footer": {
-    "cta": "Zbudujmy razem coś niesamowitego",
-    "summary": "Doświadczony w aplikacjach przemysłowych, bankowych i konsumenckich. Gotowy dostarczyć techniczną doskonałość i innowacyjne rozwiązania w Twoim następnym projekcie .NET.",
+    "cta": "Zbudujmy razem coś solidnego",
+    "summary": "Doświadczony w aplikacjach przemysłowych, bankowych i konsumenckich. Pomagam dowozić przemyślane rozwiązania .NET, które są czytelne, stabilne i gotowe do rozwoju.",
     "getInTouch": "Skontaktuj się"
   },
   "projectDetails": {

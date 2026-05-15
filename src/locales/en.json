@@ -7,29 +7,48 @@
     "contact": "Contact"
   },
   "home": {
-    "seoDescription": "Welcome to the portfolio and blog of Paweł Wielga — .NET Developer & Software Engineer."
+    "seoDescription": "Welcome to the portfolio and blog of Paweł Wielga - .NET Developer & Software Engineer."
   },
   "hero": {
     "tagline": "Building powerful .NET solutions",
     "subtitle": "Software Engineer with over 8 years of experience in .NET technologies. Specialized in desktop, web, and mobile applications for industrial environments, banking, and consumer solutions.",
     "viewWork": "View My Work",
     "getInTouch": "Get In Touch",
-    "underConstruction": "Under construction - some content is just a placeholder."
+    "underConstruction": "Under construction - some content is just a placeholder.",
+    "statsLabel": "Professional highlights",
+    "stats": {
+      "experience": {
+        "value": "8+",
+        "label": "years in .NET"
+      },
+      "focus": {
+        "value": "Desktop / Web / Mobile",
+        "label": "application delivery"
+      },
+      "domains": {
+        "value": "Industry / Banking / Consumer",
+        "label": "product domains"
+      }
+    }
   },
   "about": {
     "title": "About Me",
-    "subtitle": "Experienced .NET Software Engineer",
-    "paragraph1": "With over 8 years of experience in .NET development, I specialize in designing and developing desktop, web, and mobile applications. My expertise spans complex systems in industrial environments (3D printing), banking solutions, and consumer-facing applications.",
-    "paragraph2": "I excel in code analysis and performance-driven refactoring, building solutions based on MVVM patterns. My technical arsenal includes CI/CD pipelines, Docker containers, asynchronous communication (RabbitMQ, SignalR), and interface-driven architectures with dependency injection.",
-    "paragraph3": "I finished work for mBank (via 7N) in June 2025. Since July 2025 I have been working at APN Promise (https://promisegroup.com), with previous experience at Zortrax S.A. where I built 3D printing software including Z-SUITE and Zortrax inCloud platforms.",
+    "subtitle": ".NET Developer",
+    "paragraph1": "I am a .NET Developer with over 8 years of experience designing and building desktop, web, and mobile applications. I have worked on complex systems for industry, banking, the public sector, and consumer applications.",
+    "paragraph2": "In my work, I put strong emphasis on code quality, clear architecture, and application performance. I enjoy analyzing existing systems, organizing code, simplifying solutions, and refactoring them so they are easier to maintain and develop further.",
+    "paragraph3": "I developed my experience at Zortrax S.A., where I created software for the 3D printing industry, including the Z-SUITE and Zortrax inCloud platforms. Later, in cooperation with 7N, I delivered projects for mBank. That stage ended in June 2025. Since July 2025 I have been working at APN Promise, developing software offered by the company and co-creating solutions for the public sector.",
     "commercialSkills": "Commercial",
     "homeSkills": "Home-made Projects",
-    "seoDescription": "About Paweł Wielga — experienced .NET Software Engineer working on desktop, web and mobile applications."
+    "seoDescription": "About Paweł Wielga - experienced .NET Developer working on desktop, web and mobile applications."
   },
   "projects": {
     "title": "Projects",
     "commercial": "Commercial Projects",
     "home": "Home Projects",
+    "actions": {
+      "details": "Project details",
+      "product": "Go to product"
+    },
     "seoDescription": "Selected commercial and home projects by Paweł Wielga (.NET, React, DevOps, HomeLab)."
   },
   "blog": {
@@ -40,8 +59,8 @@
     "seoDescription": "Articles and notes by Paweł Wielga on software engineering, .NET, DevOps, and home-lab."
   },
   "footer": {
-    "cta": "Let's Build Something Amazing Together",
-    "summary": "Experienced in industrial, banking, and consumer applications. Ready to bring technical excellence and innovative solutions to your next .NET project.",
+    "cta": "Let's Build Something Solid Together",
+    "summary": "Experienced in industrial, banking, and consumer applications. I help deliver thoughtful .NET solutions that are clear, stable, and ready to evolve.",
     "getInTouch": "Get In Touch"
   },
   "projectDetails": {

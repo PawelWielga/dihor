@@ -1,19 +1,27 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+
+const OPAQUE_NAVBAR_PATHS = new Set([
+  '/blog/jak-naprawic-polskie-znaki-w-powershell',
+  '/project/niemanudy',
+]);
 
 function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { pathname } = useLocation();
   const { t } = useTranslation();
   const menuButtonRef = useRef(null);
+  const isOpaqueNavbarPath = OPAQUE_NAVBAR_PATHS.has(pathname);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -27,12 +35,12 @@ function Navbar() {
   }, []);
 
   return (
-    <nav id="navbar" className={`glass ${scrolled ? 'scrolled' : ''}`}>
+    <nav
+      id="navbar"
+      className={`glass ${scrolled || isOpaqueNavbarPath ? 'scrolled' : ''} ${open ? 'open' : ''}`}
+    >
       <div className="container">
         <div className="nav-container">
-          <Link to="/" className="logo" aria-label="Paweł Wielga - Home">
-            <span className="visually-hidden">Home</span>
-          </Link>
           <ul className={`nav-links ${open ? 'open' : ''}`}>
             <li>
               <Link to="/#home" onClick={closeMenu} aria-label="Go to Home section">

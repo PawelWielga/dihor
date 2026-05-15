@@ -15,8 +15,7 @@ function Footer() {
         </div>
         <div className="footer-bottom">
           <p>
-            &copy; {currentYear} Paweł Wielga. All rights reserved. Built with passion and
-            Vite+React
+            &copy; {currentYear} Paweł Wielga. All rights reserved. Built with Vite + React.
           </p>
         </div>
       </div>

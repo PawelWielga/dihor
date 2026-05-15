@@ -10,6 +10,9 @@ function RenderCard({ project }) {
       tech={project.tech}
       links={project.links}
       hasDetails={project.hasDetails}
+      productUrl={project.productUrl}
+      productLabel={project.productLabel}
+      productIcon={project.productIcon}
       url={project.isBlogPost ? `/blog/${project.id}` : `/project/${project.id}`}
       meta={{
         type: project.type,

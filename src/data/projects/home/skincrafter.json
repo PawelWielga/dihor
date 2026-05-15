@@ -13,5 +13,8 @@
     { "label": "Web App", "icon": "fas fa-globe" },
     { "label": "3D Editor", "icon": "fas fa-cube" }
   ],
+  "productUrl": "https://skincrafter.dihor.pl/",
+  "productLabel": "Przejdź do produktu",
+  "productIcon": "fas fa-external-link-alt",
   "hasDetails": false
 }
