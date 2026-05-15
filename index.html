@@ -2,17 +2,19 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="x-ua-compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#0b0f1a" />
-    <meta name="description" content="Portfolio and blog of Paweł Wielga — .NET Developer & Software Engineer." />
+    <meta
+      name="description"
+      content="Portfolio and blog of Paweł Wielga - .NET Developer & Software Engineer."
+    />
     <meta name="robots" content="index,follow" />
     <title>Paweł Wielga | .NET Developer & Software Engineer</title>
 
-    <!-- Canonical will be overridden per-route via react-helmet-async -->
-    <link rel="canonical" href="https://pawelwielga.dihor.pl/" />
+    <!-- Canonical and OG URLs are overridden per-route via react-helmet-async -->
+    <!-- Default fallback values are set in src/config/site.js -->
 
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
       rel="stylesheet"
@@ -22,32 +24,19 @@
       rel="stylesheet"
     />
 
-    <!-- Open Graph safe defaults (overridden by Helmet) -->
+    <!-- Open Graph defaults are overridden per-route via react-helmet-async -->
     <meta property="og:site_name" content="Paweł Wielga" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Paweł Wielga | .NET Developer & Software Engineer" />
-    <meta property="og:description" content="Portfolio and blog of Paweł Wielga — .NET Developer & Software Engineer." />
-    <meta property="og:url" content="https://pawelwielga.dihor.pl/" />
-    <meta property="og:image" content="https://pawelwielga.dihor.pl/img/me.jpg" />
-    <meta property="og:image:alt" content="Portrait of Paweł Wielga" />
+    <!-- og:url, og:title, og:description set via Helmet per route -->
+    <!-- og:image set via Helmet per route -->
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Paweł Wielga | .NET Developer & Software Engineer" />
-    <meta name="twitter:description" content="Portfolio and blog of Paweł Wielga — .NET Developer & Software Engineer." />
-    <meta name="twitter:image" content="https://pawelwielga.dihor.pl/img/me.jpg" />
+    <!-- Twitter card meta set via Helmet per route -->
 
     <link rel="manifest" href="/manifest.webmanifest" />
-    <script>
-      (function () {
-        const redirect = sessionStorage.getItem('redirect');
-        if (redirect) {
-          sessionStorage.removeItem('redirect');
-          window.history.replaceState(null, null, redirect);
-        }
-      })();
-    </script>
-    <script type="module" crossorigin src="/assets/index-CxVIOmJa.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-BTZUY6rk.css">
+    <script src="/redirect-handler.js"></script>
+    <script type="module" crossorigin src="/assets/index-CdjLeDJv.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/jsx-runtime-BkDbGW51.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-rEmM-GqT.css">
   </head>
   <body>
     <div id="root"></div>
