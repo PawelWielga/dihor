@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+npm run check:encoding
+if [ $? -ne 0 ]; then
+  echo "pre-commit: check:encoding failed"
+  exit 1
+fi
+
+npm run lint
+if [ $? -ne 0 ]; then
+  echo "pre-commit: lint failed"
+  exit 1
+fi
+
+exit 0

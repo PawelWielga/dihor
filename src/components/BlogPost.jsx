@@ -1,81 +1,60 @@
-import React, { useEffect, useMemo } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useMemo } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
-import blogPosts from '../data/blogposts/blogposts.js';
-import hljs from 'highlight.js/lib/core';
-import javascript from 'highlight.js/lib/languages/javascript';
-import typescript from 'highlight.js/lib/languages/typescript';
-import jsonLang from 'highlight.js/lib/languages/json';
-import xml from 'highlight.js/lib/languages/xml';
-import css from 'highlight.js/lib/languages/css';
-import bash from 'highlight.js/lib/languages/bash';
-import 'highlight.js/styles/github-dark.css';
-
-const SITE_URL = 'https://pawelwielga.dihor.pl';
-const AUTHOR = 'Paweł Wielga';
+import { blogPosts, blogPostMap } from '../content/index.js';
+import MarkdownRenderer from './MarkdownRenderer.jsx';
+import PageSection from './PageSection.jsx';
+import BackLink from './BackLink.jsx';
+import BlogCard from './BlogCard.jsx';
+import useScrollToTop from '../hooks/useScrollToTop.js';
+import useSeoMetadata from '../hooks/useSeoMetadata.js';
+import { AUTHOR_NAME, SITE_URL } from '../config/site.js';
 
 function BlogPost() {
   const { id } = useParams();
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  // Register common languages once
-  hljs.registerLanguage('javascript', javascript);
-  hljs.registerLanguage('js', javascript);
-  hljs.registerLanguage('typescript', typescript);
-  hljs.registerLanguage('ts', typescript);
-  hljs.registerLanguage('json', jsonLang);
-  hljs.registerLanguage('xml', xml);
-  hljs.registerLanguage('html', xml);
-  hljs.registerLanguage('css', css);
-  hljs.registerLanguage('bash', bash);
-  hljs.registerLanguage('sh', bash);
+  useScrollToTop({ delays: [0, 150] });
 
-  // Ensure we land at the very top on route change and after paint on mobile
-  useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-    const t1 = setTimeout(() => {
-      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-    }, 0);
-    const t2 = setTimeout(() => {
-      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-    }, 150);
-    return () => {
-      clearTimeout(t1);
-      clearTimeout(t2);
-    };
-  }, [id]);
+  const post = blogPostMap[id];
 
-  // Find the blog post by ID
-  const post = blogPosts.find((p) => p.id === id);
-
-  // Compute newest posts (visible only), excluding current, take up to 3
   const latestPosts = useMemo(() => {
-    const list = Array.isArray(blogPosts) ? blogPosts.filter((p) => p.visible && p.id !== id) : [];
+    const list = Array.isArray(blogPosts)
+      ? blogPosts.filter((entry) => entry.visible && entry.id !== id)
+      : [];
     return list.slice(0, 3);
   }, [id]);
 
+  const pageUrl = `${SITE_URL}/blog/${post?.id}`;
+  const description = post?.excerpt || '';
+  const image = post?.image?.startsWith('http')
+    ? post.image
+    : post?.image
+      ? `${SITE_URL}${post.image}`
+      : `${SITE_URL}/img/me.jpg`;
+  const datePublished = post?.dateISO || post?.date || undefined;
+
+  const { helmetContent } = useSeoMetadata({
+    title: post?.title,
+    description,
+    pageUrl,
+    type: 'article',
+    image,
+  });
+
   if (!post) {
     return (
-      <section className="section" style={{ minHeight: '100vh' }}>
-        <div className="container">
-          <h2 className="section-title">{t('blogPost.notFound')}</h2>
-          <p>{t('blogPost.notFoundMessage')}</p>
-          <div className="blog-post-actions">
-            <Link to="/#blog" className="btn btn-secondary back-btn">{t('blog.back', { defaultValue: 'Back to blog' })}</Link>
-          </div>
+      <PageSection id="blog-post">
+        <h2 className="section-title">{t('blogPost.notFound')}</h2>
+        <p>{t('blogPost.notFoundMessage')}</p>
+        <div className="blog-post-actions">
+          <BackLink to="/blog">{t('blog.back', { defaultValue: 'Back to blog' })}</BackLink>
         </div>
-      </section>
+      </PageSection>
     );
   }
-
-  const pageUrl = `${SITE_URL}/blog/${post.id}`;
-  const description = Array.isArray(post.content)
-    ? (post.content.find((b) => b.type === 'paragraph')?.text ?? '').slice(0, 180)
-    : (typeof post.content === 'string' ? post.content.slice(0, 180) : '');
-  const image = post.image?.startsWith('http') ? post.image : (post.image ? `${SITE_URL}${post.image}` : `${SITE_URL}/img/me.jpg`);
-  const datePublished = post.dateISO || post.date || undefined;
 
   const articleLd = {
     '@context': 'https://schema.org',
@@ -84,179 +63,66 @@ function BlogPost() {
     description,
     author: {
       '@type': 'Person',
-      name: AUTHOR
+      name: AUTHOR_NAME,
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': pageUrl
+      '@id': pageUrl,
     },
     image: image ? [image] : undefined,
     datePublished,
-    dateModified: datePublished
+    dateModified: datePublished,
+  };
+
+  const handleBack = () => {
+    navigate('/blog');
   };
 
   return (
-    <section className="section" style={{ minHeight: '100vh' }}>
+    <PageSection id="blog-post">
       <Helmet>
-        <title>{post.title} | {AUTHOR}</title>
-        <meta name="description" content={description} />
-        <link rel="canonical" href={pageUrl} />
-
-        <meta property="og:type" content="article" />
-        <meta property="og:title" content={post.title} />
-        <meta property="og:description" content={description} />
-        <meta property="og:url" content={pageUrl} />
-        <meta property="og:image" content={image} />
-        <meta property="og:image:alt" content={post.title} />
-
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={post.title} />
-        <meta name="twitter:description" content={description} />
-        <meta name="twitter:image" content={image} />
-
+        <title>{helmetContent.title}</title>
+        {helmetContent.meta.map((m, i) => (
+          <meta key={i} {...m} />
+        ))}
+        {helmetContent.link.map((l, i) => (
+          <link key={i} {...l} />
+        ))}
         <script type="application/ld+json">{JSON.stringify(articleLd)}</script>
       </Helmet>
 
-      <div className="container">
-        <article className="blog-post blog-post--narrow">
-          <header className="blog-post-header align-left">
-            <h1 className="blog-post-title align-left">{post.title}</h1>
-            <p className="blog-post-date align-left">{post.date}</p>
-            <p
-              className="blog-disclaimer align-left"
-              style={{
-                marginTop: '0.5rem',
-                fontSize: '0.95rem',
-                lineHeight: 1.6,
-                color: 'var(--text, #e6e6e6)',
-                opacity: 0.9
-              }}
-            >
-              These are my personal notes based on my own experience and ongoing learning.
-            </p>
-          </header>
+      <article className="blog-post blog-post--narrow" aria-labelledby="blog-post-title">
+        <header className="blog-post-header align-left">
+          <h1 id="blog-post-title" className="blog-post-title align-left">
+            {post.title}
+          </h1>
+          <p className="blog-post-date align-left">{post.date}</p>
+        </header>
 
-          <div className="blog-post-divider blog-post-divider--wide" aria-hidden="true"></div>
+        <div className="blog-post-divider blog-post-divider--wide" aria-hidden="true"></div>
 
-          <div className="blog-post-content">
-            {Array.isArray(post.content) ? (
-              post.content.map((block, idx) => {
-                if (block.type === 'header') {
-                  const level = Math.min(Math.max(parseInt(block.level ?? 2, 10) || 2, 2), 4); // h2-h4
-                  const Tag = `h${level}`;
-                  return <Tag key={idx} className={`blog-subtitle h${level}`}>{block.text}</Tag>;
-                }
-                if (block.type === 'paragraph') {
-                  return <p key={idx}>{block.text}</p>;
-                }
-                if (block.type === 'list' && Array.isArray(block.elements)) {
-                  return (
-                    <ul key={idx} className="blog-list">
-                      {block.elements.map((item, i) => (
-                        <li key={i}>{item}</li>
-                      ))}
-                    </ul>
-                  );
-                }
-                if (block.type === 'code') {
-                  const rawLang = (block.lang || 'plaintext');
-                  const lang = rawLang.toLowerCase();
-                  const className = `language-${lang}`;
-                  let html;
-                  try {
-                    if (hljs.getLanguage(lang)) {
-                      html = hljs.highlight(block.text, { language: lang }).value;
-                    } else {
-                      html = hljs.highlightAuto(block.text).value;
-                    }
-                  } catch {
-                    html = block.text;
-                  }
-                  const label = rawLang.toUpperCase();
-                  return (
-                    <div key={idx} className="code-block-wrapper">
-                      <div className="code-lang">{label}</div>
-                      <pre className="code-block">
-                        <code
-                          className={className}
-                          data-lang={lang}
-                          aria-label={`Code example in ${label}`}
-                          dangerouslySetInnerHTML={{ __html: html }}
-                        />
-                      </pre>
-                    </div>
-                  );
-                }
-                return null;
-              })
-            ) : (
-              <p>{post.content}</p>
-            )}
-          </div>
-        </article>
+        <MarkdownRenderer blocks={post.contentBlocks || []} />
+      </article>
 
-        <div className="blog-post-actions left">
-          <button
-            type="button"
-            className="btn btn-secondary back-btn"
-            onClick={() => {
-              window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-              setTimeout(() => {
-                navigate('/blog');
-              }, 0);
-            }}
-          >
-            {t('blog.back', { defaultValue: 'Back to blog' })}
-          </button>
-        </div>
-
-        {latestPosts.length > 0 && (
-          <div className="latest-posts">
-            <h3 className="latest-posts-title">
-              {t('blog.latest', { defaultValue: 'Latest posts' })}
-            </h3>
-            <div className="blog-grid">
-              {latestPosts.map((p) => {
-                const firstParagraph = Array.isArray(p.content)
-                  ? p.content.find((b) => b.type === 'paragraph')?.text ?? ''
-                  : '';
-                const preview =
-                  firstParagraph.length > 140 ? `${firstParagraph.slice(0, 140)}…` : firstParagraph;
-
-                return (
-                  <article key={p.id} className="blog-card">
-                    <Link to={`/blog/${p.id}`} className="blog-card-link" aria-label={p.title}>
-                      <div className="blog-image" aria-hidden="true">
-                        {p.image ? (
-                          <img
-                            src={p.image}
-                            alt={`Thumbnail for ${p.title}`}
-                            loading="lazy"
-                            decoding="async"
-                            width="640"
-                            height="360"
-                          />
-                        ) : (
-                          '✦'
-                        )}
-                      </div>
-                      <div className="blog-content">
-                        <div className="blog-date">{p.date}</div>
-                        <h3>{p.title}</h3>
-                        {preview && <p>{preview}</p>}
-                        <span className="read-more">
-                          {t('blog.readMore', { defaultValue: 'Read more' })}
-                        </span>
-                      </div>
-                    </Link>
-                  </article>
-                );
-              })}
-            </div>
-          </div>
-        )}
+      <div className="blog-post-actions left">
+        <BackLink variant="button" onClick={handleBack}>
+          {t('blog.back', { defaultValue: 'Back to blog' })}
+        </BackLink>
       </div>
-    </section>
+
+      {latestPosts.length > 0 && (
+        <div className="latest-posts">
+          <h3 className="latest-posts-title">
+            {t('blog.latest', { defaultValue: 'Latest posts' })}
+          </h3>
+          <div className="blog-grid">
+            {latestPosts.map((entry) => (
+              <BlogCard key={entry.id} post={entry} />
+            ))}
+          </div>
+        </div>
+      )}
+    </PageSection>
   );
 }
 

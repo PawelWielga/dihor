@@ -1,78 +1,64 @@
-import React, { useMemo } from 'react';
+import { useMemo, memo } from 'react';
+
+const MIN_PARTICLE_SIZE = 1;
+const MAX_PARTICLE_SIZE = 4;
+const MIN_OPACITY = 0.15;
+const MAX_OPACITY = 0.6;
+const MIN_DURATION = 8;
+const MAX_DURATION = 20;
+const BLUR_PROBABILITY = 0.35;
+const MIN_BLUR = 0.3;
+const MAX_BLUR = 1.5;
+
+const PARTICLE_PALETTE = [
+  'var(--accent-blue, #3b82f6)',
+  'var(--accent-cyan, #06b6d4)',
+  'var(--accent-sky, #0ea5e9)',
+  'var(--accent-indigo, #6366f1)',
+];
 
 function Particles({ count = 80 }) {
-  // Precompute particle attributes once for stable animation and performance
   const particlesData = useMemo(() => {
-    return Array.from({ length: count }).map(() => {
-      // Size variation: 1px to 4px with slight bias toward smaller dots
-      const baseSize = 1 + Math.random() * 3; // 1..4
-      // Transparency variation: softer near 0.15..0.6
-      const opacity = 0.15 + Math.random() * 0.45;
-      // Decrease max speed by increasing overall durations (slower movement)
-      const duration = 8 + Math.random() * 12; // 8..20s
-      // Optional delay for more randomness
-      const delay = -(Math.random() * duration); // negative so particles already in-motion
-      // Randomly blur some particles to add depth
-      const shouldBlur = Math.random() < 0.35; // ~35% blurred
-      const blurAmount = shouldBlur ? (0.3 + Math.random() * 1.2) : 0; // 0.3px..1.5px
-      // Blue hue variation around site accent
-      // If your theme exposes more color vars, we try them first, then fallback to accent-cyan.
-      const palette = [
-        'var(--accent-blue, #3b82f6)',     // Tailwind-ish blue-500 fallback
-        'var(--accent-cyan, #06b6d4)',     // current accent
-        'var(--accent-sky, #0ea5e9)',      // sky-500 fallback
-        'var(--accent-indigo, #6366f1)'    // indigo-500 fallback
-      ];
-      const color = palette[Math.floor(Math.random() * palette.length)];
+    return Array.from({ length: count }).map((_, i) => {
+      const size = MIN_PARTICLE_SIZE + Math.random() * (MAX_PARTICLE_SIZE - MIN_PARTICLE_SIZE);
+      const opacity = MIN_OPACITY + Math.random() * (MAX_OPACITY - MIN_OPACITY);
+      const duration = MIN_DURATION + Math.random() * (MAX_DURATION - MIN_DURATION);
+      const delay = -(Math.random() * duration);
+      const shouldBlur = Math.random() < BLUR_PROBABILITY;
+      const blurAmount = shouldBlur ? MIN_BLUR + Math.random() * (MAX_BLUR - MIN_BLUR) : 0;
+      const color = PARTICLE_PALETTE[Math.floor(Math.random() * PARTICLE_PALETTE.length)];
+      const left = Math.random() * 100;
+      const top = Math.random() * 100;
 
       return {
-        size: baseSize,
+        size,
         opacity,
-        left: Math.random() * 100,
-        top: Math.random() * 100,
+        left,
+        top,
         duration,
         delay,
         blur: blurAmount,
-        color
+        color,
+        key: `particle-${left.toFixed(2)}-${top.toFixed(2)}-${i}`,
       };
     });
   }, [count]);
 
-  const particles = particlesData.map((p, i) => {
+  const particles = particlesData.map((p) => {
     const style = {
-      position: 'absolute',
-      width: `${p.size}px`,
-      height: `${p.size}px`,
-      background: p.color,
-      borderRadius: '50%',
-      opacity: p.opacity,
-      left: `${p.left}%`,
-      top: `${p.top}%`,
+      '--particle-size': `${p.size}px`,
+      '--particle-opacity': p.opacity,
+      '--particle-left': `${p.left}%`,
+      '--particle-top': `${p.top}%`,
+      '--particle-color': p.color,
+      '--particle-blur': p.blur ? `${p.blur}px` : 'none',
       animation: `float ${p.duration}s linear infinite`,
       animationDelay: `${p.delay}s`,
-      filter: p.blur ? `blur(${p.blur}px)` : 'none',
-      boxShadow: `0 0 ${Math.max(1, p.size)}px ${p.color}` // subtle glow to blend with blue theme
     };
-    return <div key={i} style={style} />;
+    return <div key={p.key} className="particle" style={style} />;
   });
 
-  return (
-    <div
-      className="particles"
-      style={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%',
-        overflow: 'hidden',
-        zIndex: 1,
-        pointerEvents: 'none',
-      }}
-    >
-      {particles}
-    </div>
-  );
+  return <div className="particles">{particles}</div>;
 }
 
-export default React.memo(Particles);
+export default memo(Particles);

@@ -14,6 +14,6 @@ export default function useScrollAnimation() {
     }, observerOptions);
 
     elements.forEach((el) => observer.observe(el));
-    return () => elements.forEach((el) => observer.unobserve(el));
+    return () => observer.disconnect();
   }, []);
 }

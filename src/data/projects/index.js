@@ -1,36 +1,48 @@
-//ZORTRAX
+// ZORTRAX
 import zSuite from '../projects/zortrax/zsuite.json';
 import inCloud from '../projects/zortrax/incloud.json';
 import materialCalibration from '../projects/zortrax/materialcalibration.json';
 
-//MBANK
+// MBANK
 import mbank from '../projects/mbank/mbank.json';
 import mbankcimonitor from '../projects/mbank/mbankcimonitor.json';
 import jiraapiintegrationtools from '../projects/mbank/jiraapiintegrationtools.json';
 
-//HOME-MADE
+// HOME-MADE
 import nieMaNudy from '../projects/home/niemanudy.json';
 import showSize from '../projects/home/showsize.json';
 import skincrafter from '../projects/home/skincrafter.json';
 import hacomponents from '../projects/home/hacomponents.json';
 
+import { projectDetailsMap } from '../../content/index.js';
 
-export const projectMap = {
-  //zortrax
+const rawProjects = [
+  // zortrax
   zSuite,
   inCloud,
   materialCalibration,
 
-  //mbank
+  // mbank
   mbank,
   mbankcimonitor,
   jiraapiintegrationtools,
 
-  //home-made
+  // home-made
   nieMaNudy,
   skincrafter,
   hacomponents,
   showSize,
-};
+];
 
-export const projectList = Object.values(projectMap);
+function withDetails(project) {
+  const hasProjectDetails = project.id === 'niemanudy' && Boolean(projectDetailsMap[project.id]);
+
+  return {
+    ...project,
+    hasDetails: Boolean(project.hasDetails || hasProjectDetails),
+  };
+}
+
+export const projectList = rawProjects.map((project) => withDetails(project));
+export const projectMap = Object.fromEntries(projectList.map((project) => [project.id, project]));
+export { projectDetailsMap };

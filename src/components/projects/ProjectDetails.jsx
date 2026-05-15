@@ -1,49 +1,55 @@
-import { useParams, Link } from 'react-router-dom';
-import { useLayoutEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-
-import { projectMap } from '../../data/projects';
+import MarkdownRenderer from '../MarkdownRenderer.jsx';
+import PageSection from '../PageSection.jsx';
+import BackLink from '../BackLink.jsx';
+import useScrollToTop from '../../hooks/useScrollToTop.js';
+import { projectMap, projectDetailsMap } from '../../data/projects';
+import { getTechCategory } from '../../utils/techCategories.js';
 
 function ProjectDetails() {
   const { id } = useParams();
   const { t } = useTranslation();
-  useLayoutEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [id]);
+
+  useScrollToTop({ behavior: 'smooth' });
+
   const project = projectMap[id];
+  const projectDetails = projectDetailsMap[id];
 
   if (!project) {
     return (
-      <section className="section">
-        <div className="container">
-          <h2>{t('projectDetails.notFound')}</h2>
-          <Link to="/" className="read-more">
-            {t('projectDetails.backToHome')}
-          </Link>
-        </div>
-      </section>
+      <PageSection id="project-details">
+        <h2 className="section-title">{t('projectDetails.notFound')}</h2>
+        <BackLink to="/" className="read-more">
+          {t('projectDetails.backToHome')}
+        </BackLink>
+      </PageSection>
     );
   }
 
   return (
-    <section className="section">
-      <div className="container">
-        <h2 className="section-title">{project.title}</h2>
+    <PageSection id="project-details">
+      <article className="blog-post blog-post--narrow">
+        <h2 className="section-title">{projectDetails?.title || project.title}</h2>
         <p>{project.description}</p>
-        <div className="project-tech" style={{ marginTop: '20px' }}>
-          {project.tech.map((t) => (
-            <span key={t}>{t}</span>
+        <div className="project-tech">
+          {(project.tech || []).map((tech) => (
+            <span key={tech} className={getTechCategory(tech)}>
+              {tech}
+            </span>
           ))}
         </div>
-        <Link
-          to="/#projects"
-          className="read-more"
-          style={{ display: 'inline-block', marginTop: '20px' }}
-        >
-          {t('projectDetails.backToProjects')}
-        </Link>
-      </div>
-    </section>
+        {projectDetails?.contentBlocks?.length > 0 && (
+          <>
+            <div className="blog-post-divider blog-post-divider--wide" aria-hidden="true"></div>
+            <MarkdownRenderer blocks={projectDetails.contentBlocks} />
+          </>
+        )}
+      </article>
+      <BackLink to="/#projects" className="read-more project-back-link">
+        {t('projectDetails.backToProjects')}
+      </BackLink>
+    </PageSection>
   );
 }
 

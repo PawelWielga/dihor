@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 function ScrollToTop() {
   const [visible, setVisible] = useState(false);
@@ -18,9 +18,9 @@ function ScrollToTop() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToTop = () => {
+  const scrollToTop = useCallback(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  }, []);
 
   return (
     <button
@@ -28,7 +28,7 @@ function ScrollToTop() {
       onClick={scrollToTop}
       aria-label="Scroll to top"
     >
-      <i className="fas fa-arrow-up" />
+      <i className="fas fa-arrow-up" aria-hidden="true" />
     </button>
   );
 }

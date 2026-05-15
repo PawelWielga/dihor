@@ -21,5 +21,8 @@
       "icon": "fas fa-puzzle-piece"
     }
   ],
+  "productUrl": "https://pawelwielga.github.io/dihor-ha-components/",
+  "productLabel": "Przejdź do produktu",
+  "productIcon": "fas fa-external-link-alt",
   "hasDetails": false
 }

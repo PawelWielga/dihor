@@ -1,32 +1,46 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+
+const OPAQUE_NAVBAR_PATHS = new Set([
+  '/blog/jak-naprawic-polskie-znaki-w-powershell',
+  '/project/niemanudy',
+]);
 
 function Navbar() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const { pathname } = useLocation();
   const { t } = useTranslation();
+  const menuButtonRef = useRef(null);
+  const isOpaqueNavbarPath = OPAQUE_NAVBAR_PATHS.has(pathname);
 
   useEffect(() => {
-    const onScroll = () => {
-      const navbar = document.getElementById('navbar');
-      if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
-      }
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
     };
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const toggleMenu = () => setOpen(!open);
-  const closeMenu = () => setOpen(false);
+  const toggleMenu = useCallback(() => {
+    setOpen((prev) => !prev);
+  }, []);
+
+  const closeMenu = useCallback(() => {
+    setOpen(false);
+    menuButtonRef.current?.focus();
+  }, []);
 
   return (
-    <nav id="navbar" className="glass">
+    <nav
+      id="navbar"
+      className={`glass ${scrolled || isOpaqueNavbarPath ? 'scrolled' : ''} ${open ? 'open' : ''}`}
+    >
       <div className="container">
         <div className="nav-container">
-          <div className="logo" aria-label="Site logo"></div>
           <ul className={`nav-links ${open ? 'open' : ''}`}>
             <li>
               <Link to="/#home" onClick={closeMenu} aria-label="Go to Home section">
@@ -55,6 +69,7 @@ function Navbar() {
             </li>
           </ul>
           <button
+            ref={menuButtonRef}
             className="mobile-menu"
             onClick={toggleMenu}
             aria-label={open ? 'Close menu' : 'Open menu'}
