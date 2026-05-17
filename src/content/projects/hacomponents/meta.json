@@ -1,0 +1,6 @@
+{
+  "id": "hacomponents",
+  "title": "Dihor HA Components - szczegóły projektu",
+  "summary": "Biblioteka custom cards dla Home Assistant, rozwijana jako moduł ES dystrybuowany przez HACS.",
+  "seoDescription": "Szczegóły projektu Dihor HA Components: architektura kart Lovelace, TypeScript, Lit, Rollup, HACS i preview dokumentacji."
+}
