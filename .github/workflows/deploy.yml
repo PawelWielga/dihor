@@ -8,6 +8,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: github-pages-deploy
+  cancel-in-progress: false
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -30,6 +34,20 @@ jobs:
 
       - name: Build project
         run: npm run build
+
+      - name: Checkout current Pages branch
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: gh-pages-current
+          persist-credentials: false
+
+      - name: Preserve current dev preview
+        shell: bash
+        run: |
+          if [[ -d gh-pages-current/dev ]]; then
+            cp -a gh-pages-current/dev dist/dev
+          fi
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
