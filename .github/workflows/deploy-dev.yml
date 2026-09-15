@@ -1,0 +1,49 @@
+name: Deploy dev preview to GitHub Pages
+
+on:
+  push:
+    branches: [dev]
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: github-pages-deploy
+  cancel-in-progress: false
+
+env:
+  VITE_BASE_PATH: /dev/
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps || npm i --legacy-peer-deps
+
+      - name: Generate sitemap.xml
+        run: node ./scripts/generate-sitemap.mjs
+
+      - name: Build dev preview
+        run: npm run build
+
+      - name: Deploy dev preview to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: gh-pages
+          destination_dir: dev
+          exclude_assets: CNAME
+          full_commit_message: "deploy(dev): ${{ github.sha }}"
